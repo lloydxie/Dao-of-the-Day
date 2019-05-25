@@ -35,7 +35,7 @@ export default class HomeScreen extends React.Component {
           <View style={styles.getStartedContainer}>
             {this._maybeRenderDevelopmentModeWarning()}
 
-            <Text style={styles.getStartedText}>Get started by opening</Text>
+            <Text style={styles.getStartedText}>Get startedaa opening</Text>
 
             <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
               <MonoText style={styles.codeHighlightText}>screens/HomeScreen.js</MonoText>
@@ -55,6 +55,10 @@ export default class HomeScreen extends React.Component {
 
         <View style={styles.tabBarInfoContainer}>
           <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
+
+          <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
+            <MonoText style={styles.codeHighlightText}>navigation/MainTabNavigator.js</MonoText>
+          </View>
         </View>
       </View>
     );
@@ -63,7 +67,7 @@ export default class HomeScreen extends React.Component {
   _maybeRenderDevelopmentModeWarning() {
     if (__DEV__) {
       const learnMoreButton = (
-        <Text onPress={this._handleLearnMorePress} style={styles.helpLinkText}>
+        <Text onPress={() => this.props.navigation.navigate('Links')} style={styles.helpLinkText}>
           Learn more
         </Text>
       );
