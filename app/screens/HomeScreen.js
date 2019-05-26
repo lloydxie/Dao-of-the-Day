@@ -1,16 +1,12 @@
 import React from 'react';
 import {
-  Image,
-  Platform,
   ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
-import { WebBrowser } from 'expo';
-
-import { MonoText } from '../components/StyledText';
+import * as daoDeChing from './content/daoDeChing'
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -18,12 +14,14 @@ export default class HomeScreen extends React.Component {
   };
 
   render() {
+    let numberOfTheDay = Math.floor(Math.random() * 2) + 1
+    let daoOfTheDay = 'daoDeChing.d' + 1;
     return (
       <View style={styles.container}>
-        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+        <ScrollView contentContainerStyle={styles.contentContainer}>
           <View style={styles.helpContainer}>
             <TouchableOpacity onPress={this._handleHelpPress} style={styles.helpLink}>
-              <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
+              <Text style={styles.helpLinkText}>{"   " + eval(daoOfTheDay)}</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
@@ -32,12 +30,25 @@ export default class HomeScreen extends React.Component {
   }
 }
 
+_handleHelpPress = () => {
+
+};
+
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     backgroundColor: '#fff',
   },
   contentContainer: {
-    paddingTop: 30,
+    flexGrow: 1,
+  },
+  helpContainer: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    // alignItems: 'center',
+    backgroundColor: '#fff',
+  },
+  helpLinkText: {
+    fontSize: 18,
   }
 });
