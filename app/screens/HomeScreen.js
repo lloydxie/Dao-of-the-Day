@@ -13,9 +13,14 @@ export default class HomeScreen extends React.Component {
     header: null,
   };
 
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     let numberOfTheDay = Math.floor(Math.random() * 2) + 1
     let daoOfTheDay = 'daoDeChing.d' + 1;
+    this.notif.localNotif();  
     return (
       <View style={styles.container}>
         <ScrollView contentContainerStyle={styles.contentContainer}>
@@ -27,6 +32,16 @@ export default class HomeScreen extends React.Component {
         </ScrollView>
       </View>
     );
+  }
+
+  onRegister(token) {
+    Alert.alert("Registered !", JSON.stringify(token));
+    console.log(token);
+  }
+
+  onNotif(notif) {
+    console.log(notif);
+    Alert.alert(notif.title, notif.message);
   }
 }
 
