@@ -13,35 +13,20 @@ export default class HomeScreen extends React.Component {
     header: null,
   };
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
-    let numberOfTheDay = Math.floor(Math.random() * 2) + 1
-    let daoOfTheDay = 'daoDeChing.d' + 1;
-    this.notif.localNotif();  
+    let numberOfTheDay = Math.floor(Math.random() * 2);
+    let daoOfTheDay = daoDeChing.scrapedDao[0].title;
     return (
       <View style={styles.container}>
         <ScrollView contentContainerStyle={styles.contentContainer}>
           <View style={styles.helpContainer}>
             <TouchableOpacity onPress={this._handleHelpPress} style={styles.helpLink}>
-              <Text style={styles.helpLinkText}>{"   " + eval(daoOfTheDay)}</Text>
+              <Text style={styles.helpLinkText}>{daoOfTheDay}</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
       </View>
     );
-  }
-
-  onRegister(token) {
-    Alert.alert("Registered !", JSON.stringify(token));
-    console.log(token);
-  }
-
-  onNotif(notif) {
-    console.log(notif);
-    Alert.alert(notif.title, notif.message);
   }
 }
 
@@ -60,7 +45,7 @@ const styles = StyleSheet.create({
   helpContainer: {
     flexGrow: 1,
     justifyContent: 'center',
-    // alignItems: 'center',
+    alignItems: 'center',
     backgroundColor: '#fff',
   },
   helpLinkText: {
