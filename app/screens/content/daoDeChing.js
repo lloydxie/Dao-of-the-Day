@@ -13,20 +13,6 @@ export const scrapedDao = [{
     }
     },
     {
-    "url": "http://thetaoteching.com",
-    "title": "\n\n\n One of the greatest works of classic liturature. Lao Tzu shares timeless wisdom with the world.\nFrom a translation by S. Mitchell\n\n\n\n\n\t\t",
-    "#error": false,
-    "#debug": {
-        "requestId": "AE6YYqv5pBDhQ5C",
-        "url": "http://thetaoteching.com",
-        "loadedUrl": "http://thetaoteching.com/",
-        "method": "GET",
-        "retryCount": 0,
-        "errorMessages": null,
-        "statusCode": 200
-    }
-    },
-    {
     "url": "http://thetaoteching.com/taoteching2.html",
     "title": "\n\nWhen people see some things as beautiful,\nother things become ugly.\nWhen people see some things as good,\nother things become bad.\n\nBeing and non-being create each other.\nDifficult and easy support each other.\nLong and short define each other.\nHigh and low depend on each other.\nBefore and after follow each other.\n\nTherefore the Master\nacts without doing anything\nand teaches without saying anything.\nThings arise and she lets them come;\nthings disappear and she lets them go.\nShe has but doesn't possess,\nacts but doesn't expect.\nWhen her work is done, she forgets it.\nThat is why it lasts forever.\n\n\n\n\t\t",
     "#error": false,

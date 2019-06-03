@@ -5,8 +5,9 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Button
 } from 'react-native';
-import * as daoDeChing from './content/daoDeChing'
+import { scrapedDao } from './content/daoDeChing'
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -15,9 +16,19 @@ export default class HomeScreen extends React.Component {
 
   render() {
     let numberOfTheDay = Math.floor(Math.random() * 2);
-    let daoOfTheDay = daoDeChing.scrapedDao[0].title;
+    let daoOfTheDay = scrapedDao[numberOfTheDay].title;
     return (
       <View style={styles.container}>
+        <Button
+          title="Go back"
+          onPress={() => {
+            /* 1. Navigate to the Details route with params */
+            this.props.navigation.navigate('Contents', {
+              itemId: 86,
+              otherParam: 'First Details',
+            });
+          }}
+        />
         <ScrollView contentContainerStyle={styles.contentContainer}>
           <View style={styles.helpContainer}>
             <TouchableOpacity onPress={this._handleHelpPress} style={styles.helpLink}>
