@@ -2,16 +2,16 @@ import React from 'react';
 import { createAppContainer, createStackNavigator } from 'react-navigation';
 
 import MainTabNavigator from './MainTabNavigator';
-import HomeScreen from '../screens/HomeScreen';
+import DaoTextScreen from '../screens/DaoTextScreen';
 import LinksScreen from '../screens/LinksScreen';
 import TableOfContentsScreen from '../screens/TableOfContentsScreen';
 
 export default createAppContainer(createStackNavigator(
   {
-    Home: HomeScreen,
+    DaoText: DaoTextScreen,
     Contents: TableOfContentsScreen
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: 'DaoText',
   }
 ));

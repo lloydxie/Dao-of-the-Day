@@ -1,10 +1,10 @@
 import React from 'react';
-import { 
+import {
   ScrollView,
   StyleSheet,
   View,
   TouchableOpacity,
-  Text 
+  Text
 } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 import { scrapedDao } from './content/daoDeChing'
@@ -18,14 +18,12 @@ export default class TableOfContentsScreen extends React.Component {
   render() {
     return (
       <ScrollView style={styles.container}>
-        {/* Go ahead and delete ExpoLinksView and replace it with your
-           * content, we just wanted to provide you with some helpful links */}
         <View>
           {
-            scrapedDao.map( daoOfTheDay => {
+            scrapedDao.map((daoOfTheDay, index) => {
               return (
-                <TouchableOpacity onPress={this._handleHelpPress} style={styles.helpLink}>
-                 <Text numberOfLines={4} style={styles.helpLinkText}> {daoOfTheDay.title} </Text>
+                <TouchableOpacity style={styles.helpLink}>
+                  <Text onPress={() => { this.props.navigation.navigate('DaoText', { index: index }) }} numberOfLines={4} style={styles.helpLinkText}> {daoOfTheDay.title} </Text>
                 </TouchableOpacity>
               );
             })
