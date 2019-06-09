@@ -4,15 +4,14 @@ import {
   StyleSheet,
   View,
   TouchableOpacity,
-  Text
+  Text,
+  Button
 } from 'react-native';
-import { ExpoLinksView } from '@expo/samples';
 import { scrapedDao } from './content/daoDeChing'
 
 export default class TableOfContentsScreen extends React.Component {
   static navigationOptions = {
-    // header: null,
-    title: 'Table Of Contents',
+    header: null,
   };
 
   render() {
@@ -23,7 +22,7 @@ export default class TableOfContentsScreen extends React.Component {
             scrapedDao.map((daoOfTheDay, index) => {
               return (
                 <TouchableOpacity style={styles.helpLink}>
-                  <Text onPress={() => { this.props.navigation.navigate('DaoText', { index: index }) }} numberOfLines={4} style={styles.helpLinkText}> {daoOfTheDay.title} </Text>
+                  <Text onPress={() => { this.props.navigation.navigate('DaoText', { index: index }) }} numberOfLines={4} style={styles.helpLinkText}> Day {index} </Text>
                 </TouchableOpacity>
               );
             })
@@ -38,12 +37,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 15,
-    backgroundColor: '#fff',
+    backgroundColor: 'black',
   },
   helpLink: {
-
+    alignItems: 'center',
   },
   helpLinkText: {
+    color: '#fff',
+    fontSize: 18
 
   }
 });
