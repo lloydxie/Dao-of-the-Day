@@ -37,24 +37,14 @@ class DaoTextScreen extends React.Component {
         <Button
           title="Go back"
           onPress={() => {
-            arrayOfLines.map((line, index) => {
-              console.log(this.refs.daoText0);
-              eval('this.refs.daoText' + index);
-              // .then(() => this.props.navigation.navigate('Contents'));
-            })
+            this.daoText.fadeOut(1000).then(() => this.props.navigation.navigate('Contents'));
           }}
         />
         <ScrollView contentContainerStyle={styles.contentContainer}>
           <View style={styles.helpContainer}>
-            {
-              arrayOfLines.map((line, index) => {
-                return (
-                <TouchableOpacity key={index} onPress={this._playVoiceOfJesusAkaJoshEsguerra} style={styles.helpLink}>
-                  <Animatable.Text style={styles.helpLinkText} ref={"daoText" + index}>{line}</Animatable.Text>
-                </TouchableOpacity>
-                );
-              })
-            }
+            <TouchableOpacity onPress={this._playVoiceOfJesusAkaJoshEsguerra} style={styles.helpLink}>
+              <Animatable.Text style={styles.helpLinkText} ref={ref => this.daoText = ref} >{daoOfTheDay}</Animatable.Text>
+            </TouchableOpacity>
           </View>
         </ScrollView>
       </View> 
