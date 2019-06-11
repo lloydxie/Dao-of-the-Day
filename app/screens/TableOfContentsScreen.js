@@ -21,7 +21,7 @@ export default class TableOfContentsScreen extends React.Component {
           {
             scrapedDao.map((daoOfTheDay, index) => {
               return (
-                <TouchableOpacity style={styles.helpLink}>
+                <TouchableOpacity key={index} style={styles.helpLink}>
                   <Text onPress={() => { this.props.navigation.navigate('DaoText', { index: index }) }} numberOfLines={4} style={styles.helpLinkText}> Day {index} </Text>
                 </TouchableOpacity>
               );
