@@ -73,6 +73,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   helpLinkText: {
-    fontSize: 18,
+    fontSize: 16,
   }
 });
