@@ -1,6 +1,6 @@
 export const scrapedDao = [{
     "url": "http://thetaoteching.com/taoteching1.html",
-    "title": "\n\nThe tao that can be told\nis not the eternal Tao\nThe name that can be named\nis not the eternal Name.\n\nThe unnamable is the eternally real.\nNaming is the origin\nof all particular things.\n\nFree from desire, you realize the mystery.\nCaught in desire, you see only the manifestations.\n\nYet mystery and manifestations\narise from the same source.\nThis source is called darkness.\n\nDarkness within darkness.\nThe gateway to all understanding.\n\n\n\t\t",
+    "title": "\n\nThe tao that can be told\nis not the eternal Tao\nThe name that can be named\nis not the eternal Name.\n\nThe unnamable is the eternally real.\nNaming is the origin\nof all particular things.\n\nFree from desire, you realize the mystery.\nCaught in desire, you see only\nthe manifestations.\n\nYet mystery and manifestations\narise from the same source.\nThis source is called darkness.\n\nDarkness within darkness.\nThe gateway to all understanding.\n\n\n\t\t",
     "#error": false,
     "#debug": {
         "requestId": "MKBfdbIZ44BnCM7",

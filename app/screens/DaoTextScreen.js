@@ -61,8 +61,7 @@ _playVoiceOfJesusAkaJoshEsguerra = () => {
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    backgroundColor: '#fff',
-  },
+  },  
   contentContainer: {
     flexGrow: 1,
   },
@@ -70,9 +69,10 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: 'black',
   },
   helpLinkText: {
-    fontSize: 16,
+    color: '#fff',
+    fontSize: 17
   }
 });

@@ -10,5 +10,9 @@ export default createAppContainer(createStackNavigator(
   },
   {
     initialRouteName: 'DaoText',
+    headerMode: 'none',
+    defaultNavigationOptions: {
+      gesturesEnabled: false
+    }
   }
 ));

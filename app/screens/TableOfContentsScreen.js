@@ -18,23 +18,26 @@ export default class TableOfContentsScreen extends React.Component {
 
   render() {
     return (
-      <ScrollView style={styles.container}>
-        <FlatList
-          data={scrapedDao}
-          renderItem={({daoText, index}) => {
-            return (
-              <TouchableOpacity onPress={() => { this.props.navigation.navigate('DaoText', { index: index }) }} style={styles.grid}>
-                <Text style={styles.daoNumber}>{index}</Text>
-              </TouchableOpacity>
-            );
-          }}
-          numColumns={numColumns}
-          keyExtractor={(item, index) => index}
-          contentContainerStyle={styles.gridContainer}
-          style={styles.gridContainerStyles}
-        >
-        </FlatList>
-      </ScrollView>
+      <View style={styles.container}>
+        <Text style={styles.title}>Dao of the Day</Text>
+        <ScrollView style={styles.scrollContainer}>
+          <FlatList
+            data={scrapedDao}
+            renderItem={({daoText, index}) => {
+              return (
+                <TouchableOpacity onPress={() => { this.props.navigation.navigate('DaoText', { index: index }) }} style={styles.grid}>
+                  <Text style={styles.daoNumber}>{index + 1}</Text>
+                </TouchableOpacity>
+              );
+            }}
+            numColumns={numColumns}
+            keyExtractor={(item, index) => index}
+            contentContainerStyle={styles.gridContainer}
+            style={styles.gridContainerStyles}
+          >
+          </FlatList>
+        </ScrollView>
+      </View>
     );
   }
 }
@@ -42,8 +45,14 @@ export default class TableOfContentsScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 15,
     backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  scrollContainer: {
+    flex: 1,
+    backgroundColor: '#fff',
+    marginTop: 40
   },
   daoNumber: {
     color: '#fff',
@@ -55,15 +64,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   gridContainerStyles: {
-    marginTop: 150
   },
   grid: {
     backgroundColor: '#191919',
     alignItems: 'center',
     justifyContent: 'center',
     margin: 10,
-    height: Dimensions.get('window').width / (numColumns * 1.2),
-    width: Dimensions.get('window').width / (numColumns * 1.2),
+    height: Dimensions.get('window').width / (numColumns * 1.5),
+    width: Dimensions.get('window').width / (numColumns * 1.5),
     shadowColor: '#000',
     shadowOffset: { width: 8, height: 8 },
     shadowOpacity: 0.7,
@@ -71,5 +79,9 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     borderWidth: 1,
     borderColor: '#ffe'
+  },
+  title: {
+    fontSize: 22,
+    marginTop: 100
   }
 });
