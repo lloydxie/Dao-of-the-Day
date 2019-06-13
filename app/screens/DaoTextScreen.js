@@ -10,6 +10,7 @@ import {
 import * as Animatable from 'react-native-animatable';
 import { scrapedDao } from './content/daoDeChing'
 import {withNavigationFocus} from 'react-navigation';
+import TypeWriter from 'react-native-typewriter';
 
 class DaoTextScreen extends React.Component {
   static navigationOptions = {
@@ -17,9 +18,10 @@ class DaoTextScreen extends React.Component {
   };
 
   componentDidMount() {
+    // this.playBGAudio()
     const { navigation } = this.props;
     this.focusListener = navigation.addListener("willFocus", () => {
-      this.daoText.fadeIn(2000)
+      // this.daoText.fadeIn(2000)
     });
   }
 
@@ -43,7 +45,15 @@ class DaoTextScreen extends React.Component {
         <ScrollView contentContainerStyle={styles.contentContainer}>
           <View style={styles.helpContainer}>
             <TouchableOpacity onPress={this._playVoiceOfJesusAkaJoshEsguerra} style={styles.helpLink}>
-              <Animatable.Text style={styles.helpLinkText} ref={ref => this.daoText = ref} >{daoOfTheDay}</Animatable.Text>
+              <TypeWriter
+                typing={1}
+                style={styles.helpLinkText}
+                ref={ref => this.daoText = ref}
+                minDelay={60}
+                maxDelay={250}
+                fixed={true}
+                delayMap={delayMap}
+              >{daoOfTheDay}</TypeWriter>
             </TouchableOpacity>
           </View>
         </ScrollView>
@@ -57,6 +67,13 @@ export default withNavigationFocus(DaoTextScreen);
 _playVoiceOfJesusAkaJoshEsguerra = () => {
 
 };
+
+const delayMap = [
+  // increase delay by 1000ms at every newline
+  { at: '\n', delay: 1500 },
+  { at: '\n\n', delay: 1000 },
+  { at: ';', delay: 1000 },
+]
  
 const styles = StyleSheet.create({
   container: {
