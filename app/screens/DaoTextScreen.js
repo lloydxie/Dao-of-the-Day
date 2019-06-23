@@ -11,14 +11,15 @@ import * as Animatable from 'react-native-animatable';
 import { scrapedDao } from './content/daoDeChing'
 import {withNavigationFocus} from 'react-navigation';
 import TypeWriter from 'react-native-typewriter';
+import AudioService from '../services/AudioService'
 
 class DaoTextScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };
 
-  componentDidMount() {
-    // this.playBGAudio()
+  async componentDidMount() {
+    playBGAudio()
     const { navigation } = this.props;
     this.focusListener = navigation.addListener("willFocus", () => {
       // this.daoText.fadeIn(2000)
@@ -26,6 +27,7 @@ class DaoTextScreen extends React.Component {
   }
 
   componentWillUnmount() {
+    this.audioService.unmount()
     this.focusListener.remove();
   }
 
@@ -44,7 +46,7 @@ class DaoTextScreen extends React.Component {
         />
         <ScrollView contentContainerStyle={styles.contentContainer}>
           <View style={styles.helpContainer}>
-            <TouchableOpacity onPress={this._playVoiceOfJesusAkaJoshEsguerra} style={styles.helpLink}>
+            <TouchableOpacity onPress={_playVoiceOfJesusAkaJoshEsguerra} style={styles.helpLink}>
               <TypeWriter
                 typing={1}
                 style={styles.helpLinkText}
@@ -66,6 +68,11 @@ export default withNavigationFocus(DaoTextScreen);
 
 _playVoiceOfJesusAkaJoshEsguerra = () => {
 
+};
+
+playBGAudio = () => {
+  this.audioService = new AudioService()
+  this.audioService.play()
 };
 
 const delayMap = [
