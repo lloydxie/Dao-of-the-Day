@@ -32,8 +32,8 @@ export default class AudioService {
                 interruptionModeAndroid: Expo.Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
                 playThroughEarpieceAndroid: false
             });
-            await this.soundObject.loadAsync(require('../assets/bg/bg_1.mp3'));
-            // await this.soundObject.setIsLoopingAsync(true)
+            await soundObject.loadAsync(require('../assets/bg/bg_1.mp3'));
+            await soundObject.setIsLoopingAsync(true)
         } catch (error) {
             console.log(error)
         }
@@ -42,12 +42,12 @@ export default class AudioService {
     }
     
     loadFiles() {
-        foreach (val, key audioFilesMap) {
-            objectName = key; 
-            fileName = val;
-            soundObject = load(, )
-            this.soundObjects[objectName] = soundObject;
-        }
+        // foreach (val, key audioFilesMap) {
+        //     objectName = key; 
+        //     fileName = val;
+        //     soundObject = load(, )
+        //     this.soundObjects[objectName] = soundObject;
+        // }
         /**
          * To play the exact sound, you will use AudioService.play(soundObject)
          * TODO:

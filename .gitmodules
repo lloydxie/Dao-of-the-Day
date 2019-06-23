@@ -1,0 +1,3 @@
+[submodule "app/react-native-typewriter"]
+	path = app/react-native-typewriter
+	url = git@github.com:lloydxie/react-native-typewriter.git

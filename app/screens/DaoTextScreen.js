@@ -19,16 +19,16 @@ class DaoTextScreen extends React.Component {
 
   loadAudioFiles = async () => {
     this.audioService = new AudioService()
-    await this.audioService.load()
+    return await this.audioService.load('', '')
   };
   
-  playBackgroundMusic = () => {
-    this.audioService.play()
+  playBackgroundMusic = (audioObject) => {
+    this.audioService.play(audioObject)
   }
 
   async componentDidMount() {
-    await this.loadAudioFiles()
-    this.playBackgroundMusic()
+    audioObject = await this.loadAudioFiles()
+    this.playBackgroundMusic(audioObject)
     const { navigation } = this.props;
     this.focusListener = navigation.addListener("willFocus", () => {
       // this.daoText.fadeIn(2000)
