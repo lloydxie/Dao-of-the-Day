@@ -1,10 +1,9 @@
 import { Audio } from 'expo';
 
 export default class AudioService {
-    play = async () => {
-        const soundObject = new Expo.Audio.Sound();
+    load = async () => {
+        this.soundObject = new Expo.Audio.Sound();
 
-        console.log('we in')
         initialStatus = {
             progressUpdateIntervalMillis: 500,
             positionMillis: 0,
@@ -26,18 +25,20 @@ export default class AudioService {
                 interruptionModeAndroid: Expo.Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
                 playThroughEarpieceAndroid: false
             });
-            console.log('1')
-            await soundObject.loadAsync(require('../assets/bg/type_1.mp3'));
-            console.log('2')
-            // play the background music!
-            await soundObject.playAsync();
-            console.log('3')
+            await this.soundObject.loadAsync(require('../assets/bg/type_1.mp3'));
+            // await this.soundObject.setIsLoopingAsync(true)
         } catch (error) {
             console.log(error)
         }
     }
 
+    // play the background music!
+    play = async () => {
+        await this.soundObject.setPositionAsync(0);
+        await this.soundObject.playAsync();
+    }
+
     unmount = async () => {
-        await soundObject.stopAsync();
+        await this.soundObject.stopAsync();
     }
 }

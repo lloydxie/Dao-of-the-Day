@@ -18,8 +18,17 @@ class DaoTextScreen extends React.Component {
     header: null,
   };
 
-  async componentDidMount() {
-    playBGAudio()
+  loadAudioFiles = () => {
+    this.audioService = new AudioService()
+    this.audioService.load()
+  };
+  
+  play = () => {
+    this.audioService.play()
+  }
+
+  componentDidMount() {
+    this.loadAudioFiles()
     const { navigation } = this.props;
     this.focusListener = navigation.addListener("willFocus", () => {
       // this.daoText.fadeIn(2000)
@@ -31,6 +40,9 @@ class DaoTextScreen extends React.Component {
     this.focusListener.remove();
   }
 
+  navigateAway = () => {
+  }
+
   render() {
     let numberOfTheDay = this.props.navigation.getParam('index',  Math.floor(Math.random() * 2));
     let daoOfTheDay = scrapedDao[numberOfTheDay].title;
@@ -40,13 +52,11 @@ class DaoTextScreen extends React.Component {
       <View style={styles.container}>
         <Button
           title="Go back"
-          onPress={() => {
-            this.daoText.fadeOut(1000).then(() => this.props.navigation.navigate('Contents'));
-          }}
+          onPress={this.navigateAway}
         />
         <ScrollView contentContainerStyle={styles.contentContainer}>
           <View style={styles.helpContainer}>
-            <TouchableOpacity onPress={_playVoiceOfJesusAkaJoshEsguerra} style={styles.helpLink}>
+            <TouchableOpacity onPress={this.play} style={styles.helpLink}>
               <TypeWriter
                 typing={1}
                 style={styles.helpLinkText}
@@ -68,11 +78,6 @@ export default withNavigationFocus(DaoTextScreen);
 
 _playVoiceOfJesusAkaJoshEsguerra = () => {
 
-};
-
-playBGAudio = () => {
-  this.audioService = new AudioService()
-  this.audioService.play()
 };
 
 const delayMap = [
