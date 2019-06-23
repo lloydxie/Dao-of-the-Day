@@ -2,7 +2,6 @@ import React from 'react';
 import {
   ScrollView,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
   Button
@@ -18,17 +17,18 @@ class DaoTextScreen extends React.Component {
     header: null,
   };
 
-  loadAudioFiles = () => {
+  loadAudioFiles = async () => {
     this.audioService = new AudioService()
-    this.audioService.load()
+    await this.audioService.load()
   };
   
-  play = () => {
+  playBackgroundMusic = () => {
     this.audioService.play()
   }
 
-  componentDidMount() {
-    this.loadAudioFiles()
+  async componentDidMount() {
+    await this.loadAudioFiles()
+    this.playBackgroundMusic()
     const { navigation } = this.props;
     this.focusListener = navigation.addListener("willFocus", () => {
       // this.daoText.fadeIn(2000)
@@ -46,7 +46,6 @@ class DaoTextScreen extends React.Component {
   render() {
     let numberOfTheDay = this.props.navigation.getParam('index',  Math.floor(Math.random() * 2));
     let daoOfTheDay = scrapedDao[numberOfTheDay].title;
-    let arrayOfLines = daoOfTheDay.split("\n");
     
     return (
       <View style={styles.container}>
@@ -56,7 +55,7 @@ class DaoTextScreen extends React.Component {
         />
         <ScrollView contentContainerStyle={styles.contentContainer}>
           <View style={styles.helpContainer}>
-            <TouchableOpacity onPress={this.play} style={styles.helpLink}>
+            <TouchableOpacity style={styles.helpLink}>
               <TypeWriter
                 typing={1}
                 style={styles.helpLinkText}
