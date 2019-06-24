@@ -1,14 +1,29 @@
 import { Audio } from 'expo';
+import bg from '../assets/bg';
 
 export default class AudioService {
-    audioFilesMap = {
-        'BG_1': 'bg_1.mp3',
-        'TYPE_1': 'type_1.mp3'
+    backgroundMusicFilesMap = {
+        'bg_1.mp3': null
     }
 
-    soundObjects = {}
+    lowSoundFilesMap = {
+        'ios_type_low_1.mp3': null,
+        'ios_type_low_2.mp3': null,
+    }
 
-    load = async (objectName, fileName) => {
+    highSoundFilesMap = {
+        'ios_type_high_1.mp3': null,
+        'ios_type_high_2.mp3': null,
+    }
+
+    lowSoundKeys = [
+        ' '
+    ]
+
+    lastPlayedHighSoundIndex = 0
+    lastPlayedLowSoundIndex = 0
+
+    load = async (fileName, isLooping = false) => {
         const soundObject = new Expo.Audio.Sound();
 
         initialStatus = {
@@ -32,8 +47,10 @@ export default class AudioService {
                 interruptionModeAndroid: Expo.Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
                 playThroughEarpieceAndroid: false
             });
-            await soundObject.loadAsync(require('../assets/bg/bg_1.mp3'));
-            await soundObject.setIsLoopingAsync(true)
+            await soundObject.loadAsync(bg[fileName]);
+            if (isLooping) {
+                await soundObject.setIsLoopingAsync(true)
+            }
         } catch (error) {
             console.log(error)
         }
@@ -41,13 +58,12 @@ export default class AudioService {
         return soundObject
     }
     
-    loadFiles() {
-        // foreach (val, key audioFilesMap) {
-        //     objectName = key; 
-        //     fileName = val;
-        //     soundObject = load(, )
-        //     this.soundObjects[objectName] = soundObject;
-        // }
+    async loadFiles(fileMap) {
+        for (var keyName in fileMap) {
+            isLooping = keyName == 'bg_1.mp3' ? true : false
+            soundObject = await this.load(keyName, isLooping)
+            fileMap[keyName] = soundObject
+        }
         /**
          * To play the exact sound, you will use AudioService.play(soundObject)
          * TODO:
@@ -57,10 +73,30 @@ export default class AudioService {
          */
     }
 
+    async loadAllFiles() {
+        await Promise.all([
+            this.loadFiles(this.backgroundMusicFilesMap),
+            // this.loadFiles(this.lowSoundFilesMap),
+            // this.loadFiles(this.highSoundFilesMap)
+        ]);
+    }
+
     // play the background music!
     play = async (soundObject) => {
-        await soundObject.setPositionAsync(0);
         await soundObject.playAsync();
+        await soundObject.setPositionAsync(0);
+    }
+
+    playTypingSoundOnIos = async (high = true) => {
+        if (high) {
+            soundObject = this.highSoundFilesMap[Object.keys(this.highSoundFilesMap)[this.lastPlayedHighSoundIndex]]
+            this.lastPlayedHighSoundIndex = 1 - this.lastPlayedHighSoundIndex
+        }
+        else {
+            soundObject = this.lowSoundFilesMap[Object.keys(this.lowSoundFilesMap)[this.lastPlayedLowSoundIndex]]
+            this.lastPlayedLowSoundIndex = 1 - this.lastPlayedLowSoundIndex
+        }
+        await this.play(soundObject)
     }
 
     unmount = async (soundObject) => {

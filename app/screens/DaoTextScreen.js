@@ -19,7 +19,7 @@ class DaoTextScreen extends React.Component {
 
   loadAudioFiles = async () => {
     this.audioService = new AudioService()
-    return await this.audioService.load('', '')
+    await this.audioService.loadAllFiles()
   };
   
   playBackgroundMusic = (audioObject) => {
@@ -27,8 +27,8 @@ class DaoTextScreen extends React.Component {
   }
 
   async componentDidMount() {
-    audioObject = await this.loadAudioFiles()
-    this.playBackgroundMusic(audioObject)
+    await this.loadAudioFiles()
+    this.playBackgroundMusic(this.audioService.backgroundMusicFilesMap['bg_1.mp3'])
     const { navigation } = this.props;
     this.focusListener = navigation.addListener("willFocus", () => {
       // this.daoText.fadeIn(2000)
@@ -41,6 +41,39 @@ class DaoTextScreen extends React.Component {
   }
 
   navigateAway = () => {
+  }
+
+  onTyped = (token, previousVisibleCharacters) => {
+    // this.playTypingSoundOnIos(token, previousVisibleCharacters)
+    // this.showBlinkingCursor(token, previousVisibleCharacters)
+  }
+  
+  playTypingSoundOnIos = (token, previousVisibleCharacters) => {
+    if (this.audioService.lowSoundKeys.includes(token)) {
+        this.audioService.playTypingSoundOnIos(false)
+    }
+    else {
+        this.audioService.playTypingSoundOnIos() 
+    }
+  }
+  
+  showBlinkingCursor = (token, previousVisibleCharacters) => {
+    keyMap = this.audioService.getKeyMap()
+  
+    delayMap.forEach(({ at, delay }) => {
+      if (at === visibleChars || currentToken.match(at)) {
+        timeout += delay;
+      }
+    });
+  
+    // above instead of below
+      
+    if (token in lowSoundKeys) {
+        this.audioService.play(audioObject)
+    }
+    else {
+        this.audioService.play(audioObject) 
+    }
   }
 
   render() {
@@ -64,6 +97,7 @@ class DaoTextScreen extends React.Component {
                 maxDelay={250}
                 fixed={true}
                 delayMap={delayMap}
+                onTyped={this.onTyped}
               >{daoOfTheDay}</TypeWriter>
             </TouchableOpacity>
           </View>
