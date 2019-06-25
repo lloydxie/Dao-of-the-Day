@@ -4,13 +4,15 @@ import {
   StyleSheet,
   TouchableOpacity,
   View,
-  Button
+  Button,
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { scrapedDao } from './content/daoDeChing'
 import {withNavigationFocus} from 'react-navigation';
 import TypeWriter from 'react-native-typewriter';
 import AudioService from '../services/AudioService'
+import { DangerZone } from 'expo';
+const { Lottie } = DangerZone;
 
 class DaoTextScreen extends React.Component {
   static navigationOptions = {
@@ -30,6 +32,7 @@ class DaoTextScreen extends React.Component {
     await this.loadAudioFiles()
     this.playBackgroundMusic(this.audioService.backgroundMusicFilesMap['bg_1.mp3'])
     const { navigation } = this.props;
+    this.animation.play();
     this.focusListener = navigation.addListener("willFocus", () => {
       // this.daoText.fadeIn(2000)
     });
@@ -86,6 +89,17 @@ class DaoTextScreen extends React.Component {
           title="Go back"
           onPress={this.navigateAway}
         />
+        <Lottie
+          ref={animation => {
+            this.animation = animation;
+          }}
+          style={{
+            width: 200,
+            height: 200,
+            backgroundColor: '#1f1f1f',
+          }}
+          source={require('../assets/lottie/yin_yang.json')}
+        />
         <ScrollView contentContainerStyle={styles.contentContainer}>
           <View style={styles.helpContainer}>
             <TouchableOpacity style={styles.helpLink}>
@@ -121,6 +135,7 @@ const delayMap = [
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
+    backgroundColor: '#1f1f1f'
   },  
   contentContainer: {
     flexGrow: 1,
@@ -129,10 +144,11 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'black',
+    backgroundColor: '#1f1f1f',
   },
   helpLinkText: {
-    color: '#fff',
-    fontSize: 17
+    color: '#22BAD9',
+    fontSize: 17,
+    fontWeight: 'bold'
   }
 });
