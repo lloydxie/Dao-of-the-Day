@@ -114,9 +114,7 @@ _playVoiceOfJesusAkaJoshEsguerra = () => {
 };
 
 const delayMap = [
-  // increase delay by 1000ms at every newline
-  { at: '\n', delay: 1500 },
-  { at: '\n\n', delay: 1000 },
+  // increase delay by 1000ms at every semicolon
   { at: ';', delay: 1000 },
 ]
  
