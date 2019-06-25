@@ -11,10 +11,15 @@ import { scrapedDao } from './content/daoDeChing'
 import {withNavigationFocus} from 'react-navigation';
 import TypeWriter from 'react-native-typewriter';
 import AudioService from '../services/AudioService'
-import { DangerZone } from 'expo';
+import { DangerZone, Font } from 'expo';
 const { Lottie } = DangerZone;
+import { Ionicons } from '@expo/vector-icons';
 
 class DaoTextScreen extends React.Component {
+  state = {
+    fontLoaded: false,
+  };
+  
   static navigationOptions = {
     header: null,
   };
@@ -25,14 +30,25 @@ class DaoTextScreen extends React.Component {
   };
   
   playBackgroundMusic = (audioObject) => {
-    this.audioService.play(audioObject)
+    // this.audioService.play(audioObject)
   }
 
   async componentDidMount() {
     await this.loadAudioFiles()
     this.playBackgroundMusic(this.audioService.backgroundMusicFilesMap['bg_1.mp3'])
     const { navigation } = this.props;
-    this.animation.play();
+
+    await Font.loadAsync({
+      // 'frush': require('../assets/fonts/frush.ttf'),
+      // 'Kamikaze-Italic': require('../assets/fonts/Kamikaze-Italic.ttf'),
+      // 'MadeInChina': require('../assets/fonts/MadeInChina.ttf'),
+      // 'mangat': require('../assets/fonts/mangat.ttf'),
+      // 'samurai': require('../assets/fonts/samurai.ttf'),
+      'smite.regular': require('../assets/fonts/smite.regular.ttf'),
+      // 'dream-orphans.regular': require('../assets/fonts/dream-orphans.regular.ttf'),
+    });
+    this.setState({ fontLoaded: true });
+
     this.focusListener = navigation.addListener("willFocus", () => {
       // this.daoText.fadeIn(2000)
     });
@@ -80,40 +96,35 @@ class DaoTextScreen extends React.Component {
   }
 
   render() {
-    let numberOfTheDay = this.props.navigation.getParam('index',  Math.floor(Math.random() * 2));
+    let numberOfTheDay = this.props.navigation.getParam('index',  Math.floor(Math.random() * 81));
     let daoOfTheDay = scrapedDao[numberOfTheDay].title;
     
     return (
       <View style={styles.container}>
-        <Button
-          title="Go back"
-          onPress={this.navigateAway}
-        />
-        <Lottie
-          ref={animation => {
-            this.animation = animation;
-          }}
-          style={{
-            width: 200,
-            height: 200,
-            backgroundColor: '#1f1f1f',
-          }}
-          source={require('../assets/lottie/yin_yang.json')}
-        />
         <ScrollView contentContainerStyle={styles.contentContainer}>
           <View style={styles.helpContainer}>
-            <TouchableOpacity style={styles.helpLink}>
-              <TypeWriter
-                typing={1}
-                style={styles.helpLinkText}
-                ref={ref => this.daoText = ref}
-                minDelay={60}
-                maxDelay={250}
-                fixed={true}
-                delayMap={delayMap}
-                onTyped={this.onTyped}
-              >{daoOfTheDay}</TypeWriter>
-            </TouchableOpacity>
+          <Ionicons 
+            name="md-arrow-down" 
+            size={32}
+            color="white"
+            onPress={this.navigateAway}
+          />
+            {
+              this.state.fontLoaded ? (
+              <TouchableOpacity style={styles.helpLink}>
+                <TypeWriter
+                  typing={1}
+                  style={styles.helpLinkText}
+                  ref={ref => this.daoText = ref}
+                  minDelay={50}
+                  maxDelay={200}
+                  fixed={true}
+                  delayMap={delayMap}
+                  onTyped={this.onTyped}
+                >{daoOfTheDay}</TypeWriter>
+              </TouchableOpacity>
+              ) : null
+            }
           </View>
         </ScrollView>
       </View> 
@@ -148,7 +159,7 @@ const styles = StyleSheet.create({
   },
   helpLinkText: {
     color: '#22BAD9',
-    fontSize: 17,
-    fontWeight: 'bold'
+    fontSize: 20,
+    fontFamily: 'smite.regular',
   }
 });

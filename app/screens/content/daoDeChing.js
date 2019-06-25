@@ -1132,3 +1132,13 @@ export const scrapedDao = [{
         "statusCode": 200
     }
     }]
+
+export const chineseText = `
+^ 名與身孰親 ？? ? ? \
+> 身與貨孰多? ? ? ? \
+< 得與亡孰病 ? ? ? \
+~ * 是故甚愛必大費，\
+< > 多藏必厚亡。\
+! | !知足不辱，\
+知止不殆，可以長久。。。
+`
