@@ -55,12 +55,12 @@ class DaoTextScreen extends React.Component {
   }
 
   componentWillUnmount() {
-    this.audioService.unmount()
+    // this.audioService.unmount()
     this.focusListener.remove();
   }
 
   navigateAway = () => {
-    this.props.navigation.navigate('Contents')
+    this.props.navigation.replace('Contents')
   }
 
   render() {
