@@ -30,7 +30,7 @@ class DaoTextScreen extends React.Component {
   };
   
   playBackgroundMusic = (audioObject) => {
-    // this.audioService.play(audioObject)
+    this.audioService.play(audioObject)
   }
 
   async componentDidMount() {
@@ -60,39 +60,7 @@ class DaoTextScreen extends React.Component {
   }
 
   navigateAway = () => {
-  }
-
-  onTyped = (token, previousVisibleCharacters) => {
-    // this.playTypingSoundOnIos(token, previousVisibleCharacters)
-    // this.showBlinkingCursor(token, previousVisibleCharacters)
-  }
-  
-  playTypingSoundOnIos = (token, previousVisibleCharacters) => {
-    if (this.audioService.lowSoundKeys.includes(token)) {
-        this.audioService.playTypingSoundOnIos(false)
-    }
-    else {
-        this.audioService.playTypingSoundOnIos() 
-    }
-  }
-  
-  showBlinkingCursor = (token, previousVisibleCharacters) => {
-    keyMap = this.audioService.getKeyMap()
-  
-    delayMap.forEach(({ at, delay }) => {
-      if (at === visibleChars || currentToken.match(at)) {
-        timeout += delay;
-      }
-    });
-  
-    // above instead of below
-      
-    if (token in lowSoundKeys) {
-        this.audioService.play(audioObject)
-    }
-    else {
-        this.audioService.play(audioObject) 
-    }
+    this.props.navigation.navigate('Contents')
   }
 
   render() {
