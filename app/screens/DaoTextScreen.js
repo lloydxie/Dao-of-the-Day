@@ -4,7 +4,6 @@ import {
   StyleSheet,
   TouchableOpacity,
   View,
-  Button,
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { scrapedDao } from './content/daoDeChing'
