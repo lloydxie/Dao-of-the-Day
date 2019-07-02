@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Dap",
-    "slug": "dao",
+    "name": "Wiser Each Day",
+    "slug": "wiser-each-day",
     "privacy": "public",
     "sdkVersion": "32.0.0",
     "platforms": [
@@ -14,7 +14,7 @@
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#22BAD9"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -24,6 +24,7 @@
     ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "description": "A Dao A Day, keeps the therapist away. "
   }
 }

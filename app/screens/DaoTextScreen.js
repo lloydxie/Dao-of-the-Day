@@ -15,10 +15,6 @@ const { Lottie } = DangerZone;
 import { Ionicons } from '@expo/vector-icons';
 
 class DaoTextScreen extends React.Component {
-  state = {
-    fontLoaded: false,
-  };
-  
   static navigationOptions = {
     header: null,
   };
@@ -34,19 +30,10 @@ class DaoTextScreen extends React.Component {
 
   async componentDidMount() {
     await this.loadAudioFiles()
-    this.playBackgroundMusic(this.audioService.backgroundMusicFilesMap['bg_1.mp3'])
+    setTimeout(() => {
+      this.playBackgroundMusic(this.audioService.backgroundMusicFilesMap['bg_1.mp3'])
+    }, 2000)
     const { navigation } = this.props;
-
-    await Font.loadAsync({
-      // 'frush': require('../assets/fonts/frush.ttf'),
-      // 'Kamikaze-Italic': require('../assets/fonts/Kamikaze-Italic.ttf'),
-      // 'MadeInChina': require('../assets/fonts/MadeInChina.ttf'),
-      // 'mangat': require('../assets/fonts/mangat.ttf'),
-      // 'samurai': require('../assets/fonts/samurai.ttf'),
-      'smite.regular': require('../assets/fonts/smite.regular.ttf'),
-      // 'dream-orphans.regular': require('../assets/fonts/dream-orphans.regular.ttf'),
-    });
-    this.setState({ fontLoaded: true });
 
     this.focusListener = navigation.addListener("willFocus", () => {
       // this.daoText.fadeIn(2000)
@@ -70,28 +57,24 @@ class DaoTextScreen extends React.Component {
       <View style={styles.container}>
         <ScrollView contentContainerStyle={styles.contentContainer}>
           <View style={styles.helpContainer}>
-          <Ionicons 
-            name="md-arrow-down" 
-            size={32}
-            color="white"
-            onPress={this.navigateAway}
-          />
-            {
-              this.state.fontLoaded ? (
-              <TouchableOpacity style={styles.helpLink}>
-                <TypeWriter
-                  typing={1}
-                  style={styles.helpLinkText}
-                  ref={ref => this.daoText = ref}
-                  minDelay={50}
-                  maxDelay={200}
-                  fixed={true}
-                  delayMap={delayMap}
-                  onTyped={this.onTyped}
-                >{daoOfTheDay}</TypeWriter>
-              </TouchableOpacity>
-              ) : null
-            }
+            <Ionicons 
+              name="md-arrow-down" 
+              size={32}
+              color="white"
+              onPress={this.navigateAway}
+            />
+            <TouchableOpacity style={styles.helpLink}>
+              <TypeWriter
+                typing={1}
+                style={styles.helpLinkText}
+                ref={ref => this.daoText = ref}
+                minDelay={50}
+                maxDelay={200}
+                fixed={true}
+                delayMap={delayMap}
+                onTyped={this.onTyped}
+              >{daoOfTheDay}</TypeWriter>
+            </TouchableOpacity>
           </View>
         </ScrollView>
       </View> 
@@ -127,6 +110,6 @@ const styles = StyleSheet.create({
   helpLinkText: {
     color: '#22BAD9',
     fontSize: 20,
-    fontFamily: 'smite.regular',
+    fontFamily: 'smite',
   }
 });

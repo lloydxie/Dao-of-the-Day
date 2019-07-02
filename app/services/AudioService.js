@@ -64,13 +64,6 @@ export default class AudioService {
             soundObject = await this.load(keyName, isLooping)
             fileMap[keyName] = soundObject
         }
-        /**
-         * To play the exact sound, you will use AudioService.play(soundObject)
-         * TODO:
-         * 1) first test that the object returned has the callable play()
-         * 2) call play() from the typewriter library for ONE sound file to test it out
-         * 3) Finish implementing the map looping solution so it works for multiple sounds
-         */
     }
 
     async loadAllFiles() {

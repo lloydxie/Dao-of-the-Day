@@ -24,13 +24,13 @@ export default class TableOfContentsScreen extends React.Component {
 
   async componentDidMount() {
     await Font.loadAsync({
-      'frush': require('../assets/fonts/frush.ttf'),
-      'Kamikaze-Italic': require('../assets/fonts/Kamikaze-Italic.ttf'),
-      'MadeInChina': require('../assets/fonts/MadeInChina.ttf'),
-      'mangat': require('../assets/fonts/mangat.ttf'),
-      'samurai': require('../assets/fonts/samurai.ttf'),
-      'smite.regular': require('../assets/fonts/smite.regular.ttf'),
-      'dream-orphans.regular': require('../assets/fonts/dream-orphans.regular.ttf'),
+      // 'frush': require('../assets/fonts/frush.ttf'),
+      // 'Kamikaze-Italic': require('../assets/fonts/Kamikaze-Italic.ttf'),
+      // 'MadeInChina': require('../assets/fonts/MadeInChina.ttf'),
+      // 'mangat': require('../assets/fonts/mangat.ttf'),
+      // 'samurai': require('../assets/fonts/samurai.ttf'),
+      // 'smite.regular': require('../assets/fonts/smite.regular.ttf'),
+      // 'dream-orphans.regular': require('../assets/fonts/dream-orphans.regular.ttf'),
     });
     this.setState({ fontLoaded: true });
     this.animation.play();
@@ -120,13 +120,7 @@ const styles = StyleSheet.create({
     fontSize: 32,
     marginTop: 100,
     color: '#1f1f1f',
-    fontFamily: 'dream-orphans.regular',
-    // 'Kamikaze-Italic': require('../assets/fonts/Kamikaze-Italic.ttf'),
-    //   'MadeInChina': require('../assets/fonts/MadeInChina.ttf'),
-    //   'mangat': require('../assets/fonts/mangat.ttf'),
-    //   'samurai': require('../assets/fonts/samurai.ttf'),
-    //   'smite.regular': require('../assets/fonts/smite.regular.ttf'),
-    //   'dream-orphans.regular': require('../assets/fonts/dream-orphans.regular.ttf'),
+    fontFamily: 'dreamOrphans',
   },
   lottie: {
     width: 300,
