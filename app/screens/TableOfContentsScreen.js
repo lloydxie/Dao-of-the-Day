@@ -9,8 +9,8 @@ import {
 } from 'react-native';
 import { scrapedDao } from './content/daoDeChing'
 import { FlatList } from 'react-native-gesture-handler';
-import { DangerZone, Font } from 'expo';
-const { Lottie } = DangerZone;
+import { DangerZone } from 'expo';
+import Lottie from 'lottie-react-native'
 
 numColumns = 3;
 export default class TableOfContentsScreen extends React.Component {
@@ -23,16 +23,6 @@ export default class TableOfContentsScreen extends React.Component {
   };
 
   async componentDidMount() {
-    await Font.loadAsync({
-      // 'frush': require('../assets/fonts/frush.ttf'),
-      // 'Kamikaze-Italic': require('../assets/fonts/Kamikaze-Italic.ttf'),
-      // 'MadeInChina': require('../assets/fonts/MadeInChina.ttf'),
-      // 'mangat': require('../assets/fonts/mangat.ttf'),
-      // 'samurai': require('../assets/fonts/samurai.ttf'),
-      // 'smite.regular': require('../assets/fonts/smite.regular.ttf'),
-      // 'dream-orphans.regular': require('../assets/fonts/dream-orphans.regular.ttf'),
-    });
-    this.setState({ fontLoaded: true });
     this.animation.play();
   }
 
@@ -43,35 +33,31 @@ export default class TableOfContentsScreen extends React.Component {
             alignItems: 'center',
             justifyContent: 'center'
         }}>
-          {
-            this.state.fontLoaded ? (
-              <Text style={styles.title}>Dao of the Day</Text>
-            ) : null
-          }
-            <View style={styles.lottie}>
-              <Lottie
-                ref={animation => {
-                  this.animation = animation;
-                }}
-                style={styles.lottie}
-                source={require('../assets/lottie/ninja.json')}
-              />
-            </View>
-            <FlatList
-              data={scrapedDao}
-              renderItem={({daoText, index}) => {
-                return (
-                  <TouchableOpacity onPress={() => { this.props.navigation.navigate('DaoText', { index: index }) }} style={styles.grid}>
-                    <Text style={styles.daoNumber}>{index + 1}</Text>
-                  </TouchableOpacity>
-                );
+          <Text style={styles.title}>Dao of the Day</Text>
+          <View style={styles.lottie}>
+            <Lottie
+              ref={animation => {
+                this.animation = animation;
               }}
-              numColumns={numColumns}
-              keyExtractor={(item, index) => index}
-              contentContainerStyle={styles.gridContainer}
-              style={styles.gridContainerStyles}
-            >
-            </FlatList>
+              style={styles.lottie}
+              source={require('../assets/lottie/ninja.json')}
+            />
+          </View>
+          <FlatList
+            data={scrapedDao}
+            renderItem={({daoText, index}) => {
+              return (
+                <TouchableOpacity onPress={() => { this.props.navigation.navigate('DaoText', { index: index }) }} style={styles.grid}>
+                  <Text style={styles.daoNumber}>{index + 1}</Text>
+                </TouchableOpacity>
+              );
+            }}
+            numColumns={numColumns}
+            keyExtractor={(item, index) => index}
+            contentContainerStyle={styles.gridContainer}
+            style={styles.gridContainerStyles}
+          >
+          </FlatList>
         </ScrollView>
       </View>
     );
@@ -92,7 +78,7 @@ const styles = StyleSheet.create({
   },
   daoNumber: {
     color: '#fff',
-    fontSize: 26,
+    fontSize: 20,
     fontWeight: 'bold'
   },
   gridContainer: {
@@ -102,7 +88,7 @@ const styles = StyleSheet.create({
   gridContainerStyles: {
   },
   grid: {
-    backgroundColor: '#22BAD9',
+    backgroundColor: '#22BAD995',
     alignItems: 'center',
     justifyContent: 'center',
     margin: 10,
@@ -126,6 +112,7 @@ const styles = StyleSheet.create({
     width: 300,
     height: 300,
     backgroundColor: '#fff',
-    flex: 1
+    flex: 1,
+    aspectRatio: 1
   }
 });

@@ -3,7 +3,7 @@
     "name": "Wiser Each Day",
     "slug": "wiser-each-day",
     "privacy": "public",
-    "sdkVersion": "32.0.0",
+    "sdkVersion": "33.0.0",
     "platforms": [
       "ios",
       "android"
@@ -25,6 +25,6 @@
     "ios": {
       "supportsTablet": true
     },
-    "description": "A Dao A Day, keeps the therapist away. "
+    "description": "A Dao A Day, keeps the Doctor away. "
   }
 }

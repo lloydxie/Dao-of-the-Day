@@ -1,7 +1,8 @@
 import React from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
-import { AppLoading, Asset, Font, Icon } from 'expo';
+import { AppLoading, Asset } from 'expo';
 import AppNavigator from './navigation/AppNavigator';
+import * as Font from 'expo-font'
 
 function cacheImages(images) {
   return images.map(image => {

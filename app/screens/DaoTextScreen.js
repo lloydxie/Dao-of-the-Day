@@ -5,14 +5,12 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import * as Animatable from 'react-native-animatable';
 import { scrapedDao } from './content/daoDeChing'
 import {withNavigationFocus} from 'react-navigation';
 import TypeWriter from 'react-native-typewriter';
 import AudioService from '../services/AudioService'
-import { DangerZone, Font } from 'expo';
-const { Lottie } = DangerZone;
 import { Ionicons } from '@expo/vector-icons';
+import * as Brightness from 'expo-brightness';
 
 class DaoTextScreen extends React.Component {
   static navigationOptions = {
@@ -29,6 +27,9 @@ class DaoTextScreen extends React.Component {
   }
 
   async componentDidMount() {
+    this.oldBrightness = Brightness.getBrightnessAsync()
+    this.brightnessValue = 0
+    this.interval = setInterval(() => this.increaseBrightness(), 1000);
     await this.loadAudioFiles()
     setTimeout(() => {
       this.playBackgroundMusic(this.audioService.backgroundMusicFilesMap['bg_1.mp3'])
@@ -47,6 +48,18 @@ class DaoTextScreen extends React.Component {
 
   navigateAway = () => {
     this.props.navigation.replace('Contents')
+  }
+
+  increaseBrightness() {
+    if (this.brightnessValue > 0.95) {
+      this.brightnessValue = this.oldBrightness
+      clearInterval(this.interval)
+      return
+    }
+    else {
+      this.brightnessValue += 0.1
+    }
+    Brightness.setBrightnessAsync(this.brightnessValue)
   }
 
   render() {

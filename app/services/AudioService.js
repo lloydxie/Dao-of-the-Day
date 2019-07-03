@@ -1,4 +1,4 @@
-import { Audio } from 'expo';
+import { Audio } from 'expo-av';
 import bg from '../assets/bg';
 
 export default class AudioService {
@@ -24,7 +24,7 @@ export default class AudioService {
     lastPlayedLowSoundIndex = 0
 
     load = async (fileName, isLooping = false) => {
-        const soundObject = new Expo.Audio.Sound();
+        const soundObject = new Audio.Sound();
 
         initialStatus = {
             progressUpdateIntervalMillis: 500,
@@ -42,10 +42,11 @@ export default class AudioService {
             await Audio.setAudioModeAsync({
                 playsInSilentModeIOS: true,
                 allowsRecordingIOS: false,
-                interruptionModeIOS: Expo.Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
+                interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
                 shouldDuckAndroid: false,
-                interruptionModeAndroid: Expo.Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
-                playThroughEarpieceAndroid: false
+                interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
+                playThroughEarpieceAndroid: false,
+                staysActiveInBackground: false
             });
             await soundObject.loadAsync(bg[fileName]);
             if (isLooping) {
