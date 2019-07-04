@@ -1,9 +1,28 @@
 import { Audio } from 'expo-av';
 import bg from '../assets/bg';
 
-export default class AudioService {
+class AudioService {
+    static instance = null;
+    static createInstance() {
+        var object = new AudioService();
+        return object;
+    }
+
+    static getInstance () {
+        if (!AudioService.instance) {
+            AudioService.instance = AudioService.createInstance();
+        }
+        return AudioService.instance;
+    }
+
     backgroundMusicFilesMap = {
-        'bg_1.mp3': null
+        'lily_2.mp3': null,
+        'lily_3.mp3': null,
+        'lily_4.mp3': null
+    }
+
+    initialLoadMap = {
+        'lily_1.mp3': null
     }
 
     lowSoundFilesMap = {
@@ -58,7 +77,7 @@ export default class AudioService {
 
         return soundObject
     }
-    
+
     async loadFiles(fileMap) {
         for (var keyName in fileMap) {
             isLooping = keyName == 'bg_1.mp3' ? true : false
@@ -97,3 +116,6 @@ export default class AudioService {
         await soundObject.stopAsync();
     }
 }
+
+const AudioServiceSingleton = AudioService.getInstance();
+export default AudioServiceSingleton;

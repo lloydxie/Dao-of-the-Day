@@ -9,9 +9,9 @@ import {
 } from 'react-native';
 import { scrapedDao } from './content/daoDeChing'
 import { FlatList } from 'react-native-gesture-handler';
-import { DangerZone } from 'expo';
 import Lottie from 'lottie-react-native'
 import TypeWriter from 'react-native-typewriter';
+import AudioServiceSingleton from '../services/AudioService'
 
 numColumns = 3;
 export default class TableOfContentsScreen extends React.Component {
@@ -26,6 +26,16 @@ export default class TableOfContentsScreen extends React.Component {
   async componentDidMount() {
     this.lottieNinja.play();
     // this.lottieYinYang.play();
+    AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['lily_1.mp3'])
+  }
+
+  navigateAway(index) {
+    AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['lily_1.mp3'])
+    this.props.navigation.navigate('DaoText', { index: index })
+  }
+
+  flashScreen () {
+
   }
 
   render() {
@@ -41,6 +51,7 @@ export default class TableOfContentsScreen extends React.Component {
                 minDelay={100}
                 maxDelay={150}
                 fixed={true}
+                onTyped={this.flashScreen}
               >Da a Day</TypeWriter>
           <Lottie
             ref={animation => {
@@ -62,7 +73,7 @@ export default class TableOfContentsScreen extends React.Component {
             data={scrapedDao}
             renderItem={({daoText, index}) => {
               return (
-                <TouchableOpacity onPress={() => { this.props.navigation.navigate('DaoText', { index: index }) }} style={styles.grid}>
+                <TouchableOpacity onPress={() => this.navigateAway(index)} style={styles.grid}>
                   <Text style={styles.daoNumber}>{index + 1}</Text>
                 </TouchableOpacity>
               );

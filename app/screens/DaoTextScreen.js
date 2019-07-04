@@ -8,7 +8,7 @@ import {
 import { scrapedDao } from './content/daoDeChing'
 import {withNavigationFocus} from 'react-navigation';
 import TypeWriter from 'react-native-typewriter';
-import AudioService from '../services/AudioService'
+import AudioServiceSingleton from '../services/AudioService'
 import { Ionicons } from '@expo/vector-icons';
 import * as Brightness from 'expo-brightness';
 
@@ -17,22 +17,37 @@ class DaoTextScreen extends React.Component {
     header: null,
   };
 
-  loadAudioFiles = async () => {
-    this.audioService = new AudioService()
-    await this.audioService.loadAllFiles()
+  loadAudioFile = async (numberOfTheDay) => {
+    isLooping = true;
+    backgroundMusicFilesMap = AudioServiceSingleton.backgroundMusicFilesMap;
+    if (numberOfTheDay < 25) {
+      this.keyName = Object.keys(backgroundMusicFilesMap)[0];
+    }
+    else if (numberOfTheDay < 50) {
+      this.keyName = Object.keys(backgroundMusicFilesMap)[1];
+    }
+    else {
+      this.keyName = Object.keys(backgroundMusicFilesMap)[2];
+    }
+    soundObject = await AudioServiceSingleton.load(this.keyName, isLooping);
+    AudioServiceSingleton.backgroundMusicFilesMap[this.keyName] = soundObject;
+    return soundObject;
   };
   
   playBackgroundMusic = (audioObject) => {
-    this.audioService.play(audioObject)
+    
+    
   }
 
   async componentDidMount() {
     this.oldBrightness = Brightness.getBrightnessAsync()
     this.brightnessValue = 0
     this.interval = setInterval(() => this.increaseBrightness(), 1000);
-    await this.loadAudioFiles()
+
+    soundObject = await this.loadAudioFile(this.numberOfTheDay)
     setTimeout(() => {
-      this.playBackgroundMusic(this.audioService.backgroundMusicFilesMap['bg_1.mp3'])
+      AudioServiceSingleton.play(soundObject)
+      // this.playBackgroundMusic(AudioServiceSingleton.backgroundMusicFilesMap[this.keyName])
     }, 2000)
     const { navigation } = this.props;
 
@@ -42,7 +57,7 @@ class DaoTextScreen extends React.Component {
   }
 
   componentWillUnmount() {
-    // this.audioService.unmount()
+    // AudioServiceSingleton.unmount()
     this.focusListener.remove();
   }
 
@@ -63,9 +78,9 @@ class DaoTextScreen extends React.Component {
   }
 
   render() {
-    let numberOfTheDay = this.props.navigation.getParam('index',  Math.floor(Math.random() * 81));
-    let daoOfTheDay = scrapedDao[numberOfTheDay].title;
-    
+    this.numberOfTheDay = this.props.navigation.getParam('index',  Math.floor(Math.random() * 81));
+    this.daoOfTheDay = scrapedDao[this.numberOfTheDay].title;
+
     return (
       <View style={styles.container}>
         <ScrollView contentContainerStyle={styles.contentContainer}>
@@ -85,7 +100,7 @@ class DaoTextScreen extends React.Component {
                 maxDelay={200}
                 fixed={true}
                 delayMap={delayMap}
-              >{daoOfTheDay}</TypeWriter>
+              >{this.daoOfTheDay}</TypeWriter>
             </TouchableOpacity>
           </View>
         </ScrollView>

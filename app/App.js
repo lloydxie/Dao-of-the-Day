@@ -3,6 +3,7 @@ import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { AppLoading, Asset } from 'expo';
 import AppNavigator from './navigation/AppNavigator';
 import * as Font from 'expo-font'
+import AudioServiceSingleton from './services/AudioService'
 
 function cacheImages(images) {
   return images.map(image => {
@@ -18,6 +19,13 @@ function cacheFonts(fonts) {
   return fonts.map(font => Font.loadAsync(font));
 }
 
+async function cacheAudio() {
+    this.audioService = AudioServiceSingleton
+    isLooping = true
+    soundObject = await this.audioService.load('lily_1.mp3', isLooping)
+    return this.audioService.initialLoadMap['lily_1.mp3'] = soundObject
+}
+
 export default class App extends React.Component {
   state = {
     isReady: false,
@@ -25,6 +33,7 @@ export default class App extends React.Component {
 
   async _loadAssetsAsync() {
     const imageAssets = cacheImages([
+      // consider using image for grid squares
     ]);
 
     const fontAssets = cacheFonts([
@@ -34,7 +43,9 @@ export default class App extends React.Component {
       },
     ]);
 
-    await Promise.all([...imageAssets, ...fontAssets]);
+    const audioAssets = cacheAudio();
+
+    await Promise.all([...imageAssets, ...fontAssets, audioAssets]);
   }
 
   render() {
