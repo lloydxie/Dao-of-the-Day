@@ -11,6 +11,7 @@ import { scrapedDao } from './content/daoDeChing'
 import { FlatList } from 'react-native-gesture-handler';
 import { DangerZone } from 'expo';
 import Lottie from 'lottie-react-native'
+import TypeWriter from 'react-native-typewriter';
 
 numColumns = 3;
 export default class TableOfContentsScreen extends React.Component {
@@ -23,7 +24,8 @@ export default class TableOfContentsScreen extends React.Component {
   };
 
   async componentDidMount() {
-    this.animation.play();
+    this.lottieNinja.play();
+    // this.lottieYinYang.play();
   }
 
   render() {
@@ -33,13 +35,26 @@ export default class TableOfContentsScreen extends React.Component {
             alignItems: 'center',
             justifyContent: 'center'
         }}>
-          <Text style={styles.title}>Dao of the Day</Text>
-          <View style={styles.lottie}>
+          <TypeWriter
+                typing={1}
+                style={styles.title}
+                minDelay={100}
+                maxDelay={150}
+                fixed={true}
+              >Da a Day</TypeWriter>
+          <Lottie
+            ref={animation => {
+              this.lottieYinYang = animation;
+            }}
+            style={styles.lottieYinYang}
+            source={require('../assets/lottie/yin_yang.json')}
+          />
+          <View style={styles.lottieNinja}>
             <Lottie
               ref={animation => {
-                this.animation = animation;
+                this.lottieNinja = animation;
               }}
-              style={styles.lottie}
+              style={styles.lottieNinja}
               source={require('../assets/lottie/ninja.json')}
             />
           </View>
@@ -108,11 +123,18 @@ const styles = StyleSheet.create({
     color: '#1f1f1f',
     fontFamily: 'dreamOrphans',
   },
-  lottie: {
+  lottieNinja: {
     width: 300,
     height: 300,
     backgroundColor: '#fff',
     flex: 1,
     aspectRatio: 1
+  },
+  lottieYinYang: {
+    width: 70,
+    height: 70,
+    // backgroundColor: '#fff',
+    flex: 1,
+    aspectRatio: 1,
   }
 });

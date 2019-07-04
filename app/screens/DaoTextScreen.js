@@ -85,7 +85,6 @@ class DaoTextScreen extends React.Component {
                 maxDelay={200}
                 fixed={true}
                 delayMap={delayMap}
-                onTyped={this.onTyped}
               >{daoOfTheDay}</TypeWriter>
             </TouchableOpacity>
           </View>
