@@ -21,7 +21,7 @@ class DaoTextScreen extends React.Component {
     isLooping = true;
     backgroundMusicFilesMap = AudioServiceSingleton.backgroundMusicFilesMap;
     if (numberOfTheDay < 25) {
-      this.keyName = Object.keys(backgroundMusicFilesMap)[0];
+      this.keyName = Object.keys(backgroundMusicFilesMap)[1];
     }
     else if (numberOfTheDay < 50) {
       this.keyName = Object.keys(backgroundMusicFilesMap)[1];
@@ -33,11 +33,6 @@ class DaoTextScreen extends React.Component {
     AudioServiceSingleton.backgroundMusicFilesMap[this.keyName] = soundObject;
     return soundObject;
   };
-  
-  playBackgroundMusic = (audioObject) => {
-    
-    
-  }
 
   async componentDidMount() {
     this.oldBrightness = Brightness.getBrightnessAsync()
@@ -47,8 +42,11 @@ class DaoTextScreen extends React.Component {
     soundObject = await this.loadAudioFile(this.numberOfTheDay)
     setTimeout(() => {
       AudioServiceSingleton.play(soundObject)
-      // this.playBackgroundMusic(AudioServiceSingleton.backgroundMusicFilesMap[this.keyName])
     }, 2000)
+
+    setTimeout(() => {
+    AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['typing.mp3'])
+    }, 5000)
     const { navigation } = this.props;
 
     this.focusListener = navigation.addListener("willFocus", () => {
@@ -57,11 +55,12 @@ class DaoTextScreen extends React.Component {
   }
 
   componentWillUnmount() {
-    // AudioServiceSingleton.unmount()
     this.focusListener.remove();
   }
 
   navigateAway = () => {
+    AudioServiceSingleton.unmount(AudioServiceSingleton.backgroundMusicFilesMap[this.keyName])
+    AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])
     this.props.navigation.replace('Contents')
   }
 
@@ -77,6 +76,15 @@ class DaoTextScreen extends React.Component {
     Brightness.setBrightnessAsync(this.brightnessValue)
   }
 
+  playOrPauseTyping(token) {
+    if (token == '\n') {
+      AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])
+    }
+    else {
+      AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['typing.mp3'])
+    }
+  }
+
   render() {
     this.numberOfTheDay = this.props.navigation.getParam('index',  Math.floor(Math.random() * 81));
     this.daoOfTheDay = scrapedDao[this.numberOfTheDay].title;
@@ -85,12 +93,6 @@ class DaoTextScreen extends React.Component {
       <View style={styles.container}>
         <ScrollView contentContainerStyle={styles.contentContainer}>
           <View style={styles.helpContainer}>
-            <Ionicons 
-              name="md-arrow-down" 
-              size={32}
-              color="white"
-              onPress={this.navigateAway}
-            />
             <TouchableOpacity style={styles.helpLink}>
               <TypeWriter
                 typing={1}
@@ -100,8 +102,15 @@ class DaoTextScreen extends React.Component {
                 maxDelay={200}
                 fixed={true}
                 delayMap={delayMap}
+                onTyped={this.playOrPauseTyping}
               >{this.daoOfTheDay}</TypeWriter>
             </TouchableOpacity>
+            <Ionicons 
+              name="md-arrow-down" 
+              size={32}
+              color="white"
+              onPress={this.navigateAway}
+            />
           </View>
         </ScrollView>
       </View> 

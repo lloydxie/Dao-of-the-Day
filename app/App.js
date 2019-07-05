@@ -20,10 +20,12 @@ function cacheFonts(fonts) {
 }
 
 async function cacheAudio() {
-    this.audioService = AudioServiceSingleton
-    isLooping = true
-    soundObject = await this.audioService.load('lily_1.mp3', isLooping)
-    return this.audioService.initialLoadMap['lily_1.mp3'] = soundObject
+  isLooping = true
+  soundObject = await AudioServiceSingleton.load('lily_1.mp3', isLooping)
+  AudioServiceSingleton.initialLoadMap['lily_1.mp3'] = soundObject
+  typing = await AudioServiceSingleton.load('typing.mp3', isLooping)
+  AudioServiceSingleton.initialLoadMap['typing.mp3'] = typing
+  return soundObject
 }
 
 export default class App extends React.Component {

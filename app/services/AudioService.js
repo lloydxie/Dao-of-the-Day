@@ -22,7 +22,8 @@ class AudioService {
     }
 
     initialLoadMap = {
-        'lily_1.mp3': null
+        'lily_1.mp3': null,
+        'typing.mp3': null
     }
 
     lowSoundFilesMap = {
@@ -80,8 +81,7 @@ class AudioService {
 
     async loadFiles(fileMap) {
         for (var keyName in fileMap) {
-            isLooping = keyName == 'bg_1.mp3' ? true : false
-            soundObject = await this.load(keyName, isLooping)
+            soundObject = await this.load(keyName, true)
             fileMap[keyName] = soundObject
         }
     }

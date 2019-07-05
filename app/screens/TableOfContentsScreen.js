@@ -5,7 +5,8 @@ import {
   View,
   TouchableOpacity,
   Text,
-  Dimensions
+  Dimensions,
+  Animated
 } from 'react-native';
 import { scrapedDao } from './content/daoDeChing'
 import { FlatList } from 'react-native-gesture-handler';
@@ -14,6 +15,7 @@ import TypeWriter from 'react-native-typewriter';
 import AudioServiceSingleton from '../services/AudioService'
 
 numColumns = 3;
+
 export default class TableOfContentsScreen extends React.Component {
   static navigationOptions = {
     header: null,
@@ -21,21 +23,41 @@ export default class TableOfContentsScreen extends React.Component {
   
   state = {
     fontLoaded: false,
+    speed: 0,
+    yinYangFade: new Animated.Value(0)  // Initial value for opacity: 0
   };
+
+  constructor() {
+    super()
+    AnimatedLottie = Animated.createAnimatedComponent(Lottie)
+  }
 
   async componentDidMount() {
     this.lottieNinja.play();
-    // this.lottieYinYang.play();
+    this.lottieYinYang.play();
     AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['lily_1.mp3'])
+    setTimeout(() => {
+      AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['typing.mp3'])
+    }, 2500)
+    setTimeout(() => {
+      Animated.timing(                  // Animate over time
+        this.state.yinYangFade,            // The animated value to drive
+        {
+          toValue: 1,                   // Animate to opacity: 1 (opaque)
+          duration: 5000,              // Make it take a while
+        }
+      ).start();  
+    }, 5000)
+  }
+
+  playYinYangAnimation = () => {
+    this.setState({speed: .5})
   }
 
   navigateAway(index) {
     AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['lily_1.mp3'])
+    AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])
     this.props.navigation.navigate('DaoText', { index: index })
-  }
-
-  flashScreen () {
-
   }
 
   render() {
@@ -45,21 +67,42 @@ export default class TableOfContentsScreen extends React.Component {
             alignItems: 'center',
             justifyContent: 'center'
         }}>
-          <TypeWriter
-                typing={1}
-                style={styles.title}
-                minDelay={100}
-                maxDelay={150}
-                fixed={true}
-                onTyped={this.flashScreen}
-              >Da a Day</TypeWriter>
-          <Lottie
-            ref={animation => {
-              this.lottieYinYang = animation;
-            }}
-            style={styles.lottieYinYang}
-            source={require('../assets/lottie/yin_yang.json')}
-          />
+          <View style={styles.header}>
+            <TypeWriter
+              typing={1}
+              style={styles.title}
+              minDelay={130}
+              maxDelay={250}
+              delayMap={delayMap}
+              fixed={true}
+            >  Da</TypeWriter>
+            <TouchableOpacity onPress={this.playYinYangAnimation}>
+              <Animated.View style={{
+                ...styles.lottieYinYang,
+                opacity: this.state.yinYangFade,
+              }}>
+                <Lottie
+                  ref={animation => {
+                    this.lottieYinYang = animation;
+                  }}
+                  style={{
+                    ...styles.lottieYinYang
+                  }}
+                  source={require('../assets/lottie/yin_yang.json')}
+                  speed={this.state.speed}
+                />
+              </Animated.View>
+            </TouchableOpacity>
+            <TypeWriter
+              typing={1}
+              style={styles.title2}
+              minDelay={130}
+              maxDelay={250}
+              delayMap={delayMap}
+              fixed={true}
+              onTypingEnd={() => {AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])}}
+            >   A Day</TypeWriter>
+          </View>
           <View style={styles.lottieNinja}>
             <Lottie
               ref={animation => {
@@ -89,6 +132,10 @@ export default class TableOfContentsScreen extends React.Component {
     );
   }
 }
+
+let delayMap = [
+  { at: ' ', delay: 1000 }
+]
 
 const styles = StyleSheet.create({
   container: {
@@ -134,6 +181,13 @@ const styles = StyleSheet.create({
     color: '#1f1f1f',
     fontFamily: 'dreamOrphans',
   },
+  title2: {
+    fontSize: 32,
+    marginTop: 100,
+    color: '#1f1f1f',
+    fontFamily: 'dreamOrphans',
+    marginLeft: -32
+  },
   lottieNinja: {
     width: 300,
     height: 300,
@@ -142,10 +196,14 @@ const styles = StyleSheet.create({
     aspectRatio: 1
   },
   lottieYinYang: {
-    width: 70,
-    height: 70,
-    // backgroundColor: '#fff',
     flex: 1,
-    aspectRatio: 1,
+    aspectRatio: .4,
+    marginTop: 21,
+    marginLeft: -3,
+  },
+  header: {
+    flex: 1,
+    flexDirection: 'row',
+    marginRight: 25
   }
 });
