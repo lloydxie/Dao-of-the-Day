@@ -44,10 +44,10 @@ export default class TableOfContentsScreen extends React.Component {
         this.state.yinYangFade,            // The animated value to drive
         {
           toValue: 1,                   // Animate to opacity: 1 (opaque)
-          duration: 5000,              // Make it take a while
+          duration: 5500,              // Make it take a while
         }
       ).start();  
-    }, 5000)
+    }, 5250)
   }
 
   playYinYangAnimation = () => {
@@ -76,7 +76,12 @@ export default class TableOfContentsScreen extends React.Component {
               delayMap={delayMap}
               fixed={true}
             >  Da</TypeWriter>
-            <TouchableOpacity onPress={this.playYinYangAnimation}>
+            <TouchableOpacity onPress={this.playYinYangAnimation}
+              style={{
+                flex: 1,
+                flexDirection: 'row',
+              }}
+            >
               <Animated.View style={{
                 ...styles.lottieYinYang,
                 opacity: this.state.yinYangFade,
@@ -84,9 +89,6 @@ export default class TableOfContentsScreen extends React.Component {
                 <Lottie
                   ref={animation => {
                     this.lottieYinYang = animation;
-                  }}
-                  style={{
-                    ...styles.lottieYinYang
                   }}
                   source={require('../assets/lottie/yin_yang.json')}
                   speed={this.state.speed}
@@ -186,7 +188,7 @@ const styles = StyleSheet.create({
     marginTop: 100,
     color: '#1f1f1f',
     fontFamily: 'dreamOrphans',
-    marginLeft: -32
+    left: -91
   },
   lottieNinja: {
     width: 300,
@@ -197,13 +199,13 @@ const styles = StyleSheet.create({
   },
   lottieYinYang: {
     flex: 1,
-    aspectRatio: .4,
-    marginTop: 21,
-    marginLeft: -3,
+    aspectRatio: 3.9,
+    top: 108,
+    right: 40,
   },
   header: {
     flex: 1,
     flexDirection: 'row',
-    marginRight: 25
+    marginLeft: 75
   }
 });
