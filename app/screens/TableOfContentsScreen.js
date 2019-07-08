@@ -24,7 +24,8 @@ export default class TableOfContentsScreen extends React.Component {
   state = {
     fontLoaded: false,
     speed: 0,
-    yinYangFade: new Animated.Value(0)  // Initial value for opacity: 0
+    yinYangFade: new Animated.Value(0),  // Initial value for opacity: 0
+    isExitingScreen: false
   };
 
   constructor() {
@@ -37,7 +38,9 @@ export default class TableOfContentsScreen extends React.Component {
     this.lottieYinYang.play();
     AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['lily_1.mp3'])
     setTimeout(() => {
-      AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['typing.mp3'])
+      if (!this.state.isExitingScreen) {
+        AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['typing.mp3'])
+      }
     }, 2500)
     setTimeout(() => {
       Animated.timing(                  // Animate over time
@@ -55,6 +58,7 @@ export default class TableOfContentsScreen extends React.Component {
   }
 
   navigateAway(index) {
+    this.setState({isExitingScreen: true})
     AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['lily_1.mp3'])
     AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])
     this.props.navigation.navigate('DaoText', { index: index })
@@ -81,6 +85,7 @@ export default class TableOfContentsScreen extends React.Component {
                 flex: 1,
                 flexDirection: 'row',
               }}
+              activeOpacity={0.4}
             >
               <Animated.View style={{
                 ...styles.lottieYinYang,
@@ -118,7 +123,11 @@ export default class TableOfContentsScreen extends React.Component {
             data={scrapedDao}
             renderItem={({daoText, index}) => {
               return (
-                <TouchableOpacity onPress={() => this.navigateAway(index)} style={styles.grid}>
+                <TouchableOpacity 
+                  onPress={() => this.navigateAway(index)}
+                  style={styles.grid}
+                  activeOpacity={0.4}
+                >
                   <Text style={styles.daoNumber}>{index + 1}</Text>
                 </TouchableOpacity>
               );

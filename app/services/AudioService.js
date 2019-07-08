@@ -16,7 +16,7 @@ class AudioService {
     }
 
     backgroundMusicFilesMap = {
-        'lily_2.mp3': null,
+        'bg_1.mp3': null,
         'lily_3.mp3': null,
         'lily_4.mp3': null
     }
@@ -84,14 +84,6 @@ class AudioService {
             soundObject = await this.load(keyName, true)
             fileMap[keyName] = soundObject
         }
-    }
-
-    async loadAllFiles() {
-        await Promise.all([
-            this.loadFiles(this.backgroundMusicFilesMap),
-            // this.loadFiles(this.lowSoundFilesMap),
-            // this.loadFiles(this.highSoundFilesMap)
-        ]);
     }
 
     // play the background music!
