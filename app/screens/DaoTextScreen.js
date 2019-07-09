@@ -160,9 +160,11 @@ class DaoTextScreen extends React.Component {
 
   flashChineseFengShui = event => {
     if (event.nativeEvent.state === State.ACTIVE) {
-      console.log('we in');
+      // this.setState({showChineseText: true})
     }
-    this.setState({showChineseText: true})
+    else {
+      console.log('release')
+    }
   }
   
   skipForward = () => {
@@ -239,30 +241,41 @@ class DaoTextScreen extends React.Component {
             <TapGestureHandler
               onHandlerStateChange={this.flashChineseFengShui}
               numberOfTaps={2}
-              maxDelayMs={1000}
+              maxDelayMs={500}
             >
                 {
-                  !this.state.showAll ? <TypeWriter
-                  typing={1}
-                  style={{
-                    ...styles.helpLinkText,
-                    color: this.state.textColor
-                  }}
-                  ref={ref => this.daoText = ref}
-                  minDelay={50}
-                  maxDelay={150}
-                  fixed={true}
-                  delayMap={delayMap}
-                  onTyped={this.playOrPauseTyping}
-                >{this.daoOfTheDay}</TypeWriter> : 
-                <Text 
-                  style={{
-                    ...styles.helpLinkText,
-                    color: this.state.textColor
-                  }}
-                >
-                  {this.daoOfTheDay}
-                </Text>
+                  this.state.showChineseText ? 
+                  <Text 
+                    style={{
+                      ...styles.helpLinkText,
+                      color: this.state.textColor
+                    }}
+                  >
+                    {chineseText}
+                  </Text> :
+                  (
+                    !this.state.showAll ? <TypeWriter
+                      typing={1}
+                      style={{
+                        ...styles.helpLinkText,
+                        color: this.state.textColor
+                      }}
+                      ref={ref => this.daoText = ref}
+                      minDelay={50}
+                      maxDelay={150}
+                      fixed={true}
+                      delayMap={delayMap}
+                      onTyped={this.playOrPauseTyping}
+                    >{this.daoOfTheDay}</TypeWriter> : 
+                    <Text 
+                      style={{
+                        ...styles.helpLinkText,
+                        color: this.state.textColor
+                      }}
+                    >
+                      {this.daoOfTheDay}
+                    </Text>
+                  )
                 }
             </TapGestureHandler>
             </TouchableOpacity>
