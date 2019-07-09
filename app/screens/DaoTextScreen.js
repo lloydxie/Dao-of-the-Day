@@ -4,7 +4,8 @@ import {
   StyleSheet,
   TouchableOpacity,
   View,
-  Text
+  Text,
+  Dimensions
 } from 'react-native';
 import { scrapedDao, chineseText } from './content/daoDeChing'
 import {withNavigationFocus} from 'react-navigation';
@@ -39,10 +40,10 @@ const styles = StyleSheet.create({
   helpLinkText: {
     fontSize: 20,
     fontFamily: 'smite',
-    marginTop: -100
+    marginTop: -Dimensions.get('window').height / 9
   },
   controlsHeader: {
-    marginTop: 100,
+    marginTop: Dimensions.get('window').height / 9,
     // flex: 1,
     // flexBasis: '100%',
     flexDirection: 'row',
@@ -94,7 +95,7 @@ class DaoTextScreen extends React.Component {
   async componentDidMount() {
     this.oldBrightness = Brightness.getBrightnessAsync()
     this.brightnessValue = 0
-    this.interval = setInterval(() => this.increaseBrightness(), 1000);
+    this.interval = setInterval(() => this.increaseBrightness(), 100);
 
     soundObject = await this.loadAudioFile(this.numberOfTheDay)
     setTimeout(() => {
@@ -138,13 +139,13 @@ class DaoTextScreen extends React.Component {
   }
 
   increaseBrightness() {
-    if (this.brightnessValue > 0.95) {
+    if (this.brightnessValue > 0.99) {
       this.brightnessValue = this.oldBrightness
       clearInterval(this.interval)
       return
     }
     else {
-      this.brightnessValue += 0.1
+      this.brightnessValue += 0.05
     }
     Brightness.setBrightnessAsync(this.brightnessValue)
   }
@@ -163,7 +164,6 @@ class DaoTextScreen extends React.Component {
       // this.setState({showChineseText: true})
     }
     else {
-      console.log('release')
     }
   }
   

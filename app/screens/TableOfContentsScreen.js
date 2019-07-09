@@ -41,7 +41,7 @@ export default class TableOfContentsScreen extends React.Component {
       if (!this.state.isExitingScreen) {
         AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['typing.mp3'])
       }
-    }, 2500)
+    }, 2750)
     setTimeout(() => {
       Animated.timing(                  // Animate over time
         this.state.yinYangFade,            // The animated value to drive
