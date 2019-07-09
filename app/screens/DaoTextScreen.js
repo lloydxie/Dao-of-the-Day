@@ -4,6 +4,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   View,
+  Text
 } from 'react-native';
 import { scrapedDao, chineseText } from './content/daoDeChing'
 import {withNavigationFocus} from 'react-navigation';
@@ -27,7 +28,8 @@ class DaoTextScreen extends React.Component {
 
   state = {
     volumeLevel: HIGH,
-    isExitingScreen: false
+    isExitingScreen: false,
+    showAll: false
   }
 
   loadAudioFile = async (numberOfTheDay) => {
@@ -118,6 +120,18 @@ class DaoTextScreen extends React.Component {
     }
   }
 
+  flashChineseFengShui = () => {
+    chineseText
+  }
+  
+  skipForward = () => {
+    this.setState({showAll: true})
+  }
+  
+  changeColorScheme = () => {
+    this.setState({showAll: true})
+  }
+
   render() {
     this.numberOfTheDay = this.props.navigation.getParam('index',  Math.floor(Math.random() * 81));
     this.daoOfTheDay = scrapedDao[this.numberOfTheDay].title;
@@ -125,25 +139,44 @@ class DaoTextScreen extends React.Component {
     return (
       <View style={styles.container}>
         <ScrollView contentContainerStyle={styles.contentContainer}>
-          <View style={styles.helpContainer}>
-            <TouchableOpacity style={styles.helpLink}>
-              <Ionicons 
-                name={this.volumeLevelOptions[this.state.volumeLevel]} 
-                size={32}
-                color="#22BAD9"
-                onPress={this.changeVolume}
-              />
-            </TouchableOpacity>
+          <View
+            style={styles.controlsHeader}
+          >
             <TouchableOpacity style={styles.helpLink}>
               <Ionicons 
                 name={"md-skip-forward"}
-                size={32}
+                size={28}
                 color="#22BAD9"
                 onPress={this.skipForward}
               />
             </TouchableOpacity>
             <TouchableOpacity style={styles.helpLink}>
-              <TypeWriter
+              <Ionicons 
+                name={"md-color-palette"}
+                size={28}
+                color="#22BAD9"
+                onPress={this.changeColorScheme}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.helpLink}>
+              <Ionicons 
+                name={this.volumeLevelOptions[this.state.volumeLevel]} 
+                size={28}
+                color="#22BAD9"
+                onPress={this.changeVolume}
+                style={
+                  {marginLeft: this.state.volumeLevel == HIGH ? 0 : 10}
+                }
+              />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.helpContainer}>
+            <TouchableOpacity
+              style={styles.helpLink}
+              onPress={this.flashChineseFengShui}
+            >
+              {
+                !this.state.showAll ? <TypeWriter
                 typing={1}
                 style={styles.helpLinkText}
                 ref={ref => this.daoText = ref}
@@ -152,7 +185,9 @@ class DaoTextScreen extends React.Component {
                 fixed={true}
                 delayMap={delayMap}
                 onTyped={this.playOrPauseTyping}
-              >{this.daoOfTheDay}</TypeWriter>
+              >{this.daoOfTheDay}</TypeWriter> : 
+                <Text style={styles.helpLinkText}>{this.daoOfTheDay}</Text>
+              }
             </TouchableOpacity>
             <Ionicons 
               name="md-arrow-down" 
@@ -180,14 +215,14 @@ const delayMap = [
  
 const styles = StyleSheet.create({
   container: {
-    flexGrow: 1,
+    flex: 1,
     backgroundColor: '#1f1f1f'
   },  
   contentContainer: {
-    flexGrow: 1,
+    flex: 1,
   },
   helpContainer: {
-    flexGrow: 1,
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#1f1f1f',
@@ -196,5 +231,14 @@ const styles = StyleSheet.create({
     color: '#22BAD9',
     fontSize: 20,
     fontFamily: 'smite',
+    marginTop: -100
+  },
+  controlsHeader: {
+    marginTop: 100,
+    // flex: 1,
+    // flexBasis: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    // alignItems: 'center'
   }
 });
