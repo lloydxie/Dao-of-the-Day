@@ -12,7 +12,7 @@ import TypeWriter from 'react-native-typewriter';
 import AudioServiceSingleton from '../services/AudioService'
 import { Ionicons } from '@expo/vector-icons';
 import * as Brightness from 'expo-brightness';
-import { TapGestureHandler } from 'react-native-gesture-handler';
+import { TapGestureHandler, State } from 'react-native-gesture-handler';
 
 const HIGH = 'HIGH';
 const MUTE = 'MUTE';
@@ -158,7 +158,10 @@ class DaoTextScreen extends React.Component {
     }
   }
 
-  flashChineseFengShui = () => {
+  flashChineseFengShui = event => {
+    if (event.nativeEvent.state === State.ACTIVE) {
+      console.log('we in');
+    }
     this.setState({showChineseText: true})
   }
   
@@ -232,9 +235,12 @@ class DaoTextScreen extends React.Component {
             ...styles.helpContainer,
             backgroundColor: this.state.backgroundColor
           }}>
-              <TouchableOpacity
-                onPress={this.flashChineseFengShui}
-              >
+            <TouchableOpacity>
+            <TapGestureHandler
+              onHandlerStateChange={this.flashChineseFengShui}
+              numberOfTaps={2}
+              maxDelayMs={1000}
+            >
                 {
                   !this.state.showAll ? <TypeWriter
                   typing={1}
@@ -258,7 +264,8 @@ class DaoTextScreen extends React.Component {
                   {this.daoOfTheDay}
                 </Text>
                 }
-              </TouchableOpacity>
+            </TapGestureHandler>
+            </TouchableOpacity>
             <Ionicons 
               name="md-arrow-down" 
               size={32}
