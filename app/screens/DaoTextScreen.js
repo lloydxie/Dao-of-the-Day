@@ -15,6 +15,7 @@ import * as Brightness from 'expo-brightness';
 
 const HIGH = 'HIGH';
 const MUTE = 'MUTE'
+const DAO_BLUE = "#22BAD9"
 
 class DaoTextScreen extends React.Component {
   static navigationOptions = {
@@ -146,7 +147,7 @@ class DaoTextScreen extends React.Component {
               <Ionicons 
                 name={"md-skip-forward"}
                 size={28}
-                color="#22BAD9"
+                color={DAO_BLUE}
                 onPress={this.skipForward}
               />
             </TouchableOpacity>
@@ -154,7 +155,7 @@ class DaoTextScreen extends React.Component {
               <Ionicons 
                 name={"md-color-palette"}
                 size={28}
-                color="#22BAD9"
+                color={DAO_BLUE}
                 onPress={this.changeColorScheme}
               />
             </TouchableOpacity>
@@ -162,7 +163,7 @@ class DaoTextScreen extends React.Component {
               <Ionicons 
                 name={this.volumeLevelOptions[this.state.volumeLevel]} 
                 size={28}
-                color="#22BAD9"
+                color={DAO_BLUE}
                 onPress={this.changeVolume}
                 style={
                   {marginLeft: this.state.volumeLevel == HIGH ? 0 : 10}
@@ -192,7 +193,7 @@ class DaoTextScreen extends React.Component {
             <Ionicons 
               name="md-arrow-down" 
               size={32}
-              color="#22BAD9"
+              color={DAO_BLUE}
               onPress={this.navigateAway}
             />
           </View>

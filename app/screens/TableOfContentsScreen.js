@@ -67,10 +67,14 @@ export default class TableOfContentsScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <ScrollView style={styles.scrollContainer} contentContainerStyle={{
+        <ScrollView 
+          style={styles.scrollContainer} 
+          contentContainerStyle={{
             alignItems: 'center',
             justifyContent: 'center'
-        }}>
+          }}
+          decelerationRate='fast'
+        >
           <View style={styles.header}>
             <TypeWriter
               typing={1}
@@ -136,6 +140,7 @@ export default class TableOfContentsScreen extends React.Component {
             keyExtractor={(item, index) => index}
             contentContainerStyle={styles.gridContainer}
             style={styles.gridContainerStyles}
+            decelerationRate='fast'
           >
           </FlatList>
         </ScrollView>
