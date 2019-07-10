@@ -14,7 +14,8 @@ import Lottie from 'lottie-react-native'
 import TypeWriter from 'react-native-typewriter';
 import AudioServiceSingleton from '../services/AudioService'
 
-numColumns = 3;
+NUM_COLUMNS = 3;
+WIDTH_IPHONE_10 = 414;
 
 export default class TableOfContentsScreen extends React.Component {
   static navigationOptions = {
@@ -30,6 +31,7 @@ export default class TableOfContentsScreen extends React.Component {
 
   constructor() {
     super()
+    console.log(Dimensions.get('window').width)
     AnimatedLottie = Animated.createAnimatedComponent(Lottie)
   }
 
@@ -136,7 +138,7 @@ export default class TableOfContentsScreen extends React.Component {
                 </TouchableOpacity>
               );
             }}
-            numColumns={numColumns}
+            numColumns={NUM_COLUMNS}
             keyExtractor={(item, index) => index}
             contentContainerStyle={styles.gridContainer}
             style={styles.gridContainerStyles}
@@ -175,19 +177,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   gridContainerStyles: {
+    // width: Dimensions.get('window').width
   },
   grid: {
     backgroundColor: '#22BAD995',
     alignItems: 'center',
     justifyContent: 'center',
     margin: 10,
-    height: Dimensions.get('window').width / (numColumns * 1.5),
-    width: Dimensions.get('window').width / (numColumns * 1.5),
+    height: Dimensions.get('window').width / (NUM_COLUMNS * 1.5),
+    width: Dimensions.get('window').width / (NUM_COLUMNS * 1.5),
     shadowColor: '#000',
-    shadowOffset: { width: 8, height: 8 },
+    shadowOffset: { width: 4, height: 4 },
     shadowOpacity: 0.7,
     shadowRadius: 4,
-    borderRadius: 25,
+    borderRadius: 15,
     borderWidth: 1,
     borderColor: '#ffe'
   },
@@ -213,7 +216,7 @@ const styles = StyleSheet.create({
   },
   lottieYinYang: {
     flex: 1,
-    aspectRatio: 3.9,
+    aspectRatio: 3.9 * (Dimensions.get('window').width / 414),
     top: 108,
     right: 40,
   },
