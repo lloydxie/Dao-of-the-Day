@@ -237,48 +237,40 @@ class DaoTextScreen extends React.Component {
             ...styles.helpContainer,
             backgroundColor: this.state.backgroundColor
           }}>
-            <TouchableOpacity>
-            <TapGestureHandler
-              onHandlerStateChange={this.flashChineseFengShui}
-              numberOfTaps={2}
-              maxDelayMs={500}
-            >
-                {
-                  this.state.showChineseText ? 
-                  <Text 
-                    style={{
-                      ...styles.helpLinkText,
-                      color: this.state.textColor
-                    }}
-                  >
-                    {chineseText}
-                  </Text> :
-                  (
-                    !this.state.showAll ? <TypeWriter
-                      typing={1}
-                      style={{
-                        ...styles.helpLinkText,
-                        color: this.state.textColor
-                      }}
-                      ref={ref => this.daoText = ref}
-                      minDelay={50}
-                      maxDelay={150}
-                      fixed={true}
-                      delayMap={delayMap}
-                      onTyped={this.playOrPauseTyping}
-                    >{this.daoOfTheDay}</TypeWriter> : 
-                    <Text 
-                      style={{
-                        ...styles.helpLinkText,
-                        color: this.state.textColor
-                      }}
-                    >
-                      {this.daoOfTheDay}
-                    </Text>
-                  )
-                }
-            </TapGestureHandler>
-            </TouchableOpacity>
+            {
+              this.state.showChineseText ? 
+              <Text 
+                style={{
+                  ...styles.helpLinkText,
+                  color: this.state.textColor
+                }}
+              >
+                {chineseText}
+              </Text> :
+              (
+                !this.state.showAll ? <TypeWriter
+                  typing={1}
+                  style={{
+                    ...styles.helpLinkText,
+                    color: this.state.textColor
+                  }}
+                  ref={ref => this.daoText = ref}
+                  minDelay={50}
+                  maxDelay={150}
+                  fixed={true}
+                  delayMap={delayMap}
+                  onTyped={this.playOrPauseTyping}
+                >{this.daoOfTheDay}</TypeWriter> : 
+                <Text 
+                  style={{
+                    ...styles.helpLinkText,
+                    color: this.state.textColor
+                  }}
+                >
+                  {this.daoOfTheDay}
+                </Text>
+              )
+            }
             <Ionicons 
               name="md-arrow-down" 
               size={32}
