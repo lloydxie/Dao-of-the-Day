@@ -41,22 +41,22 @@ export default class TableOfContentsScreen extends React.Component {
     // AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['lily_1.mp3'])
     setTimeout(() => {
       if (!this.state.isExitingScreen) {
-        // AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['typing.mp3'])
+        AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['typing.mp3'])
       }
-    }, 2750)
+    }, 1250)
     setTimeout(() => {
       Animated.timing(                  // Animate over time
         this.state.yinYangFade,            // The animated value to drive
         {
           toValue: 1,                   // Animate to opacity: 1 (opaque)
-          duration: 5500,              // Make it take a while
+          duration: 2500,              // Make it take a while
         }
       ).start();  
-    }, 5250)
+    }, 4000)
   }
 
   playYinYangAnimation = () => {
-    this.setState({speed: .5})
+    this.setState({speed: .6})
   }
 
   navigateAway(index) {
@@ -70,7 +70,6 @@ export default class TableOfContentsScreen extends React.Component {
     return (
       <View style={styles.container}>
         <ScrollView 
-          style={styles.scrollContainer} 
           contentContainerStyle={{
             alignItems: 'center',
             justifyContent: 'center'
@@ -83,11 +82,11 @@ export default class TableOfContentsScreen extends React.Component {
             <TypeWriter
               typing={1}
               style={styles.title}
-              minDelay={130}
-              maxDelay={250}
+              minDelay={100}
+              maxDelay={200}
               delayMap={delayMap}
               fixed={true}
-            >  Da</TypeWriter>
+            > Da</TypeWriter>
             <TouchableOpacity onPress={this.playYinYangAnimation}
               style={{
                 marginTop: 100 * (Dimensions.get('window').height / HEIGHT_IPHONE_X),
@@ -110,12 +109,12 @@ export default class TableOfContentsScreen extends React.Component {
             <TypeWriter
               typing={1}
               style={styles.title2}
-              minDelay={130}
-              maxDelay={250}
+              minDelay={100}
+              maxDelay={200}
               delayMap={delayMap}
               fixed={true}
               onTypingEnd={() => {AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])}}
-            >    A Day</TypeWriter>
+            >  A Day</TypeWriter>
           </View>
           <View style={styles.lottieNinja}>
             <Lottie
@@ -141,8 +140,6 @@ export default class TableOfContentsScreen extends React.Component {
             }}
             numColumns={NUM_COLUMNS}
             keyExtractor={(item, index) => index}
-            contentContainerStyle={styles.gridContainer}
-            style={styles.gridContainerStyles}
             decelerationRate='fast'
             snapToInterval={3}
             snapToAlignment={'center'}
@@ -160,27 +157,14 @@ let delayMap = [
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  scrollContainer: {
-    // flex: 1,
-    // backgroundColor: '#fff',
-    // marginTop: 40,
   },
   daoNumber: {
     color: '#fff',
     fontSize: 20 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
     fontWeight: 'bold'
-  },
-  gridContainer: {
-    // alignItems: 'center',
-    // justifyContent: 'center'
-  },
-  gridContainerStyles: {
-    // width: Dimensions.get('window').width
   },
   grid: {
     backgroundColor: '#22BAD9',
@@ -203,24 +187,16 @@ const styles = StyleSheet.create({
     marginTop: 100 * (Dimensions.get('window').height / HEIGHT_IPHONE_X),
     color: '#1f1f1f',
     fontFamily: 'dreamOrphans',
-    // marginLeft: '20%',
   },
   title2: {
     fontSize: 32 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
     marginTop: 100 * (Dimensions.get('window').height / HEIGHT_IPHONE_X),
     color: '#1f1f1f',
     fontFamily: 'dreamOrphans',
-    // marginRight: '20%',
-    // left: -300 * (Dimensions.get('window').width / WIDTH_IPHONE_X) + 200
-    // left: -100
-    //2.47
-    //decrease for iphoneX, increase for 
   },
   lottieNinja: {
     width: 300 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
     height: 300 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
-    // backgroundColor: '#fff',
-    // flex: 1,
     aspectRatio: 1
   },
   lottieYinYang: {
@@ -228,11 +204,7 @@ const styles = StyleSheet.create({
     height: 50 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
     aspectRatio: 1.05,
     marginLeft: '-9%',
-    marginTop: '-2.2%'
-    // flex: 1,
-    // aspectRatio: 5.0 * (Dimensions.get('window').height / HEIGHT_IPHONE_X) - (1 * (Dimensions.get('window').height / HEIGHT_IPHONE_X)),
-    // top: 108,
-    // right: 40 * (Dimensions.get('window').width / WIDTH_IPHONE_X) 
+    marginTop: '-2.2%',
   },
   header: {
     flex: 1,
