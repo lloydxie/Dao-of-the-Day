@@ -76,6 +76,8 @@ export default class TableOfContentsScreen extends React.Component {
             justifyContent: 'center'
           }}
           decelerationRate='fast'
+          snapToInterval={3}
+          snapToAlignment={'center'}
         >
           <View style={styles.header}>
             <TypeWriter
@@ -88,13 +90,11 @@ export default class TableOfContentsScreen extends React.Component {
             >  Da</TypeWriter>
             <TouchableOpacity onPress={this.playYinYangAnimation}
               style={{
-                flex: 1,
-                flexDirection: 'row',
+                marginTop: 100 * (Dimensions.get('window').height / HEIGHT_IPHONE_X),
               }}
               activeOpacity={0.4}
             >
               <Animated.View style={{
-                ...styles.lottieYinYang,
                 opacity: this.state.yinYangFade,
               }}>
                 <Lottie
@@ -103,6 +103,7 @@ export default class TableOfContentsScreen extends React.Component {
                   }}
                   source={require('../assets/lottie/yin_yang.json')}
                   speed={this.state.speed}
+                  style={styles.lottieYinYang}
                 />
               </Animated.View>
             </TouchableOpacity>
@@ -114,7 +115,7 @@ export default class TableOfContentsScreen extends React.Component {
               delayMap={delayMap}
               fixed={true}
               onTypingEnd={() => {AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])}}
-            >   A Day</TypeWriter>
+            >    A Day</TypeWriter>
           </View>
           <View style={styles.lottieNinja}>
             <Lottie
@@ -186,7 +187,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginHorizontal: 10 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
-    marginVertical: 25 * (Dimensions.get('window').height / HEIGHT_IPHONE_X),
+    marginVertical: 30 * (Dimensions.get('window').height / HEIGHT_IPHONE_X),
     height: Dimensions.get('window').width / (NUM_COLUMNS * 1.5),
     width: Dimensions.get('window').width / (NUM_COLUMNS * 1.5),
     shadowColor: '#000',
@@ -199,36 +200,44 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 32 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
-    marginTop: 100,
+    marginTop: 100 * (Dimensions.get('window').height / HEIGHT_IPHONE_X),
     color: '#1f1f1f',
     fontFamily: 'dreamOrphans',
+    // marginLeft: '20%',
   },
   title2: {
     fontSize: 32 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
-    marginTop: 100,
+    marginTop: 100 * (Dimensions.get('window').height / HEIGHT_IPHONE_X),
     color: '#1f1f1f',
     fontFamily: 'dreamOrphans',
+    // marginRight: '20%',
     // left: -300 * (Dimensions.get('window').width / WIDTH_IPHONE_X) + 200
-    left: -100
+    // left: -100
     //2.47
     //decrease for iphoneX, increase for 
   },
   lottieNinja: {
     width: 300 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
-    // height: 300,
+    height: 300 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
     // backgroundColor: '#fff',
-    flex: 1,
+    // flex: 1,
     aspectRatio: 1
   },
   lottieYinYang: {
-    flex: 1,
-    aspectRatio: 5.0 * (Dimensions.get('window').height / HEIGHT_IPHONE_X) - (1 * (Dimensions.get('window').height / HEIGHT_IPHONE_X)),
-    top: 108,
-    right: 40 * (Dimensions.get('window').width / WIDTH_IPHONE_X) 
+    width: 50 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
+    height: 50 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
+    aspectRatio: 1.05,
+    marginLeft: '-9%',
+    marginTop: '-2.2%'
+    // flex: 1,
+    // aspectRatio: 5.0 * (Dimensions.get('window').height / HEIGHT_IPHONE_X) - (1 * (Dimensions.get('window').height / HEIGHT_IPHONE_X)),
+    // top: 108,
+    // right: 40 * (Dimensions.get('window').width / WIDTH_IPHONE_X) 
   },
   header: {
     flex: 1,
     flexDirection: 'row',
-    marginLeft: 75
+    width: Dimensions.get('window').width / 2,
+    justifyContent: 'center'
   }
 });
