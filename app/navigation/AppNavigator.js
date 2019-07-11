@@ -9,7 +9,7 @@ export default createAppContainer(createStackNavigator(
     Contents: TableOfContentsScreen,
   },
   {
-    initialRouteName: 'Contents',
+    initialRouteName: 'DaoText',
     headerMode: 'none',
     defaultNavigationOptions: {
       gesturesEnabled: false

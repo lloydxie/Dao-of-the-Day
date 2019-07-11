@@ -41,7 +41,7 @@ export default class TableOfContentsScreen extends React.Component {
     // AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['lily_1.mp3'])
     setTimeout(() => {
       if (!this.state.isExitingScreen) {
-        AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['typing.mp3'])
+        // AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['typing.mp3'])
       }
     }, 1250)
     setTimeout(() => {

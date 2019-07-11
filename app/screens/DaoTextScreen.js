@@ -13,7 +13,6 @@ import TypeWriter from 'react-native-typewriter';
 import AudioServiceSingleton from '../services/AudioService'
 import { Ionicons } from '@expo/vector-icons';
 import * as Brightness from 'expo-brightness';
-import { TapGestureHandler, State } from 'react-native-gesture-handler';
 
 const HIGH = 'HIGH';
 const MUTE = 'MUTE';
@@ -25,32 +24,8 @@ const TEXT_COLOR_1 = DAO_BLUE;
 const TEXT_COLOR_2 = 'black';
 const TEXT_COLOR_3 = '#fff';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },  
-  contentContainer: {
-    flex: 1,
-  },
-  helpContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  helpLinkText: {
-    fontSize: 20,
-    fontFamily: 'smite',
-    marginTop: -Dimensions.get('window').height / 9
-  },
-  controlsHeader: {
-    marginTop: Dimensions.get('window').height / 9,
-    // flex: 1,
-    // flexBasis: '100%',
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    // alignItems: 'center'
-  }
-});
+const HEIGHT_IPHONE_X = 896;
+const WIDTH_IPHONE_X = 414;
 
 class DaoTextScreen extends React.Component {
   static navigationOptions = {
@@ -69,6 +44,11 @@ class DaoTextScreen extends React.Component {
     backgroundColor: BG_COLOR_1,
     textColor: TEXT_COLOR_1,
     showChineseText: false
+  }
+
+  componentWillMount() {
+    this.numberOfTheDay = this.props.navigation.getParam('index',  Math.floor(Math.random() * 81));
+    this.daoOfTheDay = scrapedDao[2].title + scrapedDao[1].title;
   }
 
   loadAudioFile = async (numberOfTheDay) => {
@@ -100,13 +80,14 @@ class DaoTextScreen extends React.Component {
     soundObject = await this.loadAudioFile(this.numberOfTheDay)
     setTimeout(() => {
       if (!this.state.isExitingScreen) {
-        AudioServiceSingleton.play(soundObject)
+        // AudioServiceSingleton.play(soundObject)
       }
     }, 2000)
 
     setTimeout(() => {
       if (!this.state.isExitingScreen) {
-        AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['typing.mp3'])
+        // this._scrollView.scrollTo({x: 0, y: 0, animated: false});
+        // AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['typing.mp3'])
       }
     }, 5000)
     const { navigation } = this.props;
@@ -155,7 +136,7 @@ class DaoTextScreen extends React.Component {
       AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])
     }
     else {
-      AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['typing.mp3'])
+      // AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['typing.mp3'])
     }
   }
 
@@ -193,46 +174,63 @@ class DaoTextScreen extends React.Component {
   }
 
   render() {
-    this.numberOfTheDay = this.props.navigation.getParam('index',  Math.floor(Math.random() * 81));
-    this.daoOfTheDay = scrapedDao[this.numberOfTheDay].title;
-
     return (
       <View style={{
         ...styles.container,
         backgroundColor: this.state.backgroundColor
       }}>
-        <ScrollView contentContainerStyle={styles.contentContainer}>
-          <View
-            style={styles.controlsHeader}
+        <View
+          style={styles.controlsHeader}
+        >
+          <TouchableOpacity
+            style={{
+              ...styles.iconContainer
+            }}
           >
-            <TouchableOpacity>
-              <Ionicons 
-                name={"md-skip-forward"}
-                size={28}
-                color={this.state.textColor}
-                onPress={this.skipForward}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <Ionicons 
-                name={"md-color-palette"}
-                size={28}
-                color={this.state.textColor}
-                onPress={this.changeColorScheme}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <Ionicons 
-                name={this.volumeLevelOptions[this.state.volumeLevel]} 
-                size={28}
-                color={this.state.textColor}
-                onPress={this.changeVolume}
-                style={
-                  {marginLeft: this.state.volumeLevel == HIGH ? 0 : 10}
-                }
-              />
-            </TouchableOpacity>
-          </View>
+            <Ionicons 
+              name={"md-skip-forward"}
+              color={this.state.textColor}
+              onPress={this.skipForward}
+              style={{
+              ...styles.icon
+            }}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              ...styles.iconContainer
+            }}
+          >
+            <Ionicons 
+              name={"md-color-palette"}
+              color={this.state.textColor}
+              onPress={this.changeColorScheme}
+              style={{
+              ...styles.icon
+            }}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              ...styles.iconContainer
+            }}
+          >
+            <Ionicons 
+              name={this.volumeLevelOptions[this.state.volumeLevel]} 
+              color={this.state.textColor}
+              onPress={this.changeVolume}
+              style={{
+              ...styles.icon,
+              // marginLeft: this.state.volumeLevel == HIGH ? 0 : 10 * (Dimensions.get('window').width / WIDTH_IPHONE_X)
+            }}
+            />
+          </TouchableOpacity>
+        </View>
+        <ScrollView 
+          contentContainerStyle={styles.scrollContainer}
+          ref={ref => this._scrollView = ref}
+          indicatorStyle='white'
+        >
           <View style={{
             ...styles.helpContainer,
             backgroundColor: this.state.backgroundColor
@@ -271,12 +269,22 @@ class DaoTextScreen extends React.Component {
                 </Text>
               )
             }
-            <Ionicons 
-              name="md-arrow-down" 
-              size={32}
-              color={this.state.textColor}
-              onPress={this.navigateAway}
-            />
+            <TouchableOpacity
+              style={{
+                ...styles.iconContainer
+              }}
+            >
+              <Ionicons 
+                name="md-arrow-down" 
+                color={this.state.textColor}
+                onPress={this.navigateAway}
+                style={{
+                  ...styles.icon,
+                  marginBottom: '5%',
+                  fontSize: 36 * (Dimensions.get('window').height / HEIGHT_IPHONE_X),
+                }}
+              />
+            </TouchableOpacity>
           </View>
         </ScrollView>
       </View> 
@@ -294,3 +302,33 @@ const delayMap = [
   // increase delay by 1000ms at every semicolon
   { at: ';', delay: 1000 },
 ]
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  },  
+  scrollContainer: {
+  },
+  helpContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  helpLinkText: {
+    fontSize: 20 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
+    fontFamily: 'smite',
+  },
+  controlsHeader: {
+    marginTop: Dimensions.get('window').height / 10,
+    marginBottom: Dimensions.get('window').height / 20,
+    flexDirection: 'row',
+  },
+  icon: {
+    fontSize: 28 * (Dimensions.get('window').height / HEIGHT_IPHONE_X),
+  },
+  iconContainer: {
+    opacity: 0.5,
+    flexBasis: '33.33%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
+});
