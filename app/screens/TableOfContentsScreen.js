@@ -6,17 +6,17 @@ import {
   TouchableOpacity,
   Text,
   Dimensions,
-  Animated
+  Animated,
+  FlatList
 } from 'react-native';
 import { scrapedDao } from './content/daoDeChing'
-import { FlatList } from 'react-native-gesture-handler';
 import Lottie from 'lottie-react-native'
 import TypeWriter from 'react-native-typewriter';
 import AudioServiceSingleton from '../services/AudioService'
 
 NUM_COLUMNS = 3;
-WIDTH_IPHONE_10 = 414;
-
+HEIGHT_IPHONE_X = 896;
+WIDTH_IPHONE_X = 414;
 export default class TableOfContentsScreen extends React.Component {
   static navigationOptions = {
     header: null,
@@ -38,10 +38,10 @@ export default class TableOfContentsScreen extends React.Component {
   async componentDidMount() {
     this.lottieNinja.play();
     this.lottieYinYang.play();
-    AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['lily_1.mp3'])
+    // AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['lily_1.mp3'])
     setTimeout(() => {
       if (!this.state.isExitingScreen) {
-        AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['typing.mp3'])
+        // AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['typing.mp3'])
       }
     }, 2750)
     setTimeout(() => {
@@ -143,6 +143,8 @@ export default class TableOfContentsScreen extends React.Component {
             contentContainerStyle={styles.gridContainer}
             style={styles.gridContainerStyles}
             decelerationRate='fast'
+            snapToInterval={3}
+            snapToAlignment={'center'}
           >
           </FlatList>
         </ScrollView>
@@ -157,33 +159,34 @@ let delayMap = [
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
   scrollContainer: {
-    flex: 1,
-    backgroundColor: '#fff',
-    marginTop: 40,
+    // flex: 1,
+    // backgroundColor: '#fff',
+    // marginTop: 40,
   },
   daoNumber: {
     color: '#fff',
-    fontSize: 20,
+    fontSize: 20 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
     fontWeight: 'bold'
   },
   gridContainer: {
-    alignItems: 'center',
-    justifyContent: 'center'
+    // alignItems: 'center',
+    // justifyContent: 'center'
   },
   gridContainerStyles: {
     // width: Dimensions.get('window').width
   },
   grid: {
-    backgroundColor: '#22BAD995',
+    backgroundColor: '#22BAD9',
     alignItems: 'center',
     justifyContent: 'center',
-    margin: 10,
+    marginHorizontal: 10 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
+    marginVertical: 25 * (Dimensions.get('window').height / HEIGHT_IPHONE_X),
     height: Dimensions.get('window').width / (NUM_COLUMNS * 1.5),
     width: Dimensions.get('window').width / (NUM_COLUMNS * 1.5),
     shadowColor: '#000',
@@ -195,30 +198,33 @@ const styles = StyleSheet.create({
     borderColor: '#ffe'
   },
   title: {
-    fontSize: 32,
+    fontSize: 32 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
     marginTop: 100,
     color: '#1f1f1f',
     fontFamily: 'dreamOrphans',
   },
   title2: {
-    fontSize: 32,
+    fontSize: 32 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
     marginTop: 100,
     color: '#1f1f1f',
     fontFamily: 'dreamOrphans',
-    left: -91
+    // left: -300 * (Dimensions.get('window').width / WIDTH_IPHONE_X) + 200
+    left: -100
+    //2.47
+    //decrease for iphoneX, increase for 
   },
   lottieNinja: {
-    width: 300,
-    height: 300,
-    backgroundColor: '#fff',
+    width: 300 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
+    // height: 300,
+    // backgroundColor: '#fff',
     flex: 1,
     aspectRatio: 1
   },
   lottieYinYang: {
     flex: 1,
-    aspectRatio: 3.9 * (Dimensions.get('window').width / 414),
+    aspectRatio: 5.0 * (Dimensions.get('window').height / HEIGHT_IPHONE_X) - (1 * (Dimensions.get('window').height / HEIGHT_IPHONE_X)),
     top: 108,
-    right: 40,
+    right: 40 * (Dimensions.get('window').width / WIDTH_IPHONE_X) 
   },
   header: {
     flex: 1,
