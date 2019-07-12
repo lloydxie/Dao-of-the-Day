@@ -13,6 +13,7 @@ import TypeWriter from 'react-native-typewriter';
 import AudioServiceSingleton from '../services/AudioService'
 import { Ionicons } from '@expo/vector-icons';
 import * as Brightness from 'expo-brightness';
+import ParsedText from 'react-native-parsed-text'
 
 const HIGH = 'HIGH';
 const MUTE = 'MUTE';
@@ -48,7 +49,7 @@ class DaoTextScreen extends React.Component {
 
   componentWillMount() {
     this.numberOfTheDay = this.props.navigation.getParam('index',  Math.floor(Math.random() * 81));
-    this.daoOfTheDay = scrapedDao[2].title + scrapedDao[1].title;
+    this.daoOfTheDay = scrapedDao[this.numberOfTheDay].title
   }
 
   loadAudioFile = async (numberOfTheDay) => {
@@ -281,6 +282,7 @@ class DaoTextScreen extends React.Component {
                 style={{
                   ...styles.icon,
                   marginBottom: '5%',
+                  marginTop: '12%',
                   fontSize: 36 * (Dimensions.get('window').height / HEIGHT_IPHONE_X),
                 }}
               />
@@ -314,7 +316,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   helpLinkText: {
-    fontSize: 20 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
+    fontSize: 24 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
     fontFamily: 'smite',
   },
   controlsHeader: {

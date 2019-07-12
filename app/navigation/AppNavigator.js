@@ -11,7 +11,7 @@ export default createAppContainer(createStackNavigator(
     Quote: QuoteScreen
   },
   {
-    initialRouteName: 'Contents',
+    initialRouteName: 'Quote',
     headerMode: 'none',
     defaultNavigationOptions: {
       gesturesEnabled: false
