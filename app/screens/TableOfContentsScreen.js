@@ -63,7 +63,7 @@ export default class TableOfContentsScreen extends React.Component {
     this.setState({isExitingScreen: true})
     AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['lily_1.mp3'])
     AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])
-    this.props.navigation.navigate('DaoText', { index: index })
+    this.props.navigation.navigate('Quote', { index: index })
   }
 
   render() {
