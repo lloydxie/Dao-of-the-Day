@@ -23,7 +23,6 @@ export default class TableOfContentsScreen extends React.Component {
   };
   
   state = {
-    fontLoaded: false,
     speed: 0,
     yinYangFade: new Animated.Value(0),  // Initial value for opacity: 0
     isExitingScreen: false
@@ -38,10 +37,10 @@ export default class TableOfContentsScreen extends React.Component {
   async componentDidMount() {
     this.lottieNinja.play();
     this.lottieYinYang.play();
-    // AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['lily_1.mp3'])
+    AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['lily_1.mp3'])
     setTimeout(() => {
       if (!this.state.isExitingScreen) {
-        // AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['typing.mp3'])
+        AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['typing.mp3'])
       }
     }, 1250)
     setTimeout(() => {
@@ -175,9 +174,9 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').width / (NUM_COLUMNS * 1.5),
     width: Dimensions.get('window').width / (NUM_COLUMNS * 1.5),
     shadowColor: '#000',
-    shadowOffset: { width: 4, height: 4 },
+    shadowOffset: { width: 3, height: 3 },
     shadowOpacity: 0.7,
-    shadowRadius: 4,
+    shadowRadius: 2,
     borderRadius: 15,
     borderWidth: 1,
     borderColor: '#ffe'

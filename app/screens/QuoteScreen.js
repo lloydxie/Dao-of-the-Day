@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   helpLinkText: {
-    fontSize: 24 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
+    fontSize: 23 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
     fontFamily: 'smite',
   },
   icon: {

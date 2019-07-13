@@ -28,6 +28,16 @@ const TEXT_COLOR_3 = '#fff';
 const HEIGHT_IPHONE_X = 896;
 const WIDTH_IPHONE_X = 414;
 
+const B = (props) => 
+  <Text 
+    style={{
+      textDecorationLine: 'underline',
+      fontSize: 18 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
+      fontFamily: 'dreamOrphans',
+    }}>
+    {props.children}
+  </Text>
+
 class DaoTextScreen extends React.Component {
   static navigationOptions = {
     header: null,
@@ -50,6 +60,9 @@ class DaoTextScreen extends React.Component {
   componentWillMount() {
     this.numberOfTheDay = this.props.navigation.getParam('index',  Math.floor(Math.random() * 81));
     this.daoOfTheDay = scrapedDao[this.numberOfTheDay].title
+    thirdLastOccurenceIndex = this.daoOfTheDay.lastIndexOf('\n', (this.daoOfTheDay.lastIndexOf('\n', this.daoOfTheDay.lastIndexOf('\n')-1) -1))
+    this.quote = this.daoOfTheDay.substring(thirdLastOccurenceIndex + 1)
+    this.daoOfTheDay = this.daoOfTheDay.substring(0, thirdLastOccurenceIndex + 1)
   }
 
   loadAudioFile = async (numberOfTheDay) => {
@@ -81,14 +94,13 @@ class DaoTextScreen extends React.Component {
     soundObject = await this.loadAudioFile(this.numberOfTheDay)
     setTimeout(() => {
       if (!this.state.isExitingScreen) {
-        // AudioServiceSingleton.play(soundObject)
+        AudioServiceSingleton.play(soundObject)
       }
     }, 2000)
 
     setTimeout(() => {
       if (!this.state.isExitingScreen) {
-        // this._scrollView.scrollTo({x: 0, y: 0, animated: false});
-        // AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['typing.mp3'])
+        AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['typing.mp3'])
       }
     }, 5000)
     const { navigation } = this.props;
@@ -137,7 +149,8 @@ class DaoTextScreen extends React.Component {
       AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])
     }
     else {
-      // AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['typing.mp3'])
+      // use state to store if already playing so that it doesn't play the first 2 seconds every damn character
+      AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['typing.mp3'])
     }
   }
 
@@ -187,11 +200,11 @@ class DaoTextScreen extends React.Component {
             style={{
               ...styles.iconContainer
             }}
+            onPress={this.skipForward}
           >
             <Ionicons 
               name={"md-skip-forward"}
               color={this.state.textColor}
-              onPress={this.skipForward}
               style={{
               ...styles.icon
             }}
@@ -201,11 +214,11 @@ class DaoTextScreen extends React.Component {
             style={{
               ...styles.iconContainer
             }}
+            onPress={this.changeColorScheme}
           >
             <Ionicons 
               name={"md-color-palette"}
               color={this.state.textColor}
-              onPress={this.changeColorScheme}
               style={{
               ...styles.icon
             }}
@@ -215,14 +228,13 @@ class DaoTextScreen extends React.Component {
             style={{
               ...styles.iconContainer
             }}
+            onPress={this.changeVolume}
           >
             <Ionicons 
               name={this.volumeLevelOptions[this.state.volumeLevel]} 
               color={this.state.textColor}
-              onPress={this.changeVolume}
               style={{
               ...styles.icon,
-              // marginLeft: this.state.volumeLevel == HIGH ? 0 : 10 * (Dimensions.get('window').width / WIDTH_IPHONE_X)
             }}
             />
           </TouchableOpacity>
@@ -255,18 +267,18 @@ class DaoTextScreen extends React.Component {
                   }}
                   ref={ref => this.daoText = ref}
                   minDelay={50}
-                  maxDelay={150}
+                  maxDelay={130}
                   fixed={true}
                   delayMap={delayMap}
                   onTyped={this.playOrPauseTyping}
-                >{this.daoOfTheDay}</TypeWriter> : 
+                >{this.daoOfTheDay}<B>{this.quote}</B></TypeWriter> : 
                 <Text 
                   style={{
                     ...styles.helpLinkText,
                     color: this.state.textColor
                   }}
                 >
-                  {this.daoOfTheDay}
+                  {this.daoOfTheDay}<B>{this.quote}</B>
                 </Text>
               )
             }
@@ -316,7 +328,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   helpLinkText: {
-    fontSize: 24 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
+    fontSize: 23 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
     fontFamily: 'smite',
   },
   controlsHeader: {

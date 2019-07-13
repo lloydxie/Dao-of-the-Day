@@ -21,11 +21,14 @@ function cacheFonts(fonts) {
 
 async function cacheAudio() {
   isLooping = true
-  soundObject = await AudioServiceSingleton.load('lily_1.mp3', isLooping)
-  AudioServiceSingleton.initialLoadMap['lily_1.mp3'] = soundObject
-  typing = await AudioServiceSingleton.load('typing.mp3', isLooping)
-  AudioServiceSingleton.initialLoadMap['typing.mp3'] = typing
-  return soundObject
+  soundObject = AudioServiceSingleton.load('lily_1.mp3', isLooping)
+  typingObject = AudioServiceSingleton.load('typing.mp3', isLooping)
+  loadedSoundObjects = await Promise.all([soundObject, typingObject]);
+  
+  AudioServiceSingleton.initialLoadMap['lily_1.mp3'] = loadedSoundObjects[0]
+  AudioServiceSingleton.initialLoadMap['typing.mp3'] = loadedSoundObjects[1]
+  
+  return loadedSoundObjects
 }
 
 export default class App extends React.Component {
