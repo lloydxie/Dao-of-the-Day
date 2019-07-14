@@ -11,7 +11,7 @@ export default createAppContainer(createStackNavigator(
     Quote: QuoteScreen
   },
   {
-    initialRouteName: 'DaoText',
+    initialRouteName: 'Contents',
     headerMode: 'none',
     defaultNavigationOptions: {
       gesturesEnabled: false

@@ -22,7 +22,7 @@ function cacheFonts(fonts) {
 async function cacheAudio() {
   isLooping = true
   soundObject = AudioServiceSingleton.load('lily_1.mp3', isLooping)
-  typingObject = AudioServiceSingleton.load('typing.mp3', isLooping)
+  typingObject = AudioServiceSingleton.load('typing.mp3', false)
   loadedSoundObjects = await Promise.all([soundObject, typingObject]);
   
   AudioServiceSingleton.initialLoadMap['lily_1.mp3'] = loadedSoundObjects[0]

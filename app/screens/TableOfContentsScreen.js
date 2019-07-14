@@ -39,6 +39,7 @@ export default class TableOfContentsScreen extends React.Component {
     this.lottieYinYang.play();
     AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['lily_1.mp3'])
     setTimeout(() => {
+      console.log(this.state.isExitingScreen)
       if (!this.state.isExitingScreen) {
         AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['typing.mp3'])
       }
@@ -60,9 +61,10 @@ export default class TableOfContentsScreen extends React.Component {
 
   navigateAway(index) {
     this.setState({isExitingScreen: true})
+    console.log('state has been set....')
     AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['lily_1.mp3'])
     AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])
-    this.props.navigation.navigate('Quote', { index: index })
+    this.props.navigation.replace('Quote', { index: index })
   }
 
   render() {

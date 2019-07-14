@@ -13,7 +13,6 @@ import TypeWriter from 'react-native-typewriter';
 import AudioServiceSingleton from '../services/AudioService'
 import { Ionicons } from '@expo/vector-icons';
 import * as Brightness from 'expo-brightness';
-import ParsedText from 'react-native-parsed-text'
 
 const HIGH = 'HIGH';
 const MUTE = 'MUTE';
@@ -54,7 +53,8 @@ class DaoTextScreen extends React.Component {
     showAll: false,
     backgroundColor: BG_COLOR_1,
     textColor: TEXT_COLOR_1,
-    showChineseText: false
+    showChineseText: false,
+    isTypingAudio: false
   }
 
   componentWillMount() {
@@ -72,10 +72,10 @@ class DaoTextScreen extends React.Component {
       this.keyName = Object.keys(backgroundMusicFilesMap)[0];
     }
     else if (numberOfTheDay < 50) {
-      this.keyName = Object.keys(backgroundMusicFilesMap)[1];
+      this.keyName = Object.keys(backgroundMusicFilesMap)[0];
     }
     else {
-      this.keyName = Object.keys(backgroundMusicFilesMap)[2];
+      this.keyName = Object.keys(backgroundMusicFilesMap)[0];
     }
     
     if (!AudioServiceSingleton.backgroundMusicFilesMap[this.keyName]) {
@@ -101,6 +101,7 @@ class DaoTextScreen extends React.Component {
     setTimeout(() => {
       if (!this.state.isExitingScreen) {
         AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['typing.mp3'])
+        this.setState({isTypingAudio: true})
       }
     }, 5000)
     const { navigation } = this.props;
@@ -147,10 +148,12 @@ class DaoTextScreen extends React.Component {
   playOrPauseTyping(token) {
     if (token == '\n') {
       AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])
+      this.setState({isTypingAudio: false})
     }
     else {
       // use state to store if already playing so that it doesn't play the first 2 seconds every damn character
       AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['typing.mp3'])
+      this.setState({isTypingAudio: true})
     }
   }
 
@@ -270,7 +273,7 @@ class DaoTextScreen extends React.Component {
                   maxDelay={130}
                   fixed={true}
                   delayMap={delayMap}
-                  onTyped={this.playOrPauseTyping}
+                  onTyped={() => this.playOrPauseTyping}
                 >{this.daoOfTheDay}<B>{this.quote}</B></TypeWriter> : 
                 <Text 
                   style={{
