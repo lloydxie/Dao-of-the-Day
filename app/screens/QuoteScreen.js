@@ -67,7 +67,7 @@ export default class QuoteScreen extends React.Component {
   }
 
   capitalize(str){
-    return str.charAt(0).toUpperCase() + str.slice(1);
+    return str.charAt().toUpperCase() + str.slice(1);
   }
 
   render() {
@@ -76,23 +76,30 @@ export default class QuoteScreen extends React.Component {
         ...styles.container,
         backgroundColor: this.state.backgroundColor
       }}>
-
           <View style={{
             ...styles.helpContainer,
             backgroundColor: this.state.backgroundColor
           }}>
+            <Text 
+                style={{
+                    ...styles.helpLinkText,
+                    color: this.state.textColor
+                }}
+            >
+                {'Chapter ' + this.numberOfTheDay}
+            </Text>
             <TouchableOpacity
               onPress={this.navigateToDaoText}
               style={styles.textContainer}
             >
-            <Text 
-                style={{
-                ...styles.helpLinkText,
-                color: this.state.textColor
-                }}
-            >
-                {this.capitalize(this.quote)}
-            </Text>
+                <Text 
+                    style={{
+                    ...styles.helpLinkText,
+                    color: this.state.textColor
+                    }}
+                >
+                    {this.capitalize(this.quote)}
+                </Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={{
@@ -109,6 +116,22 @@ export default class QuoteScreen extends React.Component {
                   fontSize: 36 * (Dimensions.get('window').height / HEIGHT_IPHONE_X),
                 }}
               />
+              <Text
+                style={{
+                    ...styles.helpLinkText,
+                    color: this.state.textColor
+                }}
+              >
+                Continue reading...
+              </Text>
+              <Text
+                style={{
+                    ...styles.helpLinkText,
+                    color: this.state.textColor
+                }}
+              >
+                Choose another passage...
+              </Text>
             </TouchableOpacity>
           </View>
       </View> 
@@ -137,5 +160,9 @@ const styles = StyleSheet.create({
     flexBasis: '33.33%',
     justifyContent: 'center',
     alignItems: 'center',
-  }
+  },
+  chapterTitle: {
+    fontSize: 36 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
+    fontFamily: 'smite',
+  },
 });

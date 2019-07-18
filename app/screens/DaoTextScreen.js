@@ -13,6 +13,7 @@ import TypeWriter from 'react-native-typewriter';
 import AudioServiceSingleton from '../services/AudioService'
 import { Ionicons } from '@expo/vector-icons';
 import * as Brightness from 'expo-brightness';
+import BottomBar from 'react-native-bottom-bar';
 
 const HIGH = 'HIGH';
 const MUTE = 'MUTE';
@@ -30,7 +31,6 @@ const WIDTH_IPHONE_X = 414;
 const B = (props) => 
   <Text 
     style={{
-      textDecorationLine: 'underline',
       fontSize: 18 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
       fontFamily: 'dreamOrphans',
     }}>
@@ -54,7 +54,8 @@ class DaoTextScreen extends React.Component {
     backgroundColor: BG_COLOR_1,
     textColor: TEXT_COLOR_1,
     showChineseText: false,
-    isTypingAudio: false
+    isTypingAudio: false,
+    paused: false 
   }
 
   componentWillMount() {
@@ -203,10 +204,38 @@ class DaoTextScreen extends React.Component {
             style={{
               ...styles.iconContainer
             }}
-            onPress={this.skipForward}
+            onPress={this.slowDown}
           >
             <Ionicons 
-              name={"md-skip-forward"}
+              name={"md-rewind"}
+              color={this.state.textColor}
+              style={{
+              ...styles.icon
+            }}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              ...styles.iconContainer
+            }}
+            onPress={this.playOrPause}
+          >
+            <Ionicons 
+              name={this.paused ? 'md-play' : 'md-pause'}
+              color={this.state.textColor}
+              style={{
+              ...styles.icon
+            }}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              ...styles.iconContainer
+            }}
+            onPress={this.speedUp}
+          >
+            <Ionicons 
+              name={"md-fastforward"}
               color={this.state.textColor}
               style={{
               ...styles.icon
@@ -304,6 +333,7 @@ class DaoTextScreen extends React.Component {
             </TouchableOpacity>
           </View>
         </ScrollView>
+        <BottomBar></BottomBar>
       </View> 
     );
   }
@@ -344,7 +374,7 @@ const styles = StyleSheet.create({
   },
   iconContainer: {
     opacity: 0.5,
-    flexBasis: '33.33%',
+    flexBasis: '20%',
     justifyContent: 'center',
     alignItems: 'center',
   }
