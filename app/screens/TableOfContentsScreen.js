@@ -37,11 +37,11 @@ export default class TableOfContentsScreen extends React.Component {
   async componentDidMount() {
     this.lottieNinja.play();
     this.lottieYinYang.play();
-    AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['lily_1.mp3'])
+    // AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['lily_1.mp3'])
     setTimeout(() => {
       console.log(this.state.isExitingScreen)
       if (!this.state.isExitingScreen) {
-        AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['typing.mp3'])
+        // AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['typing.mp3'])
       }
     }, 1250)
     setTimeout(() => {
@@ -61,7 +61,6 @@ export default class TableOfContentsScreen extends React.Component {
 
   navigateAway(index) {
     this.setState({isExitingScreen: true})
-    console.log('state has been set....')
     AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['lily_1.mp3'])
     AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])
     this.props.navigation.replace('Quote', { index: index })
@@ -87,7 +86,7 @@ export default class TableOfContentsScreen extends React.Component {
               maxDelay={200}
               delayMap={delayMap}
               fixed={true}
-            > Da</TypeWriter>
+            >Wiser Each Da</TypeWriter>
             <TouchableOpacity onPress={this.playYinYangAnimation}
               style={{
                 marginTop: 100 * (Dimensions.get('window').height / HEIGHT_IPHONE_X),
@@ -107,15 +106,6 @@ export default class TableOfContentsScreen extends React.Component {
                 />
               </Animated.View>
             </TouchableOpacity>
-            <TypeWriter
-              typing={1}
-              style={styles.title2}
-              minDelay={100}
-              maxDelay={200}
-              delayMap={delayMap}
-              fixed={true}
-              onTypingEnd={() => {AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])}}
-            >  A Day</TypeWriter>
           </View>
           <View style={styles.lottieNinja}>
             <Lottie
@@ -126,26 +116,17 @@ export default class TableOfContentsScreen extends React.Component {
               source={require('../assets/lottie/ninja.json')}
             />
           </View>
-          <FlatList
-            data={scrapedDao}
-            renderItem={({daoText, index}) => {
-              return (
-                <TouchableOpacity 
-                  onPress={() => this.navigateAway(index)}
-                  style={styles.grid}
-                  activeOpacity={0.4}
-                >
-                  <Text style={styles.daoNumber}>{index + 1}</Text>
-                </TouchableOpacity>
-              );
-            }}
-            numColumns={NUM_COLUMNS}
-            keyExtractor={(item, index) => index}
-            decelerationRate='fast'
-            snapToInterval={3}
-            snapToAlignment={'center'}
-          >
-          </FlatList>
+          <TypeWriter
+              typing={1}
+              style={styles.title2}
+              minDelay={100}
+              maxDelay={200}
+              delayMap={delayMap}
+              fixed={true}
+              onTypingEnd={() => {AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])}}
+            >Welcome back traveler!</TypeWriter>
+          <Text>Begin Reading</Text>
+          <Text>About Our Mission</Text>
         </ScrollView>
       </View>
     );
