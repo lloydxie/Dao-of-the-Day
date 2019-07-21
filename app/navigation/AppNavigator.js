@@ -15,7 +15,7 @@ export default createAppContainer(createStackNavigator(
     Settings: SettingsScreen
   },
   {
-    initialRouteName: 'Translation',
+    initialRouteName: 'Settings',
     headerMode: 'none',
     defaultNavigationOptions: {
       gesturesEnabled: false
