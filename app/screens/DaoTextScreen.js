@@ -13,7 +13,6 @@ import TypeWriter from 'react-native-typewriter';
 import AudioServiceSingleton from '../services/AudioService'
 import { Ionicons } from '@expo/vector-icons';
 import * as Brightness from 'expo-brightness';
-import BottomBar from 'react-native-bottom-bar';
 
 const HIGH = 'HIGH';
 const MUTE = 'MUTE';
@@ -149,12 +148,12 @@ class DaoTextScreen extends React.Component {
   playOrPauseTyping(token) {
     if (token == '\n') {
       AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])
-      this.setState({isTypingAudio: false})
+      // this.setState({isTypingAudio: false})
     }
     else {
       // use state to store if already playing so that it doesn't play the first 2 seconds every damn character
       AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['typing.mp3'])
-      this.setState({isTypingAudio: true})
+      // this.setState({isTypingAudio: true})
     }
   }
 
@@ -333,7 +332,6 @@ class DaoTextScreen extends React.Component {
             </TouchableOpacity>
           </View>
         </ScrollView>
-        <BottomBar></BottomBar>
       </View> 
     );
   }

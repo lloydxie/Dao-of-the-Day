@@ -17,10 +17,6 @@
     "lottie-react-native": "^2.6.1",
     "react": "16.8.3",
     "react-native": "https://github.com/expo/react-native/archive/sdk-33.0.0.tar.gz",
-    "react-native-bottom-bar": "^0.1.52",
-    "react-native-dynamic-vector-icons": "0.0.4",
-    "react-native-iphone-x-helper": "^1.2.1",
-    "react-native-linear-gradient": "^2.5.4",
     "react-navigation": "^3.0.9"
   },
   "devDependencies": {
