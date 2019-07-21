@@ -17,7 +17,10 @@
     "lottie-react-native": "^2.6.1",
     "react": "16.8.3",
     "react-native": "https://github.com/expo/react-native/archive/sdk-33.0.0.tar.gz",
-    "react-navigation": "^3.0.9"
+    "react-native-paper": "^2.16.0",
+    "react-native-settings-list": "^1.8.0",
+    "react-navigation": "^3.0.9",
+    "react-navigation-material-bottom-tabs": "^1.0.0"
   },
   "devDependencies": {
     "babel-preset-expo": "^5.0.0",
