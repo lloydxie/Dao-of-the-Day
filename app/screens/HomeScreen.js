@@ -17,7 +17,7 @@ import AudioServiceSingleton from '../services/AudioService'
 NUM_COLUMNS = 3;
 HEIGHT_IPHONE_X = 896;
 WIDTH_IPHONE_X = 414;
-export default class TableOfContentsScreen extends React.Component {
+export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };
