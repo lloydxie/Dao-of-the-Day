@@ -1,3 +1,5 @@
+import React from 'react';  
+import { View } from 'react-native';  
 import { createAppContainer, createStackNavigator } from 'react-navigation';
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
 
@@ -6,6 +8,8 @@ import HomeScreen from '../screens/HomeScreen';
 import QuoteScreen from '../screens/QuoteScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import TranslationScreen from '../screens/TranslationScreen';
+
+import { Ionicons } from '@expo/vector-icons';
 
 const HomeStack = createStackNavigator(
   {
@@ -37,17 +41,44 @@ const TranslationStack = createStackNavigator(
 
 export default createAppContainer(createMaterialBottomTabNavigator(
   {
-    Translation: TranslationStack,
-    Home: HomeStack,
-    Settings: SettingsStack,
+    Translation: { 
+      screen: TranslationStack,
+      navigationOptions:{  
+        tabBarLabel:'Translation',  
+        tabBarIcon: ({ tintColor }) => (  
+          <View>  
+            <Ionicons style={[{color: tintColor}]} size={25} name={'ios-book'}/>  
+          </View>
+        ),  
+      }  
+    },
+    Home: { 
+      screen: HomeStack,
+      navigationOptions:{  
+        tabBarLabel:'Home',  
+        tabBarIcon: ({ tintColor }) => (  
+          <View>  
+            <Ionicons style={[{color: tintColor}]} size={25} name={'ios-home'}/>  
+          </View>
+        ),  
+      }  
+    },
+    Settings: { 
+      screen: SettingsStack,
+      navigationOptions:{  
+        tabBarLabel:'Settings',  
+        tabBarIcon: ({ tintColor }) => (  
+          <View>  
+            <Ionicons style={[{color: tintColor}]} size={25} name={'ios-settings'}/>  
+          </View>
+        ),  
+      }  
+    },
     
   },
   {
     initialRouteName: 'Home',
     headerMode: 'none',
-    defaultNavigationOptions: {
-      gesturesEnabled: false
-    },
     shifting: true,
     barStyle: { backgroundColor: DAO_BLUE }
   }
