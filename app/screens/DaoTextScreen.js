@@ -16,7 +16,7 @@ import * as Brightness from 'expo-brightness';
 
 const HIGH = 'HIGH';
 const MUTE = 'MUTE';
-const DAO_BLUE = "#22BAD9";
+export const DAO_BLUE = "#22BAD9";
 const BG_COLOR_1 = '#1f1f1f';
 const BG_COLOR_2 = '#fff';
 const BG_COLOR_3 = 'black';
