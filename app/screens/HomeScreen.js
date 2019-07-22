@@ -126,7 +126,6 @@ export default class HomeScreen extends React.Component {
               onTypingEnd={() => {AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])}}
             >Welcome back traveler!</TypeWriter>
           <Text>Begin Reading</Text>
-          <Text>About Our Mission</Text>
         </ScrollView>
       </View>
     );

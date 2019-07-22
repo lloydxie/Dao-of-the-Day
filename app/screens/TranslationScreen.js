@@ -21,9 +21,9 @@ export default class SettingsScreen extends Component {
   }
   render() {
     return (
-      <View style={{backgroundColor:'#EFEFF4',flex:1}}>
+      <View style={{backgroundColor:'white',flex:1}}>
         <View style={{flex:1, marginTop:50}}>
-          <SettingsList>
+          <SettingsList backgroundColor='#EFEFF4'>
           <SettingsList.Header headerText='Translation' headerStyle={{color:'black'}}/>
             <SettingsList.Item
               hasNavArrow={false}

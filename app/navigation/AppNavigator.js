@@ -24,7 +24,9 @@ const HomeStack = createStackNavigator(
 );
 
 const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen
+  Settings: SettingsScreen,
+  // Music: MusicScreen,
+  // About: AboutScreen
 });
 
 const TranslationStack = createStackNavigator(
@@ -35,9 +37,10 @@ const TranslationStack = createStackNavigator(
 
 export default createAppContainer(createMaterialBottomTabNavigator(
   {
+    Translation: TranslationStack,
     Home: HomeStack,
     Settings: SettingsStack,
-    Translation: TranslationStack
+    
   },
   {
     initialRouteName: 'Home',
