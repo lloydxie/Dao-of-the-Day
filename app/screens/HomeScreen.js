@@ -13,6 +13,8 @@ import { scrapedDao } from './content/daoDeChing'
 import Lottie from 'lottie-react-native'
 import TypeWriter from 'react-native-typewriter';
 import AudioServiceSingleton from '../services/AudioService'
+import * as Animatable from 'react-native-animatable';
+import { DAO_BLUE } from './DaoTextScreen';
 
 NUM_COLUMNS = 3;
 HEIGHT_IPHONE_X = 896;
@@ -52,7 +54,7 @@ export default class HomeScreen extends React.Component {
           duration: 2500,              // Make it take a while
         }
       ).start();  
-    }, 4000)
+    }, 5000)
   }
 
   playYinYangAnimation = () => {
@@ -125,7 +127,16 @@ export default class HomeScreen extends React.Component {
               fixed={true}
               onTypingEnd={() => {AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])}}
             >Welcome back traveler!</TypeWriter>
-          <Text>Begin Reading</Text>
+          <Animatable.Text
+            animation='fadeIn'
+            iterationCount='infinite'
+            direction='alternate'
+            delay='1000'
+            useNativeDriver={true}
+            style={styles.beginReading}
+          >
+            start reading
+          </Animatable.Text>
         </ScrollView>
       </View>
     );
@@ -133,7 +144,7 @@ export default class HomeScreen extends React.Component {
 }
 
 let delayMap = [
-  { at: ' ', delay: 1000 }
+  { at: ' ', delay: 250 }
 ]
 
 const styles = StyleSheet.create({
@@ -192,5 +203,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: Dimensions.get('window').width / 2,
     justifyContent: 'center'
+  },
+  beginReading: {
+    fontSize: 24,
+    fontFamily: 'dreamOrphans',
+    marginTop: 10 * (Dimensions.get('window').height / HEIGHT_IPHONE_X),
+    color: DAO_BLUE
   }
 });
