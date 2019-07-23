@@ -7,9 +7,7 @@ import {
   Text,
   Dimensions,
   Animated,
-  FlatList
 } from 'react-native';
-import { scrapedDao } from './content/daoDeChing'
 import Lottie from 'lottie-react-native'
 import TypeWriter from 'react-native-typewriter';
 import AudioServiceSingleton from '../services/AudioService'
@@ -54,18 +52,19 @@ export default class HomeScreen extends React.Component {
           duration: 2500,              // Make it take a while
         }
       ).start();  
-    }, 5000)
+    }, 1250)
   }
 
   playYinYangAnimation = () => {
     this.setState({speed: .6})
   }
 
-  navigateAway(index) {
+  navigateAway() {
     this.setState({isExitingScreen: true})
+    index = Math.floor(Math.random() * 81)
     AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['lily_1.mp3'])
     AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])
-    this.props.navigation.replace('Quote', { index: index })
+    this.props.navigation.navigate('Quote', { index: index })
   }
 
   render() {
@@ -81,33 +80,46 @@ export default class HomeScreen extends React.Component {
           snapToAlignment={'center'}
         >
           <View style={styles.header}>
-            <TypeWriter
-              typing={1}
-              style={styles.title}
-              minDelay={100}
-              maxDelay={200}
-              delayMap={delayMap}
-              fixed={true}
-            >Wiser Each Da</TypeWriter>
-            <TouchableOpacity onPress={this.playYinYangAnimation}
+            <Animatable.Text
               style={{
-                marginTop: 100 * (Dimensions.get('window').height / HEIGHT_IPHONE_X),
+                ...styles.title,
+                marginTop: 100 * (Dimensions.get('window').height / HEIGHT_IPHONE_X)
               }}
-              activeOpacity={0.4}
-            >
-              <Animated.View style={{
-                opacity: this.state.yinYangFade,
-              }}>
-                <Lottie
-                  ref={animation => {
-                    this.lottieYinYang = animation;
-                  }}
-                  source={require('../assets/lottie/yin_yang.json')}
-                  speed={this.state.speed}
-                  style={styles.lottieYinYang}
-                />
-              </Animated.View>
-            </TouchableOpacity>
+              animation='flipInY'
+              direction='alternate'
+              delay='250'
+              duration='1500'
+              useNativeDriver={true}
+            >Wiser Each</Animatable.Text>
+            <View style={styles.headerRow}>
+              <Animatable.Text
+                style={styles.title}
+                animation='slideInLeft'
+                direction='alternate'
+                delay='250'
+                duration='1500'
+                useNativeDriver={true}
+              >Da</Animatable.Text>
+              <TouchableOpacity onPress={this.playYinYangAnimation}
+                style={{
+                  // marginTop: 100 * (Dimensions.get('window').height / HEIGHT_IPHONE_X),
+                }}
+                activeOpacity={0.4}
+              >
+                <Animated.View style={{
+                  opacity: this.state.yinYangFade,
+                }}>
+                  <Lottie
+                    ref={animation => {
+                      this.lottieYinYang = animation;
+                    }}
+                    source={require('../assets/lottie/yin_yang.json')}
+                    speed={this.state.speed}
+                    style={styles.lottieYinYang}
+                  />
+                </Animated.View>
+              </TouchableOpacity>
+            </View>
           </View>
           <View style={styles.lottieNinja}>
             <Lottie
@@ -126,14 +138,15 @@ export default class HomeScreen extends React.Component {
               delayMap={delayMap}
               fixed={true}
               onTypingEnd={() => {AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])}}
-            >Welcome back traveler!</TypeWriter>
+              >Welcome back my Wanderer</TypeWriter>
           <Animatable.Text
             animation='fadeIn'
             iterationCount='infinite'
             direction='alternate'
-            delay='1000'
+            delay='5000'
             useNativeDriver={true}
             style={styles.beginReading}
+            onPress={() => this.navigateAway()}
           >
             start reading
           </Animatable.Text>
@@ -175,14 +188,13 @@ const styles = StyleSheet.create({
     borderColor: '#ffe'
   },
   title: {
-    fontSize: 32 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
-    marginTop: 100 * (Dimensions.get('window').height / HEIGHT_IPHONE_X),
+    fontSize: 52 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
     color: '#1f1f1f',
     fontFamily: 'dreamOrphans',
   },
   title2: {
-    fontSize: 32 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
-    marginTop: 100 * (Dimensions.get('window').height / HEIGHT_IPHONE_X),
+    fontSize: 26 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
+    marginTop: 40 * (Dimensions.get('window').height / HEIGHT_IPHONE_X),
     color: '#1f1f1f',
     fontFamily: 'dreamOrphans',
   },
@@ -194,20 +206,23 @@ const styles = StyleSheet.create({
   lottieYinYang: {
     width: 50 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
     height: 50 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
-    aspectRatio: 1.05,
+    aspectRatio: 2,
     marginLeft: '-9%',
-    marginTop: '-2.2%',
+    marginTop: '3.5%',
   },
   header: {
     flex: 1,
+    flexDirection: 'column',
+    width: Dimensions.get('window').width / 3.5,
+  },
+  headerRow: {
+    flex: 1,
     flexDirection: 'row',
-    width: Dimensions.get('window').width / 2,
-    justifyContent: 'center'
   },
   beginReading: {
-    fontSize: 24,
+    fontSize: 30,
     fontFamily: 'dreamOrphans',
-    marginTop: 10 * (Dimensions.get('window').height / HEIGHT_IPHONE_X),
+    marginTop: 20 * (Dimensions.get('window').height / HEIGHT_IPHONE_X),
     color: DAO_BLUE
   }
 });

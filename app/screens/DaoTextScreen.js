@@ -130,7 +130,7 @@ class DaoTextScreen extends React.Component {
     this.setState({isExitingScreen: true})
     AudioServiceSingleton.unmount(AudioServiceSingleton.backgroundMusicFilesMap[this.keyName])
     AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])
-    this.props.navigation.replace('Contents')
+    this.props.navigation.replace('Home')
   }
 
   increaseBrightness() {

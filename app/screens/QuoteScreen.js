@@ -6,9 +6,8 @@ import {
   Text,
   Dimensions
 } from 'react-native';
-import { scrapedDao, chineseText } from './content/daoDeChing'
-import {withNavigationFocus} from 'react-navigation';
-import { Ionicons } from '@expo/vector-icons';
+import { scrapedDao } from './content/daoDeChing'
+import * as Animatable from 'react-native-animatable';
 
 const DAO_BLUE = "#22BAD9";
 const BG_COLOR_1 = '#1f1f1f';
@@ -58,7 +57,7 @@ export default class QuoteScreen extends React.Component {
 
   navigateBack = () => {
     this.setState({isExitingScreen: true})
-    this.props.navigation.replace('Contents') 
+    this.props.navigation.replace('Home') 
   }
 
   navigateToDaoText = () => {
@@ -92,46 +91,61 @@ export default class QuoteScreen extends React.Component {
               onPress={this.navigateToDaoText}
               style={styles.textContainer}
             >
-                <Text 
+                <Animatable.Text 
                     style={{
                     ...styles.helpLinkText,
                     color: this.state.textColor
                     }}
                 >
-                    {this.capitalize(this.quote)}
-                </Text>
+                    {this.capitalize(this.quote) + '\n                        – Lao Tzu'}
+                </Animatable.Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={{
-                ...styles.iconContainer
+                ...styles.actionsContainer
               }}
             >
-              <Ionicons 
-                name="md-arrow-down" 
-                color={this.state.textColor}
-                onPress={this.navigateBack}
-                style={{
-                  ...styles.icon,
-                  marginBottom: '5%',
-                  fontSize: 36 * (Dimensions.get('window').height / HEIGHT_IPHONE_X),
-                }}
-              />
-              <Text
-                style={{
-                    ...styles.helpLinkText,
-                    color: this.state.textColor
-                }}
-              >
-                Continue reading...
-              </Text>
-              <Text
-                style={{
-                    ...styles.helpLinkText,
-                    color: this.state.textColor
-                }}
-              >
-                Choose another passage...
-              </Text>
+                <Animatable.Text
+                    style={{
+                        ...styles.helpLinkText,
+                        color: this.state.textColor
+                    }}
+                    animation='pulse'
+                    // iterationCount='infinite'
+                    direction='alternate'
+                    delay='1000'
+                    useNativeDriver={true}
+                    onPress={() => this.navigateToDaoText()}
+                >
+                    Continue reading...
+                </Animatable.Text>
+                <Animatable.Text
+                    style={{
+                        ...styles.helpLinkText,
+                        color: this.state.textColor
+                    }}
+                    animation='pulse'
+                    // iterationCount='infinite'
+                    direction='alternate'
+                    delay='1000'
+                    useNativeDriver={true}
+                >
+                    Randomly choose another passage
+                </Animatable.Text>
+                <Animatable.Text
+                    style={{
+                        ...styles.helpLinkText,
+                        color: this.state.textColor
+                    }}
+                    animation='pulse'
+                    // iterationCount='infinite'
+                    direction='alternate'
+                    delay='1000'
+                    useNativeDriver={true}
+                    onPress={() => this.navigateBack()}
+                >
+                    Go back home
+                </Animatable.Text>
             </TouchableOpacity>
           </View>
       </View> 
@@ -155,8 +169,8 @@ const styles = StyleSheet.create({
   icon: {
     fontSize: 28 * (Dimensions.get('window').height / HEIGHT_IPHONE_X),
   },
-  iconContainer: {
-    opacity: 0.5,
+  actionsContainer: {
+    // opacity: 0.5,
     flexBasis: '33.33%',
     justifyContent: 'center',
     alignItems: 'center',
