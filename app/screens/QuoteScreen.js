@@ -56,8 +56,8 @@ export default class QuoteScreen extends React.Component {
   }
 
   navigateBack = () => {
+    setTimeout(() => {this.props.navigation.replace('Home')}, 1000)
     this.setState({isExitingScreen: true})
-    this.props.navigation.replace('Home') 
   }
 
   navigateToDaoText = () => {
@@ -70,6 +70,9 @@ export default class QuoteScreen extends React.Component {
   }
 
   render() {
+    handleViewRef = ref => this.view = ref;
+
+    fadeOut = () => this.view.fadeOut(1000).then()
     return (
       <View style={{
         ...styles.container,
@@ -79,28 +82,32 @@ export default class QuoteScreen extends React.Component {
             ...styles.helpContainer,
             backgroundColor: this.state.backgroundColor
           }}>
-            <Text 
+            <Animatable.Text 
                 style={{
                     ...styles.helpLinkText,
                     color: this.state.textColor
                 }}
+                animation={this.state.isExitingScreen ? 'fadeOutLeft' : ''}
             >
-                {'Chapter ' + this.numberOfTheDay}
-            </Text>
+                {'Chapter ' + this.numberOfTheDay + '\n'}
+            </Animatable.Text>
             <TouchableOpacity
-              onPress={this.navigateToDaoText}
               style={styles.textContainer}
+              onPress={this.fadeOut}
             >
                 <Animatable.Text 
                     style={{
                     ...styles.helpLinkText,
                     color: this.state.textColor
                     }}
+                    ref={this.handleViewRef}
+                    animation={this.state.isExitingScreen ? 'fadeOutLeft' : ''}
+                    direction='alternate'
                 >
                     {this.capitalize(this.quote) + '\n                        – Lao Tzu'}
                 </Animatable.Text>
             </TouchableOpacity>
-            <TouchableOpacity
+            <View
               style={{
                 ...styles.actionsContainer
               }}
@@ -110,10 +117,9 @@ export default class QuoteScreen extends React.Component {
                         ...styles.helpLinkText,
                         color: this.state.textColor
                     }}
-                    animation='pulse'
-                    // iterationCount='infinite'
-                    direction='alternate'
-                    delay='1000'
+                    animation={this.state.isExitingScreen ? 'fadeOutLeft' : 'pulse'}
+                    direction='normal'
+                    delay='900'
                     useNativeDriver={true}
                     onPress={() => this.navigateToDaoText()}
                 >
@@ -124,29 +130,27 @@ export default class QuoteScreen extends React.Component {
                         ...styles.helpLinkText,
                         color: this.state.textColor
                     }}
-                    animation='pulse'
-                    // iterationCount='infinite'
-                    direction='alternate'
+                    animation={this.state.isExitingScreen ? 'fadeOutLeft' : 'pulse'}
+                    direction='normal'
                     delay='1000'
                     useNativeDriver={true}
                 >
-                    Randomly choose another passage
+                    New random passage
                 </Animatable.Text>
                 <Animatable.Text
                     style={{
                         ...styles.helpLinkText,
                         color: this.state.textColor
                     }}
-                    animation='pulse'
-                    // iterationCount='infinite'
-                    direction='alternate'
-                    delay='1000'
+                    animation={this.state.isExitingScreen ? 'fadeOutLeft' : 'pulse'}
+                    direction='normal'
+                    delay='1100'
                     useNativeDriver={true}
                     onPress={() => this.navigateBack()}
                 >
                     Go back home
                 </Animatable.Text>
-            </TouchableOpacity>
+            </View>
           </View>
       </View> 
     );
@@ -173,7 +177,7 @@ const styles = StyleSheet.create({
     // opacity: 0.5,
     flexBasis: '33.33%',
     justifyContent: 'center',
-    alignItems: 'center',
+    // alignItems: 'center',
   },
   chapterTitle: {
     fontSize: 36 * (Dimensions.get('window').width / WIDTH_IPHONE_X),

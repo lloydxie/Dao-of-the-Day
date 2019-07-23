@@ -19,7 +19,7 @@ const HomeStack = createStackNavigator(
     Quote: QuoteScreen,
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: 'Quote',
     headerMode: 'none',
     defaultNavigationOptions: {
       gesturesEnabled: false

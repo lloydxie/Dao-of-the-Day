@@ -85,21 +85,21 @@ export default class HomeScreen extends React.Component {
                 ...styles.title,
                 marginTop: 100 * (Dimensions.get('window').height / HEIGHT_IPHONE_X)
               }}
-              animation='flipInY'
+              animation='zoomIn'
               direction='alternate'
               delay='250'
               duration='1500'
               useNativeDriver={true}
-            >Wiser Each</Animatable.Text>
+            >wiser each</Animatable.Text>
             <View style={styles.headerRow}>
               <Animatable.Text
                 style={styles.title}
-                animation='slideInLeft'
+                animation='zoomIn'
                 direction='alternate'
                 delay='250'
                 duration='1500'
                 useNativeDriver={true}
-              >Da</Animatable.Text>
+              >da</Animatable.Text>
               <TouchableOpacity onPress={this.playYinYangAnimation}
                 style={{
                   // marginTop: 100 * (Dimensions.get('window').height / HEIGHT_IPHONE_X),
@@ -138,7 +138,7 @@ export default class HomeScreen extends React.Component {
               delayMap={delayMap}
               fixed={true}
               onTypingEnd={() => {AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])}}
-              >Welcome back my Wanderer</TypeWriter>
+              >Welcome, fellow adventurer...</TypeWriter>
           <Animatable.Text
             animation='fadeIn'
             iterationCount='infinite'
@@ -194,7 +194,7 @@ const styles = StyleSheet.create({
   },
   title2: {
     fontSize: 26 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
-    marginTop: 40 * (Dimensions.get('window').height / HEIGHT_IPHONE_X),
+    marginTop: 5 * (Dimensions.get('window').height / HEIGHT_IPHONE_X),
     color: '#1f1f1f',
     fontFamily: 'dreamOrphans',
   },
@@ -222,7 +222,7 @@ const styles = StyleSheet.create({
   beginReading: {
     fontSize: 30,
     fontFamily: 'dreamOrphans',
-    marginTop: 20 * (Dimensions.get('window').height / HEIGHT_IPHONE_X),
+    marginTop: 60 * (Dimensions.get('window').height / HEIGHT_IPHONE_X),
     color: DAO_BLUE
   }
 });
