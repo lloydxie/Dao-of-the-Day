@@ -25,7 +25,7 @@ const HomeStack = createStackNavigator(
     defaultNavigationOptions: {
       gesturesEnabled: false
     },
-    transitionConfig: () => fadeIn(2000),
+    transitionConfig: () => fadeIn(1000),
   }
 );
 
