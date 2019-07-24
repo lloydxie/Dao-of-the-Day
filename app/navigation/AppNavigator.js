@@ -19,7 +19,7 @@ const HomeStack = createStackNavigator(
     Quote: QuoteScreen,
   },
   {
-    initialRouteName: 'Quote',
+    initialRouteName: 'DaoText',
     headerMode: 'none',
     defaultNavigationOptions: {
       gesturesEnabled: false

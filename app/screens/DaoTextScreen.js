@@ -13,6 +13,7 @@ import TypeWriter from 'react-native-typewriter';
 import AudioServiceSingleton from '../services/AudioService'
 import { Ionicons } from '@expo/vector-icons';
 import * as Brightness from 'expo-brightness';
+import * as Animatable from 'react-native-animatable';
 
 const HIGH = 'HIGH';
 const MUTE = 'MUTE';
@@ -63,6 +64,8 @@ class DaoTextScreen extends React.Component {
     thirdLastOccurenceIndex = this.daoOfTheDay.lastIndexOf('\n', (this.daoOfTheDay.lastIndexOf('\n', this.daoOfTheDay.lastIndexOf('\n')-1) -1))
     this.quote = this.daoOfTheDay.substring(thirdLastOccurenceIndex + 1)
     this.daoOfTheDay = this.daoOfTheDay.substring(0, thirdLastOccurenceIndex + 1)
+
+    AnimatableIonicons = Animatable.createAnimatableComponent(Ionicons)
   }
 
   loadAudioFile = async (numberOfTheDay) => {
@@ -196,6 +199,14 @@ class DaoTextScreen extends React.Component {
         ...styles.container,
         backgroundColor: this.state.backgroundColor
       }}>
+        <View style={styles.titleView}>
+          <Text
+            style={{
+              ...styles.chapterTitle,
+              color: this.state.textColor
+            }}
+          >{'Chapter ' + this.numberOfTheDay + '\n'}</Text>
+        </View>
         <View
           style={styles.controlsHeader}
         >
@@ -205,7 +216,10 @@ class DaoTextScreen extends React.Component {
             }}
             onPress={this.slowDown}
           >
-            <Ionicons 
+            <AnimatableIonicons
+              animation='flash'
+              delay='500'
+              useNativeDriver='true' 
               name={"md-rewind"}
               color={this.state.textColor}
               style={{
@@ -219,7 +233,10 @@ class DaoTextScreen extends React.Component {
             }}
             onPress={this.playOrPause}
           >
-            <Ionicons 
+            <AnimatableIonicons
+              animation='flash'
+              delay='600'
+              useNativeDriver='true' 
               name={this.paused ? 'md-play' : 'md-pause'}
               color={this.state.textColor}
               style={{
@@ -233,7 +250,10 @@ class DaoTextScreen extends React.Component {
             }}
             onPress={this.speedUp}
           >
-            <Ionicons 
+            <AnimatableIonicons
+              animation='flash'
+              delay='700'
+              useNativeDriver='true' 
               name={"md-fastforward"}
               color={this.state.textColor}
               style={{
@@ -247,7 +267,10 @@ class DaoTextScreen extends React.Component {
             }}
             onPress={this.changeColorScheme}
           >
-            <Ionicons 
+            <AnimatableIonicons
+              animation='flash'
+              delay='800'
+              useNativeDriver='true' 
               name={"md-color-palette"}
               color={this.state.textColor}
               style={{
@@ -261,7 +284,10 @@ class DaoTextScreen extends React.Component {
             }}
             onPress={this.changeVolume}
           >
-            <Ionicons 
+            <AnimatableIonicons
+              animation='flash'
+              delay='900'
+              useNativeDriver='true' 
               name={this.volumeLevelOptions[this.state.volumeLevel]} 
               color={this.state.textColor}
               style={{
@@ -352,8 +378,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1
   },  
-  scrollContainer: {
-  },
   helpContainer: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -363,9 +387,10 @@ const styles = StyleSheet.create({
     fontFamily: 'smite',
   },
   controlsHeader: {
-    marginTop: Dimensions.get('window').height / 10,
+    // marginTop: Dimensions.get('window').height / 10,
     marginBottom: Dimensions.get('window').height / 20,
     flexDirection: 'row',
+    // backgroundColor: 'light'
   },
   icon: {
     fontSize: 28 * (Dimensions.get('window').height / HEIGHT_IPHONE_X),
@@ -375,5 +400,14 @@ const styles = StyleSheet.create({
     flexBasis: '20%',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  chapterTitle: {
+    fontSize: 36 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
+    fontFamily: 'smite',
+  },
+  titleView: {
+    justifyContent: 'center',
+    flexDirection: 'row',
+    marginTop: Dimensions.get('window').height / 15,
   }
 });

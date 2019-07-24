@@ -144,6 +144,7 @@ export default class HomeScreen extends React.Component {
             iterationCount='infinite'
             direction='alternate'
             delay='5000'
+            iterationDelay='250'
             useNativeDriver={true}
             style={styles.beginReading}
             onPress={() => this.navigateAway()}
