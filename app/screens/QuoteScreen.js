@@ -56,7 +56,7 @@ export default class QuoteScreen extends React.Component {
   }
 
   navigateBack = () => {
-    setTimeout(() => {this.props.navigation.replace('Home')}, 1000)
+    setTimeout(() => {this.props.navigation.navigate('Home')}, 500)
     this.setState({isExitingScreen: true})
   }
 
@@ -72,7 +72,7 @@ export default class QuoteScreen extends React.Component {
   render() {
     handleViewRef = ref => this.view = ref;
 
-    fadeOut = () => this.view.fadeOut(1000).then()
+    fadeOut = () => this.view.fadeOut(1500).then()
     return (
       <View style={{
         ...styles.container,

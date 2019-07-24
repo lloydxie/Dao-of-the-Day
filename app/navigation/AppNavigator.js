@@ -8,6 +8,7 @@ import HomeScreen from '../screens/HomeScreen';
 import QuoteScreen from '../screens/QuoteScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import TranslationScreen from '../screens/TranslationScreen';
+import { fadeIn } from 'react-navigation-transitions';
 
 import { Ionicons } from '@expo/vector-icons';
 
@@ -23,7 +24,8 @@ const HomeStack = createStackNavigator(
     headerMode: 'none',
     defaultNavigationOptions: {
       gesturesEnabled: false
-    }
+    },
+    transitionConfig: () => fadeIn(2000),
   }
 );
 

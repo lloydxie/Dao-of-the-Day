@@ -33,6 +33,7 @@ export default class HomeScreen extends React.Component {
     super()
     console.log(Dimensions.get('window').width)
     AnimatedLottie = Animated.createAnimatedComponent(Lottie)
+    AnimatableScrollView = Animatable.createAnimatableComponent(ScrollView)
   }
 
   async componentDidMount() {
@@ -66,28 +67,34 @@ export default class HomeScreen extends React.Component {
     AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['lily_1.mp3'])
     AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])
     setTimeout(() => {
-      this.props.navigation.replace('Quote', { index: index })
+      this.props.navigation.navigate('Quote', { index: index })
+      this.setState({isExitingScreen: false})
     }, 2500)
   }
 
   render() {
     return (
-      <Animatable.View
+      <View
         style={{
           ...styles.container,
-          backgroundColor: this.state.isExitingScreen ? BG_COLOR_1 : '#fff'
+          backgroundColor: this.state.isExitingScreen ? BG_COLOR_1 : '#fff',
         }}
-        duration='2000'
+        duration='3000'
         transition='backgroundColor'
+        ease='linear'
       >
         <ScrollView 
           contentContainerStyle={{
             alignItems: 'center',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            opacity: this.state.isExitingScreen ? 0.1 : 1.0,
           }}
           decelerationRate='fast'
           snapToInterval={3}
           snapToAlignment={'center'}
+          duration='1000'
+          transition='opacity'
+          useNativeDriver={true}
         >
           <View style={styles.header}>
             <Animatable.Text
@@ -153,7 +160,7 @@ export default class HomeScreen extends React.Component {
             animation='fadeIn'
             iterationCount='infinite'
             direction='alternate'
-            delay='5000'
+            delay='0'
             iterationDelay='250'
             useNativeDriver={true}
             style={styles.beginReading}
@@ -162,7 +169,7 @@ export default class HomeScreen extends React.Component {
             start reading
           </Animatable.Text>
         </ScrollView>
-      </Animatable.View>
+      </View>
     );
   }
 }
