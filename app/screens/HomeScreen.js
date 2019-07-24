@@ -17,6 +17,7 @@ import { DAO_BLUE } from './DaoTextScreen';
 NUM_COLUMNS = 3;
 HEIGHT_IPHONE_X = 896;
 WIDTH_IPHONE_X = 414;
+const BG_COLOR_1 = '#1f1f1f';
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
@@ -64,12 +65,21 @@ export default class HomeScreen extends React.Component {
     index = Math.floor(Math.random() * 81)
     AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['lily_1.mp3'])
     AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])
-    this.props.navigation.navigate('Quote', { index: index })
+    setTimeout(() => {
+      this.props.navigation.replace('Quote', { index: index })
+    }, 2500)
   }
 
   render() {
     return (
-      <View style={styles.container}>
+      <Animatable.View
+        style={{
+          ...styles.container,
+          backgroundColor: this.state.isExitingScreen ? BG_COLOR_1 : '#fff'
+        }}
+        duration='2000'
+        transition='backgroundColor'
+      >
         <ScrollView 
           contentContainerStyle={{
             alignItems: 'center',
@@ -152,7 +162,7 @@ export default class HomeScreen extends React.Component {
             start reading
           </Animatable.Text>
         </ScrollView>
-      </View>
+      </Animatable.View>
     );
   }
 }
@@ -163,7 +173,7 @@ let delayMap = [
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
