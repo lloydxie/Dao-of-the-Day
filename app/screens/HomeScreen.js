@@ -26,7 +26,8 @@ export default class HomeScreen extends React.Component {
   state = {
     speed: 0,
     yinYangFade: new Animated.Value(0),  // Initial value for opacity: 0
-    isExitingScreen: false
+    isExitingScreen: false,
+    backgroundFade: new Animated.Value(1)
   };
 
   constructor() {
@@ -35,7 +36,7 @@ export default class HomeScreen extends React.Component {
     AnimatedLottie = Animated.createAnimatedComponent(Lottie)
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     this.lottieNinja.play();
     this.lottieYinYang.play();
     // AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['lily_1.mp3'])
@@ -54,7 +55,23 @@ export default class HomeScreen extends React.Component {
         }
       ).start();  
     }, 1250)
+
+    this.focusListener = this.props.navigation.addListener("willFocus", () => {
+      this.setState(
+        {
+          speed: 0,
+          yinYangFade: new Animated.Value(0),  // Initial value for opacity: 0
+          isExitingScreen: false,
+          backgroundFade: new Animated.Value(1)
+        }
+      )
+    });
   }
+
+  componentWillUnmount() {
+    this.focusListener.remove();
+  }
+
 
   playYinYangAnimation = () => {
     this.setState({speed: .6})
@@ -65,18 +82,28 @@ export default class HomeScreen extends React.Component {
     index = Math.floor(Math.random() * 81)
     AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['lily_1.mp3'])
     AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])
+    
+    Animated.timing(                  // Animate over time
+      this.state.backgroundFade,            // The animated value to drive
+      {
+        toValue: 0,                   // Animate to opacity: 0 (opaque)
+        duration: 1500,              // Make it take a while
+      }
+    ).start()
+
     setTimeout(() => {
       this.props.navigation.navigate('Quote', { index: index })
       this.setState({isExitingScreen: false})
-    }, 2000)
+    }, 1000)
   }
 
   render() {
     return (
-      <View
+      <Animated.View
         style={{
           ...styles.container,
           backgroundColor: '#fff',
+          opacity: this.state.backgroundFade,
         }}
       >
         <ScrollView 
@@ -161,7 +188,7 @@ export default class HomeScreen extends React.Component {
             start reading
           </Animatable.Text>
         </ScrollView>
-      </View>
+      </Animated.View>
     );
   }
 }
