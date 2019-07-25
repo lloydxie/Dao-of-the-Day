@@ -2,25 +2,26 @@ import { AsyncStorage } from 'react-native';
 
 const ASYNC_STORAGE_KEY = 'GoLloyd'
 
-// class GlobalState {
+class GlobalState {
     DEFAULT_SETTINGS = {
         'typingSoundToggle': true,
         'musicToggle': true
     }
 
-    function loadPastState() {
+    loadPastState(that) {
         AsyncStorage.getItem(ASYNC_STORAGE_KEY).then((oldSetting) => {
             if (!oldSetting) {
                 AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify(DEFAULT_SETTINGS))
             }
-            this.setState(JSON.parse(oldSetting))
+            console.log(oldSetting)
+            that.setState(JSON.parse(oldSetting))
         })
 
-        const { navigation } = this.props;
-        this.focusListener = navigation.addListener("willFocus", () => {
-            AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify(this.state))
+        const { navigation } = that.props;
+        that.focusListener = navigation.addListener("willFocus", () => {
+            AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify(that.state))
         });
     }
-// }
-// const GLOBAL_STATE = new GlobalState();
-export default loadPastState;
+}
+const GLOBAL_STATE = new GlobalState();
+export default GLOBAL_STATE;

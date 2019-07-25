@@ -13,7 +13,7 @@ import SettingsList from 'react-native-settings-list';
 
 const ASYNC_STORAGE_KEY = 'GoLloyd'
 
-import loadPastState from '../services/GlobalState';
+import GLOBAL_STATE from '../services/GlobalState';
 import GLOBAL from './global.js'
 
 let DEFAULT_SETTINGS = {
@@ -25,25 +25,27 @@ let DEFAULT_SETTINGS = {
 export default class SettingsScreen extends Component {
   constructor(){
     super()
-    this.state = DEFAULT_SETTINGS
+    this.state = GLOBAL_STATE.DEFAULT_SETTINGS
   }
 
   componentWillMount() {
-    AsyncStorage.getItem(ASYNC_STORAGE_KEY).then((oldSetting) => {
-      if (!oldSetting) {
-          AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify(DEFAULT_SETTINGS))
-          console.log('1')
-          console.log(oldSetting)
-      }
-      console.log('2')
-      console.log(JSON.parse(oldSetting))
-      this.setState(JSON.parse(oldSetting))
-    })
+    // AsyncStorage.getItem(ASYNC_STORAGE_KEY).then((oldSetting) => {
+    //   if (!oldSetting) {
+    //       AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify(DEFAULT_SETTINGS))
+    //       console.log('1')
+    //       console.log(oldSetting)
+    //   }
+    //   console.log('2')
+    //   console.log(JSON.parse(oldSetting))
+    //   this.setState(JSON.parse(oldSetting))
+    // })
 
-    const { navigation } = this.props;
-    this.focusListener = navigation.addListener("willFocus", () => {
-        AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify(this.state))
-    });
+    // const { navigation } = this.props;
+    // this.focusListener = navigation.addListener("willFocus", () => {
+    //     AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify(this.state))
+    // });
+
+    GLOBAL_STATE.loadPastState(this)
   }
 
   componentWillUnmount() {
