@@ -62,7 +62,7 @@ export default class QuoteScreen extends React.Component {
 
   navigateToDaoText = () => {
     this.setState({isExitingScreen: true})
-    setTimeout(() => {this.props.navigation.navigate('DaoText')}, 1500)
+    setTimeout(() => {this.props.navigation.navigate('DaoText')}, 1000)
   }
 
   capitalize(str){

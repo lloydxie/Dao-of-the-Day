@@ -51,10 +51,10 @@ export default class HomeScreen extends React.Component {
         this.state.yinYangFade,            // The animated value to drive
         {
           toValue: 1,                   // Animate to opacity: 1 (opaque)
-          duration: 2500,              // Make it take a while
+          duration: 1500,              // Make it take a while
         }
       ).start();  
-    }, 1250)
+    }, 1000)
 
     this.focusListener = this.props.navigation.addListener("willFocus", () => {
       this.setState(
@@ -169,8 +169,9 @@ export default class HomeScreen extends React.Component {
           <TypeWriter
               typing={1}
               style={styles.title2}
-              minDelay={100}
-              maxDelay={200}
+              minDelay={200}
+              maxDelay={300}
+              initialDelay={5000}
               delayMap={delayMap}
               fixed={true}
               onTypingEnd={() => {AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])}}
