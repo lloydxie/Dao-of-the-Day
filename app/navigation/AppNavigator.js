@@ -82,7 +82,7 @@ export default createAppContainer(createMaterialBottomTabNavigator(
     activeColor: '#f0edf6',  
     inactiveColor: '#226557',  
     barStyle: { backgroundColor: '#3BAD87' },  
-    initialRouteName: 'Home',
+    initialRouteName: 'Settings',
     shifting: true,
   }
 ));
