@@ -10,15 +10,23 @@ import {
 } from 'react-native';
 import SettingsList from 'react-native-settings-list';
 
+import GLOBAL_STATE from '../services/GlobalState';
 
 // simple example
 export default class SettingsScreen extends Component {
   constructor(){
     super();
-    this.state = {
-        switchValue: 1
-    }
+    this.state = GLOBAL_STATE.DEFAULT_SETTINGS
   }
+
+  componentWillMount() {
+    GLOBAL_STATE.initializeStorageTriggers(this)
+  }
+
+  componentWillUnmount() {
+    GLOBAL_STATE.unloadStorageTriggers(this)
+  }
+
   render() {
     return (
       <View style={{backgroundColor:'white',flex:1}}>
@@ -27,25 +35,25 @@ export default class SettingsScreen extends Component {
           <SettingsList.Header headerText='Translation' headerStyle={{color:'black'}}/>
             <SettingsList.Item
               hasNavArrow={false}
-              switchState={this.state.switchValue == 1}
+              switchState={this.state.musicSelectionIndex == 1}
               switchOnValueChange={() => this.onValueChange(1)}
               hasSwitch={true}
               title='Translation 1'/>
             <SettingsList.Item
               hasNavArrow={false}
-              switchState={this.state.switchValue == 2}
+              switchState={this.state.musicSelectionIndex == 2}
               switchOnValueChange={() => this.onValueChange(2)}
               hasSwitch={true}
               title='Translation 2'/>
             <SettingsList.Item
               hasNavArrow={false}
-              switchState={this.state.switchValue == 3}
+              switchState={this.state.musicSelectionIndex == 3}
               switchOnValueChange={() => this.onValueChange(3)}
               hasSwitch={true}
               title='Translation 3'/>
             <SettingsList.Item
               hasNavArrow={false}
-              switchState={this.state.switchValue == 4}
+              switchState={this.state.musicSelectionIndex == 4}
               switchOnValueChange={() => this.onValueChange(4)}
               hasSwitch={true}
               title='Chinese (original)'/>
@@ -55,6 +63,6 @@ export default class SettingsScreen extends Component {
     );
   }
   onValueChange(index){
-    this.setState({switchValue: index});
+    this.setState({musicSelectionIndex: index});
   }
 }

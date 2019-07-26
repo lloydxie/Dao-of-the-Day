@@ -175,7 +175,9 @@ export default class HomeScreen extends React.Component {
               delayMap={delayMap}
               fixed={true}
               onTypingEnd={() => {AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])}}
-              >Welcome, fellow adventurer...</TypeWriter>
+              >Welcome, fellow adventurer...
+              Read with intention...
+          </TypeWriter>
           <Animatable.Text
             animation='fadeIn'
             iterationCount='infinite'

@@ -5,16 +5,12 @@ import {
   StyleSheet,
   Text,
   View,
-  Image,
-  Alert,
-  AsyncStorage
 } from 'react-native';
 import SettingsList from 'react-native-settings-list';
 
 import GLOBAL_STATE from '../services/GlobalState';
 
-// simple example
-export default class SettingsScreen extends Component {
+export default class MusicSelectionScreen extends Component {
   constructor(){
     super()
     this.state = GLOBAL_STATE.DEFAULT_SETTINGS
