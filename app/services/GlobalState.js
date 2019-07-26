@@ -15,7 +15,6 @@ class GlobalState {
             if (!oldSetting) {
                 AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify(DEFAULT_SETTINGS))
             }
-            // that.setState({...DEFAULT_SETTINGS, ...JSON.parse(oldSetting)})
             that.setState(JSON.parse(oldSetting))
         })
     }
@@ -33,8 +32,8 @@ class GlobalState {
     }
 
     unloadStorageTriggers(that) {
-        this.focusListener.remove();
-        this.blurListener.remove();
+        that.focusListener.remove();
+        that.blurListener.remove();
     }
 
     updateSetting(that, key, value) {
