@@ -2,17 +2,12 @@
 import React, {Component} from 'react';
 
 import {
-  StyleSheet,
-  Text,
   View,
-  Image,
-  Alert
 } from 'react-native';
 import SettingsList from 'react-native-settings-list';
 
 import GLOBAL_STATE from '../services/GlobalState';
 
-// simple example
 export default class SettingsScreen extends Component {
   constructor(){
     super();
@@ -35,26 +30,26 @@ export default class SettingsScreen extends Component {
           <SettingsList.Header headerText='Translation' headerStyle={{color:'black'}}/>
             <SettingsList.Item
               hasNavArrow={false}
-              switchState={this.state.musicSelectionIndex == 1}
-              switchOnValueChange={() => this.onValueChange(1)}
+              switchState={this.state.translationIndex == 1}
+              switchOnValueChange={() => GLOBAL_STATE.updateSetting(this, 'translationIndex', 1)}
               hasSwitch={true}
               title='Translation 1'/>
             <SettingsList.Item
               hasNavArrow={false}
-              switchState={this.state.musicSelectionIndex == 2}
-              switchOnValueChange={() => this.onValueChange(2)}
+              switchState={this.state.translationIndex == 2}
+              switchOnValueChange={() => GLOBAL_STATE.updateSetting(this, 'translationIndex', 2)}
               hasSwitch={true}
               title='Translation 2'/>
             <SettingsList.Item
               hasNavArrow={false}
-              switchState={this.state.musicSelectionIndex == 3}
-              switchOnValueChange={() => this.onValueChange(3)}
+              switchState={this.state.translationIndex == 3}
+              switchOnValueChange={() => GLOBAL_STATE.updateSetting(this, 'translationIndex', 3)}
               hasSwitch={true}
               title='Translation 3'/>
             <SettingsList.Item
               hasNavArrow={false}
-              switchState={this.state.musicSelectionIndex == 4}
-              switchOnValueChange={() => this.onValueChange(4)}
+              switchState={this.state.translationIndex == 4}
+              switchOnValueChange={() => GLOBAL_STATE.updateSetting(this, 'translationIndex', 4)}
               hasSwitch={true}
               title='Chinese (original)'/>
           </SettingsList>

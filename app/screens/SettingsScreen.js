@@ -2,18 +2,12 @@
 import React, {Component} from 'react';
 
 import {
-  StyleSheet,
-  Text,
   View,
-  Image,
-  Alert,
-  AsyncStorage
 } from 'react-native';
 import SettingsList from 'react-native-settings-list';
 
 import GLOBAL_STATE from '../services/GlobalState';
 
-// simple example
 export default class SettingsScreen extends Component {
   constructor(){
     super()
@@ -21,22 +15,6 @@ export default class SettingsScreen extends Component {
   }
 
   componentWillMount() {
-    // AsyncStorage.getItem(ASYNC_STORAGE_KEY).then((oldSetting) => {
-    //   if (!oldSetting) {
-    //       AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify(DEFAULT_SETTINGS))
-    //       console.log('1')
-    //       console.log(oldSetting)
-    //   }
-    //   console.log('2')
-    //   console.log(JSON.parse(oldSetting))
-    //   this.setState(JSON.parse(oldSetting))
-    // })
-
-    // const { navigation } = this.props;
-    // this.focusListener = navigation.addListener("willFocus", () => {
-    //     AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify(this.state))
-    // });
-
     GLOBAL_STATE.initializeStorageTriggers(this)
   }
 
@@ -59,13 +37,13 @@ export default class SettingsScreen extends Component {
             <SettingsList.Item
               hasNavArrow={false}
               switchState={this.state.typingSoundToggle}
-              switchOnValueChange={() => this.toggleSetting('typingSoundToggle')}
+              switchOnValueChange={() => this.toggleSetting(this, 'typingSoundToggle')}
               hasSwitch={true}
               title='Typing Sound FX'/>
             <SettingsList.Item
               hasNavArrow={true}
               switchState={this.state.musicToggle}
-              switchOnValueChange={() => this.toggleSetting('musicToggle')}
+              switchOnValueChange={() => this.toggleSetting(this, 'musicToggle')}
               hasSwitch={true}
               title='BG Music (turn off for slower phones)'/>
               onPress={() => this.navigateToMusicSelection}
@@ -76,19 +54,6 @@ export default class SettingsScreen extends Component {
         </View>
       </View>
     );
-  }
-
-  toggleSetting(key) {
-    let oldValue = this.state[key]
-    let newState = {}
-    newState[key] = !oldValue
-    this.setState(newState)
-  }
-
-  updateSetting(key, value) {
-    let newState = {}
-    newState[key] = value
-    this.setState(newState)
   }
 
   navigateToMusicSelection() {

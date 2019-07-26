@@ -2,37 +2,19 @@
 import React, {Component} from 'react';
 
 import {
-  StyleSheet,
-  Text,
   View,
 } from 'react-native';
 import SettingsList from 'react-native-settings-list';
 
 import GLOBAL_STATE from '../services/GlobalState';
 
-export default class MusicSelectionScreen extends Component {
+export default class SettingsScreen extends Component {
   constructor(){
-    super()
+    super();
     this.state = GLOBAL_STATE.DEFAULT_SETTINGS
   }
 
   componentWillMount() {
-    // AsyncStorage.getItem(ASYNC_STORAGE_KEY).then((oldSetting) => {
-    //   if (!oldSetting) {
-    //       AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify(DEFAULT_SETTINGS))
-    //       console.log('1')
-    //       console.log(oldSetting)
-    //   }
-    //   console.log('2')
-    //   console.log(JSON.parse(oldSetting))
-    //   this.setState(JSON.parse(oldSetting))
-    // })
-
-    // const { navigation } = this.props;
-    // this.focusListener = navigation.addListener("willFocus", () => {
-    //     AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify(this.state))
-    // });
-
     GLOBAL_STATE.initializeStorageTriggers(this)
   }
 
@@ -42,52 +24,40 @@ export default class MusicSelectionScreen extends Component {
 
   render() {
     return (
-      <View style={{backgroundColor:'#EFEFF4',flex:1}}>
+      <View style={{backgroundColor:'white',flex:1}}>
         <View style={{flex:1, marginTop:50}}>
-          <SettingsList>
-          <SettingsList.Header headerText='Settings' headerStyle={{color:'black'}}/>
+          <SettingsList backgroundColor='#EFEFF4'>
+          <SettingsList.Header headerText='Translation' headerStyle={{color:'black'}}/>
             <SettingsList.Item
               hasNavArrow={false}
-              title='About the App'/>
-            <SettingsList.Item
-              hasNavArrow={false}
-              title='Rate the App'/>
-            <SettingsList.Item
-              hasNavArrow={false}
-              switchState={this.state.typingSoundToggle}
-              switchOnValueChange={() => this.toggleSetting('typingSoundToggle')}
+              switchState={this.state.musicIndex == 1}
+              switchOnValueChange={() => GLOBAL_STATE.updateSetting(this, 'musicIndex', 1)}
               hasSwitch={true}
-              title='Typing Sound FX'/>
-            <SettingsList.Item
-              hasNavArrow={true}
-              switchState={this.state.musicToggle}
-              switchOnValueChange={() => this.toggleSetting('musicToggle')}
-              hasSwitch={true}
-              title='BG Music (turn off for slower phones)'/>
-              onPress={() => this.navigateToMusicSelection}
+              title='Translation 1'/>
             <SettingsList.Item
               hasNavArrow={false}
-              title='Share me'/>
+              switchState={this.state.musicIndex == 2}
+              switchOnValueChange={() => GLOBAL_STATE.updateSetting(this, 'musicIndex', 2)}
+              hasSwitch={true}
+              title='Translation 2'/>
+            <SettingsList.Item
+              hasNavArrow={false}
+              switchState={this.state.musicIndex == 3}
+              switchOnValueChange={() => GLOBAL_STATE.updateSetting(this, 'musicIndex', 3)}
+              hasSwitch={true}
+              title='Translation 3'/>
+            <SettingsList.Item
+              hasNavArrow={false}
+              switchState={this.state.musicIndex == 4}
+              switchOnValueChange={() => GLOBAL_STATE.updateSetting(this, 'musicIndex', 4)}
+              hasSwitch={true}
+              title='Chinese (original)'/>
           </SettingsList>
         </View>
       </View>
     );
   }
-
-  toggleSetting(key) {
-    let oldValue = this.state[key]
-    let newState = {}
-    newState[key] = !oldValue
-    this.setState(newState)
-  }
-
-  updateSetting(key, value) {
-    let newState = {}
-    newState[key] = value
-    this.setState(newState)
-  }
-
-  navigateToMusicSelection() {
-    this.props.navigation.navigate('MusicSelection')
+  onValueChange(index){
+    this.setState({musicSelectionIndex: index});
   }
 }
