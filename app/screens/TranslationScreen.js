@@ -78,7 +78,4 @@ export default class SettingsScreen extends Component {
       </View>
     );
   }
-  onValueChange(index){
-    this.setState({musicSelectionIndex: index});
-  }
 }

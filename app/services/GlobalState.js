@@ -24,11 +24,11 @@ class GlobalState {
     initializeStorageTriggers(that) {
         const { navigation } = that.props;
 
-        that.focusListener = navigation.addListener("willFocus", () => {
-            this.loadPastState(that)
+        that.focusListener = navigation.addListener("didFocus", () => {
+            setTimeout(() => this.loadPastState(that), 100)
         });
 
-        that.blurListener = navigation.addListener("willBlur", () => {
+        that.blurListener = navigation.addListener("didBlur", () => {
             AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify(that.state))
         });
     }
@@ -39,14 +39,14 @@ class GlobalState {
     }
 
     updateSetting(that, key, value) {
-        let newState = {}
+        let newState = {...that.state}
         newState[key] = value
         that.setState(newState)
     }
 
     toggleSetting(that, key) {
         let oldValue = that.state[key]
-        let newState = {}
+        let newState = {...that.state}
         newState[key] = !oldValue
         that.setState(newState)
     }
