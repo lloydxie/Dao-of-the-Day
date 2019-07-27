@@ -4,8 +4,8 @@ const ASYNC_STORAGE_KEY = 'GoLloyd'
 
 class GlobalState {
     DEFAULT_SETTINGS = {
-        'typingSoundToggle': true,
-        'musicToggle': true,
+        'typingSoundToggle': false,
+        'musicToggle': false,
         'musicIndex': 2,
         'translationIndex': 2,
         'colorIndex': 1,
@@ -24,24 +24,21 @@ class GlobalState {
     initializeStorageTriggers(that) {
         const { navigation } = that.props;
 
-        that.focusListener = navigation.addListener("didFocus", () => {
-            setTimeout(() => this.loadPastState(that), 100)
-        });
-
-        that.blurListener = navigation.addListener("didBlur", () => {
-            AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify(that.state))
+        that.focusListener = navigation.addListener("willFocus", () => {
+            // setTimeout(() => this.loadPastState(that), 50)
+            this.loadPastState(that)
         });
     }
 
     unloadStorageTriggers(that) {
         that.focusListener.remove();
-        that.blurListener.remove();
     }
 
     updateSetting(that, key, value) {
         let newState = {...that.state}
         newState[key] = value
         that.setState(newState)
+        AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify(newState))
     }
 
     toggleSetting(that, key) {
@@ -49,6 +46,7 @@ class GlobalState {
         let newState = {...that.state}
         newState[key] = !oldValue
         that.setState(newState)
+        AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify(newState))
     }
 }
 const GLOBAL_STATE = new GlobalState();

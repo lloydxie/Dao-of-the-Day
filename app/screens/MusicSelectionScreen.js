@@ -11,6 +11,7 @@ import GLOBAL_STATE from '../services/GlobalState';
 export default class SettingsScreen extends Component {
   constructor(){
     super()
+    // cant wait for async loading of state or else component render fails.
     this.state = GLOBAL_STATE.DEFAULT_SETTINGS
   }
 
@@ -56,8 +57,5 @@ export default class SettingsScreen extends Component {
         </View>
       </View>
     );
-  }
-  onValueChange(index){
-    this.setState({musicSelectionIndex: index});
   }
 }
