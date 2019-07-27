@@ -214,6 +214,23 @@ class DaoTextScreen extends React.Component {
             style={{
               ...styles.iconContainer
             }}
+            onPress={this.speedUp}
+          >
+            <AnimatableIonicons
+              animation='flash'
+              delay='700'
+              useNativeDriver='true' 
+              name={"md-skip-backward"}
+              color={this.state.textColor}
+              style={{
+              ...styles.icon
+            }}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              ...styles.iconContainer
+            }}
             onPress={this.slowDown}
           >
             <AnimatableIonicons
@@ -265,30 +282,13 @@ class DaoTextScreen extends React.Component {
             style={{
               ...styles.iconContainer
             }}
-            onPress={this.changeColorScheme}
-          >
-            <AnimatableIonicons
-              animation='flash'
-              delay='800'
-              useNativeDriver='true' 
-              name={"md-color-palette"}
-              color={this.state.textColor}
-              style={{
-              ...styles.icon
-            }}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={{
-              ...styles.iconContainer
-            }}
             onPress={this.changeVolume}
           >
             <AnimatableIonicons
               animation='flash'
               delay='900'
               useNativeDriver='true' 
-              name={this.volumeLevelOptions[this.state.volumeLevel]} 
+              name={"md-skip-forward"}
               color={this.state.textColor}
               style={{
               ...styles.icon,
@@ -397,7 +397,7 @@ const styles = StyleSheet.create({
   },
   iconContainer: {
     opacity: 0.5,
-    flexBasis: '20%',
+    flexBasis: '16.66%',
     justifyContent: 'center',
     alignItems: 'center',
   },

@@ -27,7 +27,7 @@ export default class SettingsScreen extends Component {
       <View style={{backgroundColor:'white',flex:1}}>
         <View style={{flex:1, marginTop:50}}>
           <SettingsList backgroundColor='#EFEFF4'>
-          <SettingsList.Header headerText='Translation' headerStyle={{color:'black'}}/>
+          <SettingsList.Header headerText='Translation' headerStyle={{color:'black', fontSize: '22'}}/>
             <SettingsList.Item
               hasNavArrow={false}
               switchState={this.state.translationIndex == 1}
@@ -52,6 +52,27 @@ export default class SettingsScreen extends Component {
               switchOnValueChange={() => GLOBAL_STATE.updateSetting(this, 'translationIndex', 4)}
               hasSwitch={true}
               title='Chinese (original)'/>
+          </SettingsList>
+          <SettingsList backgroundColor='#EFEFF4'>
+          <SettingsList.Header headerText='Color Presets' headerStyle={{color:'black', fontSize: '22'}}/>
+            <SettingsList.Item
+              hasNavArrow={false}
+              switchState={this.state.colorIndex == 1}
+              switchOnValueChange={() => GLOBAL_STATE.updateSetting(this, 'colorIndex', 1)}
+              hasSwitch={true}
+              title='Ether'/>
+            <SettingsList.Item
+              hasNavArrow={false}
+              switchState={this.state.colorIndex == 2}
+              switchOnValueChange={() => GLOBAL_STATE.updateSetting(this, 'colorIndex', 2)}
+              hasSwitch={true}
+              title='Light'/>
+            <SettingsList.Item
+              hasNavArrow={false}
+              switchState={this.state.colorIndex == 3}
+              switchOnValueChange={() => GLOBAL_STATE.updateSetting(this, 'colorIndex', 3)}
+              hasSwitch={true}
+              title='Dark'/>
           </SettingsList>
         </View>
       </View>
