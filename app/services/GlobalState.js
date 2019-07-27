@@ -8,7 +8,8 @@ class GlobalState {
         'musicToggle': true,
         'musicIndex': 2,
         'translationIndex': 2,
-        'colorIndex': 1
+        'colorIndex': 1,
+        'typingSpeed': 'x3'
     }
 
     loadPastState(that) {

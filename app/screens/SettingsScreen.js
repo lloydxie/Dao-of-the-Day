@@ -33,9 +33,6 @@ export default class SettingsScreen extends Component {
               title='About the App'/>
             <SettingsList.Item
               hasNavArrow={false}
-              title='Rate the App'/>
-            <SettingsList.Item
-              hasNavArrow={false}
               switchState={this.state.typingSoundToggle}
               switchOnValueChange={() => GLOBAL_STATE.toggleSetting(this, 'typingSoundToggle')}
               hasSwitch={true}
@@ -47,6 +44,9 @@ export default class SettingsScreen extends Component {
               hasSwitch={true}
               onPress={() => this.navigateToMusicSelection()}
               title='BG Music (turn off for slower phones)'/>
+            <SettingsList.Item
+              hasNavArrow={false}
+              title='Rate the App'/>
             <SettingsList.Item
               hasNavArrow={false}
               title='Share me'/>

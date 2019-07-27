@@ -15,6 +15,8 @@ import { Ionicons } from '@expo/vector-icons';
 import * as Brightness from 'expo-brightness';
 import * as Animatable from 'react-native-animatable';
 
+import GLOBAL_STATE from '../services/GlobalState';
+
 const HIGH = 'HIGH';
 const MUTE = 'MUTE';
 export const DAO_BLUE = "#22BAD9";
@@ -37,28 +39,43 @@ const B = (props) =>
     {props.children}
   </Text>
 
+const MIN_DELAY = {
+  'x1': 100,
+  'x2': 50,
+  'x3': 30,
+}
+
+const MAX_DELAY = {
+  'x1': 200,
+  'x2': 150,
+  'x3': 50,
+}
+
 class DaoTextScreen extends React.Component {
-  static navigationOptions = {
-    header: null,
-  };
+  constructor() {
+    super()
+    state = {
+      volumeLevel: HIGH,
+      isExitingScreen: false,
+      showAll: false,
+      backgroundColor: BG_COLOR_1,
+      textColor: TEXT_COLOR_1,
+      showChineseText: false,
+      isTypingAudio: false,
+      paused: false,
+      typingSpeed: null 
+    }
+
+    this.state = {...state, ...GLOBAL_STATE.DEFAULT_SETTINGS}
+  }
 
   volumeLevelOptions = {
     HIGH: 'md-volume-high',
     MUTE: 'md-volume-mute'
   }
 
-  state = {
-    volumeLevel: HIGH,
-    isExitingScreen: false,
-    showAll: false,
-    backgroundColor: BG_COLOR_1,
-    textColor: TEXT_COLOR_1,
-    showChineseText: false,
-    isTypingAudio: false,
-    paused: false 
-  }
-
   componentWillMount() {
+    GLOBAL_STATE.initializeStorageTriggers(this)
     this.numberOfTheDay = this.props.navigation.getParam('index',  Math.floor(Math.random() * 81));
     this.daoOfTheDay = scrapedDao[this.numberOfTheDay].title
     thirdLastOccurenceIndex = this.daoOfTheDay.lastIndexOf('\n', (this.daoOfTheDay.lastIndexOf('\n', this.daoOfTheDay.lastIndexOf('\n')-1) -1))
@@ -107,11 +124,6 @@ class DaoTextScreen extends React.Component {
         this.setState({isTypingAudio: true})
       }
     }, 5000)
-    const { navigation } = this.props;
-
-    this.focusListener = navigation.addListener("willFocus", () => {
-      // this.daoText.fadeIn(2000)
-    });
   }
 
   changeVolume = () => {
@@ -126,7 +138,7 @@ class DaoTextScreen extends React.Component {
   }
 
   componentWillUnmount() {
-    this.focusListener.remove();
+    GLOBAL_STATE.unloadStorageTriggers(this)
   }
 
   navigateAway = () => {
@@ -148,7 +160,7 @@ class DaoTextScreen extends React.Component {
     Brightness.setBrightnessAsync(this.brightnessValue)
   }
 
-  playOrPauseTyping(token) {
+  playOrPauseTypingAudio(token) {
     if (token == '\n') {
       AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])
       // this.setState({isTypingAudio: false})
@@ -231,23 +243,6 @@ class DaoTextScreen extends React.Component {
             style={{
               ...styles.iconContainer
             }}
-            onPress={this.slowDown}
-          >
-            <AnimatableIonicons
-              animation='flash'
-              delay='500'
-              useNativeDriver='true' 
-              name={"md-rewind"}
-              color={this.state.textColor}
-              style={{
-              ...styles.icon
-            }}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={{
-              ...styles.iconContainer
-            }}
             onPress={this.playOrPause}
           >
             <AnimatableIonicons
@@ -267,16 +262,16 @@ class DaoTextScreen extends React.Component {
             }}
             onPress={this.speedUp}
           >
-            <AnimatableIonicons
+            <Animatable.Text
               animation='flash'
               delay='700'
               useNativeDriver='true' 
-              name={"md-fastforward"}
-              color={this.state.textColor}
               style={{
-              ...styles.icon
-            }}
-            />
+                ...styles.icon,
+                color: this.state.textColor
+              }}
+              onPress={() => this.toggleTypingSpeed()}
+            >{this.state.typingSpeed}</Animatable.Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={{
@@ -323,11 +318,12 @@ class DaoTextScreen extends React.Component {
                     color: this.state.textColor
                   }}
                   ref={ref => this.daoText = ref}
-                  minDelay={50}
-                  maxDelay={130}
+                  minDelay={MIN_DELAY[this.state.typingSpeed]}
+                  maxDelay={MAX_DELAY[this.state.typingSpeed]}
                   fixed={true}
                   delayMap={delayMap}
-                  onTyped={() => this.playOrPauseTyping}
+                  onTyped={() => this.playOrPauseTypingAudio}
+                  speed={this.state.typingSpeed}
                 >{this.daoOfTheDay}<B>{this.quote}</B></TypeWriter> : 
                 <Text 
                   style={{
@@ -360,6 +356,18 @@ class DaoTextScreen extends React.Component {
         </ScrollView>
       </View> 
     );
+  }
+
+  toggleTypingSpeed() {
+    if (this.state.typingSpeed == 'x3') {
+      GLOBAL_STATE.updateSetting(this, 'typingSpeed', 'x1')  
+    }
+    else if (this.state.typingSpeed == 'x1') {
+      GLOBAL_STATE.updateSetting(this, 'typingSpeed', 'x2')  
+    }
+    else {
+      GLOBAL_STATE.updateSetting(this, 'typingSpeed', 'x3')  
+    }
   }
 }
 

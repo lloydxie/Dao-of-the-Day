@@ -21,7 +21,7 @@ const HomeStack = createStackNavigator(
     Quote: QuoteScreen,
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: 'DaoText',
     headerMode: 'none',
     defaultNavigationOptions: {
       gesturesEnabled: false
@@ -83,7 +83,7 @@ export default createAppContainer(createMaterialBottomTabNavigator(
     activeColor: '#f0edf6',  
     inactiveColor: '#226557',  
     barStyle: { backgroundColor: '#3BAD87' },  
-    initialRouteName: 'Settings',
+    initialRouteName: 'Home',
     shifting: true,
   }
 ));
