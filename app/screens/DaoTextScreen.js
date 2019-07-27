@@ -124,6 +124,10 @@ class DaoTextScreen extends React.Component {
         this.setState({isTypingAudio: true})
       }
     }, 5000)
+
+    this.blurAway = this.props.navigation.addListener("willBlur", () => {
+      this.setState({paused: true})
+    });
   }
 
   changeVolume = () => {
@@ -139,6 +143,8 @@ class DaoTextScreen extends React.Component {
 
   componentWillUnmount() {
     GLOBAL_STATE.unloadStorageTriggers(this)
+
+    this.blurAway.remove()
   }
 
   navigateAway = () => {
@@ -182,6 +188,15 @@ class DaoTextScreen extends React.Component {
   
   skipForward = () => {
     this.setState({showAll: true})
+  }
+
+  restartTyping(daoText) {
+    if (this.state.showAll) {
+      this.setState({showAll: false})
+    }
+    else {
+      daoText.setState({visibleChars: 0})
+    }
   }
   
   changeColorScheme = () => {
@@ -235,8 +250,9 @@ class DaoTextScreen extends React.Component {
               name={"md-skip-backward"}
               color={this.state.textColor}
               style={{
-              ...styles.icon
-            }}
+                ...styles.icon
+              }}
+              onPress={() => this.restartTyping(this.daoText)}
             />
           </TouchableOpacity>
           <TouchableOpacity
@@ -249,11 +265,12 @@ class DaoTextScreen extends React.Component {
               animation='flash'
               delay='600'
               useNativeDriver='true' 
-              name={this.paused ? 'md-play' : 'md-pause'}
+              name={this.state.paused ? 'md-play' : 'md-pause'}
               color={this.state.textColor}
               style={{
-              ...styles.icon
-            }}
+                ...styles.icon
+              }}
+              onPress={() => GLOBAL_STATE.toggleSetting(this, 'paused')}
             />
           </TouchableOpacity>
           <TouchableOpacity
@@ -286,8 +303,9 @@ class DaoTextScreen extends React.Component {
               name={"md-skip-forward"}
               color={this.state.textColor}
               style={{
-              ...styles.icon,
-            }}
+                ...styles.icon,
+              }}
+              onPress={() => this.skipForward()}
             />
           </TouchableOpacity>
         </View>
@@ -324,6 +342,7 @@ class DaoTextScreen extends React.Component {
                   delayMap={delayMap}
                   onTyped={() => this.playOrPauseTypingAudio}
                   speed={this.state.typingSpeed}
+                  paused={this.state.paused}
                 >{this.daoOfTheDay}<B>{this.quote}</B></TypeWriter> : 
                 <Text 
                   style={{
