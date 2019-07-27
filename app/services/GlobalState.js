@@ -43,7 +43,7 @@ class GlobalState {
     }
 
     toggleSetting(that, key) {
-        let oldValue = this.state[key]
+        let oldValue = that.state[key]
         let newState = {}
         newState[key] = !oldValue
         that.setState(newState)

@@ -45,6 +45,7 @@ export default class SettingsScreen extends Component {
               switchState={this.state.musicToggle}
               switchOnValueChange={() => GLOBAL_STATE.toggleSetting(this, 'musicToggle')}
               hasSwitch={true}
+              onPress={() => this.navigateToMusicSelection()}
               title='BG Music (turn off for slower phones)'/>
             <SettingsList.Item
               hasNavArrow={false}

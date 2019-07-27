@@ -10,7 +10,7 @@ import GLOBAL_STATE from '../services/GlobalState';
 
 export default class SettingsScreen extends Component {
   constructor(){
-    super();
+    super()
     this.state = GLOBAL_STATE.DEFAULT_SETTINGS
   }
 
@@ -27,31 +27,31 @@ export default class SettingsScreen extends Component {
       <View style={{backgroundColor:'white',flex:1}}>
         <View style={{flex:1, marginTop:50}}>
           <SettingsList backgroundColor='#EFEFF4'>
-          <SettingsList.Header headerText='Translation' headerStyle={{color:'black'}}/>
+          <SettingsList.Header headerText='Choose Background Music' headerStyle={{color:'black'}}/>
             <SettingsList.Item
               hasNavArrow={false}
               switchState={this.state.musicIndex == 1}
               switchOnValueChange={() => GLOBAL_STATE.updateSetting(this, 'musicIndex', 1)}
               hasSwitch={true}
-              title='Translation 1'/>
+              title='Arabesque no. 1'/>
             <SettingsList.Item
               hasNavArrow={false}
               switchState={this.state.musicIndex == 2}
               switchOnValueChange={() => GLOBAL_STATE.updateSetting(this, 'musicIndex', 2)}
               hasSwitch={true}
-              title='Translation 2'/>
+              title='Focus'/>
             <SettingsList.Item
               hasNavArrow={false}
               switchState={this.state.musicIndex == 3}
               switchOnValueChange={() => GLOBAL_STATE.updateSetting(this, 'musicIndex', 3)}
               hasSwitch={true}
-              title='Translation 3'/>
+              title='Pan Invoquer'/>
             <SettingsList.Item
               hasNavArrow={false}
               switchState={this.state.musicIndex == 4}
               switchOnValueChange={() => GLOBAL_STATE.updateSetting(this, 'musicIndex', 4)}
               hasSwitch={true}
-              title='Chinese (original)'/>
+              title='Dream'/>
           </SettingsList>
         </View>
       </View>

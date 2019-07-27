@@ -371,7 +371,7 @@ _playVoiceOfJesusAkaJoshEsguerra = () => {
 
 const delayMap = [
   // increase delay by 1000ms at every semicolon
-  { at: ';', delay: 1000 },
+  { at: ';', delay: 500 },
 ]
 
 const styles = StyleSheet.create({
