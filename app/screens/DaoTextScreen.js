@@ -411,7 +411,7 @@ const styles = StyleSheet.create({
   },
   helpLinkText: {
     fontSize: 23 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
-    fontFamily: 'smite',
+    // fontFamily: 'smite',
   },
   controlsHeader: {
     // marginTop: Dimensions.get('window').height / 10,
@@ -430,7 +430,7 @@ const styles = StyleSheet.create({
   },
   chapterTitle: {
     fontSize: 36 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
-    fontFamily: 'smite',
+    // fontFamily: 'smite',
   },
   titleView: {
     justifyContent: 'center',

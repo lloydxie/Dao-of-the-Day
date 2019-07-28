@@ -56,7 +56,7 @@ export default class QuoteScreen extends React.Component {
   }
 
   navigateBack = () => {
-    setTimeout(() => {this.props.navigation.navigate('Home')}, 500)
+    setTimeout(() => {this.props.navigation.navigate('Home')}, 1000)
     this.setState({isExitingScreen: true})
   }
 
@@ -119,7 +119,8 @@ export default class QuoteScreen extends React.Component {
                     }}
                     animation={this.state.isExitingScreen ? 'fadeOutLeft' : 'pulse'}
                     direction='normal'
-                    delay='900'
+                    duration='1000'
+                    delay={this.state.isExitingScreen ? '0': '900'}
                     useNativeDriver={true}
                     onPress={() => this.navigateToDaoText()}
                 >
@@ -132,7 +133,8 @@ export default class QuoteScreen extends React.Component {
                     }}
                     animation={this.state.isExitingScreen ? 'fadeOutLeft' : 'pulse'}
                     direction='normal'
-                    delay='1000'
+                    duration='1000'
+                    delay={this.state.isExitingScreen ? '0': '1100'}
                     useNativeDriver={true}
                 >
                     New random passage
@@ -144,7 +146,8 @@ export default class QuoteScreen extends React.Component {
                     }}
                     animation={this.state.isExitingScreen ? 'fadeOutLeft' : 'pulse'}
                     direction='normal'
-                    delay='1100'
+                    duration='1000'
+                    delay={this.state.isExitingScreen ? '0': '1300'}
                     useNativeDriver={true}
                     onPress={() => this.navigateBack()}
                 >
