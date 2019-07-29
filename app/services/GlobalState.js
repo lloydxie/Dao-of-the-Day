@@ -15,7 +15,7 @@ class GlobalState {
     loadPastState(that) {
         AsyncStorage.getItem(ASYNC_STORAGE_KEY).then((oldSetting) => {
             if (!oldSetting) {
-                AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify(DEFAULT_SETTINGS))
+                AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify(this.DEFAULT_SETTINGS))
             }
             that.setState(JSON.parse(oldSetting))
         })

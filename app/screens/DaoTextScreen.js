@@ -8,6 +8,7 @@ import {
   Dimensions
 } from 'react-native';
 import { scrapedDao, chineseText } from './content/daoDeChing'
+import { chineseTranslation } from './content/wikiSource'
 import {withNavigationFocus} from 'react-navigation';
 import TypeWriter from 'react-native-typewriter';
 import AudioServiceSingleton from '../services/AudioService'
@@ -245,8 +246,8 @@ class DaoTextScreen extends React.Component {
           >
             <AnimatableIonicons
               animation='flash'
-              delay='700'
-              useNativeDriver='true' 
+              delay={700}
+              useNativeDriver={true}
               name={"md-skip-backward"}
               color={this.state.textColor}
               style={{
@@ -263,8 +264,8 @@ class DaoTextScreen extends React.Component {
           >
             <AnimatableIonicons
               animation='flash'
-              delay='600'
-              useNativeDriver='true' 
+              delay={600}
+              useNativeDriver={true}
               name={this.state.paused ? 'md-play' : 'md-pause'}
               color={this.state.textColor}
               style={{
@@ -281,8 +282,8 @@ class DaoTextScreen extends React.Component {
           >
             <Animatable.Text
               animation='flash'
-              delay='700'
-              useNativeDriver='true' 
+              delay={700}
+              useNativeDriver={true}
               style={{
                 ...styles.icon,
                 color: this.state.textColor
@@ -298,8 +299,8 @@ class DaoTextScreen extends React.Component {
           >
             <AnimatableIonicons
               animation='flash'
-              delay='900'
-              useNativeDriver='true' 
+              delay={900}
+              useNativeDriver={true}
               name={"md-skip-forward"}
               color={this.state.textColor}
               style={{
@@ -430,7 +431,7 @@ const styles = StyleSheet.create({
   },
   chapterTitle: {
     fontSize: 36 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
-    // fontFamily: 'smite',
+    fontFamily: 'smite',
   },
   titleView: {
     justifyContent: 'center',
