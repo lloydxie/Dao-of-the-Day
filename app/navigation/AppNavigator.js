@@ -9,6 +9,7 @@ import QuoteScreen from '../screens/QuoteScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import TranslationScreen from '../screens/TranslationScreen';
 import MusicSelectionScreen from '../screens/MusicSelectionScreen';
+import TableOfContentsScreen from '../screens/TableOfContentsScreen';
 import { fadeIn } from 'react-navigation-transitions';
 
 import { Ionicons } from '@expo/vector-icons';
@@ -17,11 +18,11 @@ const HomeStack = createStackNavigator(
   {
     Home: HomeScreen,
     DaoText: DaoTextScreen,
-    // Contents: TableOfContentsScreen,
+    Contents: TableOfContentsScreen,
     Quote: QuoteScreen,
   },
   {
-    initialRouteName: 'DaoText',
+    initialRouteName: 'Contents',
     headerMode: 'none',
     defaultNavigationOptions: {
       gesturesEnabled: false
@@ -83,7 +84,7 @@ export default createAppContainer(createMaterialBottomTabNavigator(
     activeColor: '#f0edf6',  
     inactiveColor: '#226557',  
     barStyle: { backgroundColor: '#3BAD87' },  
-    initialRouteName: 'Settings',
+    initialRouteName: 'Home',
     shifting: true,
   }
 ));
