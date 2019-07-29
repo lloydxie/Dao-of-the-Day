@@ -8,7 +8,6 @@ import SettingsList from 'react-native-settings-list';
 import { scrapedDao } from './content/daoDeChing'
 
 import GLOBAL_STATE from '../services/GlobalState';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default class TableOfContentsScreen extends Component {
   constructor(){
@@ -32,16 +31,13 @@ export default class TableOfContentsScreen extends Component {
             <SettingsList.Header headerText='Table Of Contents' headerStyle={{color:'black'}}/>
               {
                 scrapedDao.map((passage, key) => (
-                  // <TouchableOpacity>
                     <SettingsList.Item
                       key={key}
                       hasNavArrow={true}
                       title={`Chapter ${key + 1}: ` + passage.title.substring(2, 25).replace(/\n/g, ' ') + '...'}
                       onPress={() => this.navigateToQuoteScreen(key)}
                       titleStyle={{fontSize: 20}}
-                      // titleBoxStyle={{width: '100%'}}
                     />
-                  // </TouchableOpacity>
                 ))
               }
           </SettingsList>

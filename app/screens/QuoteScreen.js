@@ -65,6 +65,21 @@ export default class QuoteScreen extends React.Component {
     setTimeout(() => this.props.navigation.navigate('DaoText', {index: this.numberOfTheDay}), 1000)
   }
 
+  newPassage = () => {
+    // fade out old quote 
+    this.setState({isExitingScreen: true})
+
+
+    // fade in new one
+    setTimeout(() => {
+      this.numberOfTheDay = Math.floor(Math.random() * 81)
+      this.daoOfTheDay = scrapedDao[this.numberOfTheDay].title
+      thirdLastOccurenceIndex = this.daoOfTheDay.lastIndexOf('\n', (this.daoOfTheDay.lastIndexOf('\n', this.daoOfTheDay.lastIndexOf('\n')-1) -1))
+      this.quote = this.daoOfTheDay.substring(thirdLastOccurenceIndex + 1)
+      this.setState({isExitingScreen: false})
+    }, 1000)
+  }
+
   capitalize(str){
     return str.charAt().toUpperCase() + str.slice(1);
   }
@@ -87,7 +102,7 @@ export default class QuoteScreen extends React.Component {
                     ...styles.helpLinkText,
                     color: this.state.textColor
                 }}
-                animation={this.state.isExitingScreen ? 'fadeOutLeft' : ''}
+                animation={this.state.isExitingScreen ? 'fadeOutLeft' : 'fadeInRight'}
             >
                 {'Chapter ' + this.numberOfTheDay + '\n'}
             </Animatable.Text>
@@ -101,7 +116,7 @@ export default class QuoteScreen extends React.Component {
                     color: this.state.textColor
                     }}
                     ref={this.handleViewRef}
-                    animation={this.state.isExitingScreen ? 'fadeOutLeft' : ''}
+                    animation={this.state.isExitingScreen ? 'fadeOutLeft' : 'fadeInRight'}
                     direction='alternate'
                 >
                     {this.capitalize(this.quote) + '\n                        – Lao Tzu'}
@@ -117,7 +132,7 @@ export default class QuoteScreen extends React.Component {
                         ...styles.helpLinkText,
                         color: this.state.textColor
                     }}
-                    animation={this.state.isExitingScreen ? 'fadeOutLeft' : 'pulse'}
+                    animation={this.state.isExitingScreen ? 'fadeOutLeft' : 'fadeInRight'}
                     direction='normal'
                     duration='1000'
                     delay={this.state.isExitingScreen ? '0': '900'}
@@ -131,11 +146,12 @@ export default class QuoteScreen extends React.Component {
                         ...styles.helpLinkText,
                         color: this.state.textColor
                     }}
-                    animation={this.state.isExitingScreen ? 'fadeOutLeft' : 'pulse'}
+                    animation={this.state.isExitingScreen ? 'fadeOutLeft' : 'fadeInRight'}
                     direction='normal'
                     duration='1000'
                     delay={this.state.isExitingScreen ? '0': '1100'}
                     useNativeDriver={true}
+                    onPress={() => this.newPassage()}
                 >
                     New random passage
                 </Animatable.Text>
@@ -144,7 +160,7 @@ export default class QuoteScreen extends React.Component {
                         ...styles.helpLinkText,
                         color: this.state.textColor
                     }}
-                    animation={this.state.isExitingScreen ? 'fadeOutLeft' : 'pulse'}
+                    animation={this.state.isExitingScreen ? 'fadeOutLeft' : 'fadeInRight'}
                     direction='normal'
                     duration='1000'
                     delay={this.state.isExitingScreen ? '0': '1300'}
