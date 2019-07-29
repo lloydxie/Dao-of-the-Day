@@ -6,7 +6,7 @@ import {
   Text
 } from 'react-native';
 
-export default class SettingsScreen extends Component {
+export default class AboutScreen extends Component {
   constructor(){
     super()
   }

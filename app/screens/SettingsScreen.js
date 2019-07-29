@@ -50,33 +50,35 @@ export default class SettingsScreen extends Component {
       <View style={{backgroundColor:'#EFEFF4',flex:1}}>
         <View style={{flex:1, marginTop:50}}>
           <SettingsList>
-          <SettingsList.Header headerText='Settings' headerStyle={{color:'black'}}/>
-            <SettingsList.Item
-              hasNavArrow={false}
-              title='About the App'/>
-            <SettingsList.Item
-              hasNavArrow={false}
-              switchState={this.state.typingSoundToggle}
-              switchOnValueChange={() => GLOBAL_STATE.toggleSetting(this, 'typingSoundToggle')}
-              hasSwitch={true}
-              title='Typing Sound FX'/>
-            <SettingsList.Item
-              hasNavArrow={true}
-              switchState={this.state.musicToggle}
-              switchOnValueChange={() => GLOBAL_STATE.toggleSetting(this, 'musicToggle')}
-              hasSwitch={true}
-              onPress={() => this.navigateToMusicSelection()}
-              title='BG Music (turn off for slower phones)'/>
-            <SettingsList.Item
-              hasNavArrow={false}
-              title='Rate the App'
-              onPress={StoreReview.requestReview}
-            />
-            <SettingsList.Item
-              hasNavArrow={false}
-              title='Share me'
-              onPress={this.onShare}
-            />
+            <SettingsList.Header headerText='Settings' headerStyle={{color:'black'}}/>
+              <SettingsList.Item
+                hasNavArrow={false}
+                title='About the App'
+                onPress={() => this.props.navigation.navigate('About')}
+              />
+              <SettingsList.Item
+                hasNavArrow={false}
+                switchState={this.state.typingSoundToggle}
+                switchOnValueChange={() => GLOBAL_STATE.toggleSetting(this, 'typingSoundToggle')}
+                hasSwitch={true}
+                title='Typing Sound FX'/>
+              <SettingsList.Item
+                hasNavArrow={true}
+                switchState={this.state.musicToggle}
+                switchOnValueChange={() => GLOBAL_STATE.toggleSetting(this, 'musicToggle')}
+                hasSwitch={true}
+                onPress={() => this.navigateToMusicSelection()}
+                title='BG Music (turn off for slower phones)'/>
+              <SettingsList.Item
+                hasNavArrow={false}
+                title='Rate the App'
+                onPress={StoreReview.requestReview}
+              />
+              <SettingsList.Item
+                hasNavArrow={false}
+                title='Share me'
+                onPress={this.onShare}
+              />
           </SettingsList>
         </View>
       </View>

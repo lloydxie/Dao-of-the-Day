@@ -53,7 +53,7 @@ export default class SettingsScreen extends Component {
               hasSwitch={true}
               title='Chinese (original)'/>
           </SettingsList>
-          <SettingsList backgroundColor='#EFEFF4'>
+          {/* <SettingsList backgroundColor='#EFEFF4'>
           <SettingsList.Header headerText='Color Presets' headerStyle={{color:'black', fontSize: '22'}}/>
             <SettingsList.Item
               hasNavArrow={false}
@@ -73,7 +73,7 @@ export default class SettingsScreen extends Component {
               switchOnValueChange={() => GLOBAL_STATE.updateSetting(this, 'colorIndex', 3)}
               hasSwitch={true}
               title='Dark'/>
-          </SettingsList>
+          </SettingsList> */}
         </View>
       </View>
     );

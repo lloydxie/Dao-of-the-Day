@@ -10,6 +10,7 @@ import SettingsScreen from '../screens/SettingsScreen';
 import TranslationScreen from '../screens/TranslationScreen';
 import MusicSelectionScreen from '../screens/MusicSelectionScreen';
 import TableOfContentsScreen from '../screens/TableOfContentsScreen';
+import AboutScreen from '../screens/AboutScreen';
 import { fadeIn } from 'react-navigation-transitions';
 
 import { Ionicons } from '@expo/vector-icons';
@@ -22,7 +23,7 @@ const HomeStack = createStackNavigator(
     Quote: QuoteScreen,
   },
   {
-    initialRouteName: 'Quote',
+    initialRouteName: 'Home',
     headerMode: 'none',
     defaultNavigationOptions: {
       gesturesEnabled: false
@@ -34,7 +35,7 @@ const HomeStack = createStackNavigator(
 const SettingsStack = createStackNavigator({
   Settings: SettingsScreen,
   MusicSelection: MusicSelectionScreen,
-  // About: AboutScreen
+  About: AboutScreen
 });
 
 const TranslationStack = createStackNavigator(
@@ -84,7 +85,7 @@ export default createAppContainer(createMaterialBottomTabNavigator(
     activeColor: '#f0edf6',  
     inactiveColor: '#226557',  
     barStyle: { backgroundColor: '#3BAD87' },  
-    initialRouteName: 'Home',
+    initialRouteName: 'Settings',
     shifting: true,
   }
 ));
