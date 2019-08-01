@@ -29,7 +29,7 @@ export default class AboutScreen extends Component {
     
     this.aboutAuthor2 = `online in high school. He was undergoing severe unhappiness, loneliness, and alienation from his classmates.
     
-    He felt a broken longing for a sense of true companionship. He dreamed of a day where he could be flourishing and ecstatic in his life.
+    After his first romantic obsession came to a tulmutuous halt, he felt a broken longing for a sense of true companionship. He dreamed of a day where he could be flourishing and ecstatic in his life.
     
     Two things kept him alive for the time being – music, and the ` 
     
@@ -85,7 +85,7 @@ export default class AboutScreen extends Component {
             <Text
               style={{
                 ...styles.title,
-                marginTop: '35%'
+                marginTop: '20%'
               }}
             >{this.title2}</Text>
           </View>

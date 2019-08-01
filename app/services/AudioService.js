@@ -88,7 +88,7 @@ class AudioService {
 
     // play the background music!
     play = async (soundObject) => {
-        await soundObject.playAsync();
+        // await soundObject.playAsync();
         await soundObject.setPositionAsync(0);
     }
 

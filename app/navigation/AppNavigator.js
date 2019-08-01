@@ -1,5 +1,5 @@
 import React from 'react';  
-import { View } from 'react-native';  
+import { View, Text  } from 'react-native';  
 import { createAppContainer, createStackNavigator } from 'react-navigation';
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
 
@@ -35,35 +35,18 @@ const HomeStack = createStackNavigator(
 const SettingsStack = createStackNavigator({
   Settings: SettingsScreen,
   MusicSelection: MusicSelectionScreen,
-  About: AboutScreen
+  About: AboutScreen,
 });
-
-const TranslationStack = createStackNavigator(
-  {
-    Translation: TranslationScreen
-  }
-);
 
 export default createAppContainer(createMaterialBottomTabNavigator(
   {
-    Translation: { 
-      screen: TranslationStack,
-      navigationOptions:{  
-        tabBarLabel:'Translation',  
-        tabBarIcon: ({ tintColor }) => (  
-          <View>  
-            <Ionicons style={[{color: tintColor}]} size={25} name={'ios-book'}/>  
-          </View>
-        ),  
-      }  
-    },
     Home: { 
       screen: HomeStack,
       navigationOptions:{  
-        tabBarLabel:'Home',  
+        tabBarLabel:<Text style={{ fontSize: 14 }}>Home</Text>,
         tabBarIcon: ({ tintColor }) => (  
           <View>  
-            <Ionicons style={[{color: tintColor}]} size={25} name={'ios-home'}/>  
+            <Ionicons style={[{color: tintColor}]} size={30} name={'ios-home'}/>  
           </View>
         ),  
       }  
@@ -71,10 +54,10 @@ export default createAppContainer(createMaterialBottomTabNavigator(
     Settings: { 
       screen: SettingsStack,
       navigationOptions:{  
-        tabBarLabel:'Settings',  
+        tabBarLabel:<Text style={{ fontSize: 14 }}>Settings</Text>,
         tabBarIcon: ({ tintColor }) => (  
-          <View>  
-            <Ionicons style={[{color: tintColor}]} size={25} name={'ios-settings'}/>  
+          <View style={[{height: '150%'}]}>  
+            <Ionicons style={[{color: tintColor, marginBottom: '20%'}]} size={30} name={'ios-settings'}/>  
           </View>
         ),  
       }  
