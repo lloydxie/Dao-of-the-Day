@@ -5,16 +5,19 @@ import {
   TouchableOpacity,
   View,
   Text,
-  Dimensions
+  Dimensions,
+  Modal
 } from 'react-native';
 import { scrapedDao, chineseText } from './content/daoDeChing'
 import { chineseTranslation } from './content/wikiSource'
+import { hoganDao } from './content/hoganSource'
 import {withNavigationFocus} from 'react-navigation';
 import TypeWriter from 'react-native-typewriter';
 import AudioServiceSingleton from '../services/AudioService'
 import { Ionicons } from '@expo/vector-icons';
 import * as Brightness from 'expo-brightness';
 import * as Animatable from 'react-native-animatable';
+import TranslationScreen from './TranslationScreen'
 
 import GLOBAL_STATE from '../services/GlobalState';
 
@@ -30,6 +33,12 @@ const TEXT_COLOR_3 = '#fff';
 
 const HEIGHT_IPHONE_X = 896;
 const WIDTH_IPHONE_X = 414;
+
+const TRANSLATIONS = [
+  hoganDao,
+  scrapedDao,
+  chineseTranslation,
+]
 
 const B = (props) => 
   <Text 
@@ -56,15 +65,13 @@ class DaoTextScreen extends React.Component {
   constructor() {
     super()
     state = {
-      volumeLevel: HIGH,
       isExitingScreen: false,
       showAll: false,
       backgroundColor: BG_COLOR_1,
       textColor: TEXT_COLOR_1,
-      showChineseText: false,
       isTypingAudio: false,
       paused: false,
-      typingSpeed: null 
+      dummy: false,
     }
 
     this.state = {...state, ...GLOBAL_STATE.DEFAULT_SETTINGS}
@@ -78,11 +85,7 @@ class DaoTextScreen extends React.Component {
   componentWillMount() {
     GLOBAL_STATE.initializeStorageTriggers(this)
     this.numberOfTheDay = this.props.navigation.getParam('index',  Math.floor(Math.random() * 81));
-    this.daoOfTheDay = scrapedDao[this.numberOfTheDay].title
-    thirdLastOccurenceIndex = this.daoOfTheDay.lastIndexOf('\n', (this.daoOfTheDay.lastIndexOf('\n', this.daoOfTheDay.lastIndexOf('\n')-1) -1))
-    this.quote = this.daoOfTheDay.substring(thirdLastOccurenceIndex + 1)
-    this.daoOfTheDay = this.daoOfTheDay.substring(0, thirdLastOccurenceIndex + 1)
-
+    this.reinitializeText()
     AnimatableIonicons = Animatable.createAnimatableComponent(Ionicons)
   }
 
@@ -108,16 +111,19 @@ class DaoTextScreen extends React.Component {
   };
 
   async componentDidMount() {
+    this.blurAway = this.props.navigation.addListener("willBlur", () => {
+      this.setState({paused: true})
+    });
+
+    this.willFocus = this.props.navigation.addListener("willFocus", () => {
+      setTimeout(() => {
+         this.reinitializeText()
+      }, 50)
+    })
+
     this.oldBrightness = Brightness.getBrightnessAsync()
     this.brightnessValue = 0
     this.interval = setInterval(() => this.increaseBrightness(), 100);
-
-    soundObject = await this.loadAudioFile(this.numberOfTheDay)
-    setTimeout(() => {
-      if (!this.state.isExitingScreen) {
-        AudioServiceSingleton.play(soundObject)
-      }
-    }, 2000)
 
     setTimeout(() => {
       if (!this.state.isExitingScreen) {
@@ -126,9 +132,26 @@ class DaoTextScreen extends React.Component {
       }
     }, 5000)
 
-    this.blurAway = this.props.navigation.addListener("willBlur", () => {
-      this.setState({paused: true})
-    });
+    soundObject = await this.loadAudioFile(this.numberOfTheDay)
+    setTimeout(() => {
+      if (!this.state.isExitingScreen) {
+        AudioServiceSingleton.play(soundObject)
+      }
+    }, 2000)
+
+    this.reinitializeText()
+    this.setState({dummy: true})
+  }
+
+  reinitializeText() {
+      if (this.daoText) {
+        this.restartTyping(this.daoText)
+      }
+      console.log(this.state.translationIndex)
+      this.daoOfTheDay = TRANSLATIONS[this.state.translationIndex - 1][14].title
+      thirdLastOccurenceIndex = this.daoOfTheDay.lastIndexOf('\n', (this.daoOfTheDay.lastIndexOf('\n', this.daoOfTheDay.lastIndexOf('\n')-1) -1))
+      this.quote = this.daoOfTheDay.substring(thirdLastOccurenceIndex + 1)
+      this.daoOfTheDay = this.daoOfTheDay.substring(0, thirdLastOccurenceIndex + 1)
   }
 
   changeVolume = () => {
@@ -309,6 +332,24 @@ class DaoTextScreen extends React.Component {
               onPress={() => this.skipForward()}
             />
           </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              ...styles.iconContainer
+            }}
+            onPress={this.changeVolume}
+          >
+            <AnimatableIonicons
+              animation='flash'
+              delay={1100}
+              useNativeDriver={true}
+              name={"ios-book"}
+              color={this.state.textColor}
+              style={{
+                ...styles.icon,
+              }}
+              onPress={() => this.props.navigation.navigate('Translation')}
+            />
+          </TouchableOpacity>
         </View>
         <ScrollView 
           contentContainerStyle={styles.scrollContainer}
@@ -409,10 +450,16 @@ const styles = StyleSheet.create({
   helpContainer: {
     justifyContent: 'center',
     alignItems: 'center',
+    width: '95%',
+  },
+  scrollContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   helpLinkText: {
     fontSize: 20 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
     // fontFamily: 'smite',
+    // justifyContent: 'center',
   },
   controlsHeader: {
     // marginTop: Dimensions.get('window').height / 10,

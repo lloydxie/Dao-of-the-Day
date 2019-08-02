@@ -45,7 +45,7 @@ export default class AboutScreen extends Component {
     
     Written pre-1000 by the royal court advisor / philosopher / all-around-master Lao Tzu, it stands the test of time in the value people extract from it.
     
-    It will help you look at your relationships from a 180 degree perspective – with dating, friends, coworkers, and the most important one of all – your relationship with yourself.
+    It will help you look at your relationships and leadership ability from a 180 degree perspective – with dating, friends, coworkers, and the most important one of all – your relationship with yourself.
     
     We’ll send you a short quote from it daily – and if it sparks interest, you can read the entire 50 - 300 word passage in full context. 
     

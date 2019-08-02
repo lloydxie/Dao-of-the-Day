@@ -7,7 +7,7 @@ class GlobalState {
         'typingSoundToggle': false,
         'musicToggle': false,
         'musicIndex': 2,
-        'translationIndex': 2,
+        'translationIndex': 1,
         'colorIndex': 1,
         'typingSpeed': 'x3'
     }

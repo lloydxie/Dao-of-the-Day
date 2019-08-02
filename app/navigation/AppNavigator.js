@@ -17,14 +17,45 @@ import { Ionicons } from '@expo/vector-icons';
 
 const HomeStack = createStackNavigator(
   {
-    Home: HomeScreen,
-    DaoText: DaoTextScreen,
-    Contents: TableOfContentsScreen,
-    Quote: QuoteScreen,
+    Home: {
+      screen: HomeScreen,
+      navigationOptions: {
+        header: null
+      }
+    },
+    DaoText: {
+      screen: DaoTextScreen,
+      navigationOptions: {
+        header: null,
+        headerTransparent: true
+      }
+    },
+    Contents: {
+      screen: TableOfContentsScreen,
+      navigationOptions: {
+        header: null
+      }
+    },
+    Quote: {
+      screen: QuoteScreen,
+      navigationOptions: {
+        header: null
+      }
+    },
+    Translation: {
+      screen: TranslationScreen,
+      navigationOptions: {
+        headerStyle: {
+          backgroundColor: '#1f1f1f',
+        },
+        headerTintColor: '#22BAD9',
+        headerTransparent: true
+      },
+    },
   },
   {
-    initialRouteName: 'Home',
-    headerMode: 'none',
+    initialRouteName: 'DaoText',
+    // headerMode: 'none',
     defaultNavigationOptions: {
       gesturesEnabled: false
     },
@@ -68,7 +99,7 @@ export default createAppContainer(createMaterialBottomTabNavigator(
     activeColor: '#f0edf6',  
     inactiveColor: '#226557',  
     barStyle: { backgroundColor: '#3BAD87' },  
-    initialRouteName: 'Settings',
+    initialRouteName: 'Home',
     shifting: true,
   }
 ));
