@@ -33,13 +33,17 @@ const HomeStack = createStackNavigator(
     Contents: {
       screen: TableOfContentsScreen,
       navigationOptions: {
-        header: null
-      }
+        headerStyle: {
+          backgroundColor: '#1f1f1f',
+        },
+        headerTintColor: '#22BAD9'
+      },
     },
     Quote: {
       screen: QuoteScreen,
       navigationOptions: {
-        header: null
+        header: null,
+        headerTransparent: true
       }
     },
     Translation: {
@@ -49,12 +53,11 @@ const HomeStack = createStackNavigator(
           backgroundColor: '#1f1f1f',
         },
         headerTintColor: '#22BAD9',
-        headerTransparent: true
       },
     },
   },
   {
-    initialRouteName: 'DaoText',
+    initialRouteName: 'Quote',
     // headerMode: 'none',
     defaultNavigationOptions: {
       gesturesEnabled: false

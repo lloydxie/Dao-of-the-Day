@@ -9,6 +9,8 @@ import {
 import { scrapedDao } from './content/daoDeChing'
 import * as Animatable from 'react-native-animatable';
 
+import GLOBAL_STATE from '../services/GlobalState';
+
 const DAO_BLUE = "#22BAD9";
 const BG_COLOR_1 = '#1f1f1f';
 const BG_COLOR_2 = '#fff';
@@ -32,8 +34,15 @@ export default class QuoteScreen extends React.Component {
   }
 
   componentWillMount() {
+    this.state = {...this.state, ...GLOBAL_STATE.DEFAULT_SETTINGS}
+    GLOBAL_STATE.initializeStorageTriggers(this)
     this.numberOfTheDay = this.props.navigation.getParam('index',  Math.floor(Math.random() * 81));
-    this.daoOfTheDay = scrapedDao[this.numberOfTheDay].title
+    this.reinitializeText()
+  }
+
+  reinitializeText() {
+    this.numberOfTheDay = this.props.navigation.getParam('index', this.numberOfTheDay)
+    this.daoOfTheDay = GLOBAL_STATE.TRANSLATIONS[this.state.translationIndex - 1][this.numberOfTheDay].title
     thirdLastOccurenceIndex = this.daoOfTheDay.lastIndexOf('\n', (this.daoOfTheDay.lastIndexOf('\n', this.daoOfTheDay.lastIndexOf('\n')-1) -1))
     this.quote = this.daoOfTheDay.substring(thirdLastOccurenceIndex + 1)
   }
@@ -48,11 +57,13 @@ export default class QuoteScreen extends React.Component {
     const { navigation } = this.props;
 
     this.focusListener = navigation.addListener("willFocus", () => {
-      // this.daoText.fadeIn(2000)
+      this.setState({isExitingScreen: false})
+      this.reinitializeText()
     });
   }
   componentWillUnmount() {
     this.focusListener.remove();
+    GLOBAL_STATE.unloadStorageTriggers(this)
   }
 
   navigateBack = () => {
@@ -63,6 +74,11 @@ export default class QuoteScreen extends React.Component {
   navigateToDaoText = () => {
     this.setState({isExitingScreen: true})
     setTimeout(() => this.props.navigation.navigate('DaoText', {index: this.numberOfTheDay}), 1000)
+  }
+
+  navigateToContents() {
+    this.setState({isExitingScreen: true})
+    setTimeout(() => this.props.navigation.navigate('Contents', {index: this.numberOfTheDay}), 1000)
   }
 
   newPassage = () => {
@@ -104,7 +120,7 @@ export default class QuoteScreen extends React.Component {
                 }}
                 animation={this.state.isExitingScreen ? 'fadeOutLeft' : 'fadeInRight'}
             >
-                {'Chapter ' + this.numberOfTheDay + '\n'}
+                {'Chapter ' + (this.numberOfTheDay+1) + '\n'}
             </Animatable.Text>
             <TouchableOpacity
               style={styles.textContainer}
@@ -168,6 +184,20 @@ export default class QuoteScreen extends React.Component {
                     onPress={() => this.navigateBack()}
                 >
                     Go back home
+                </Animatable.Text>
+                <Animatable.Text
+                    style={{
+                        ...styles.helpLinkText,
+                        color: this.state.textColor
+                    }}
+                    animation={this.state.isExitingScreen ? 'fadeOutLeft' : 'fadeInRight'}
+                    direction='normal'
+                    duration='1000'
+                    delay={this.state.isExitingScreen ? '0': '1500'}
+                    useNativeDriver={true}
+                    onPress={() => this.navigateToContents()}
+                >
+                    Table of Contents
                 </Animatable.Text>
             </View>
           </View>

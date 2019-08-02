@@ -25,18 +25,19 @@ export default class TableOfContentsScreen extends Component {
 
   render() {
     return (
-      <View style={{backgroundColor:'#EFEFF4',flex:1}}>
+      <View style={{backgroundColor:'#1f1f1f',flex:1}}>
         <View style={{flex:1, marginTop:50}}>
-          <SettingsList>
-            <SettingsList.Header headerText='Table Of Contents' headerStyle={{color:'black'}}/>
+        <SettingsList backgroundColor='#1f1f1f'>
+            <SettingsList.Header headerText='Table Of Contents' headerStyle={{color:'#22BAD9', fontSize: '22'}}/>
               {
                 scrapedDao.map((passage, key) => (
                     <SettingsList.Item
                       key={key}
                       hasNavArrow={true}
-                      title={`Chapter ${key + 1}: ` + passage.title.substring(2, 25).replace(/\n/g, ' ') + '...'}
+                      arrowStyle={{tintColor: '#22BAD9'}}
+                      title={`Chapter ${key + 1}: ` + passage.title.substring(1, 25).replace(/\n/g, ' ') + '...'}
+                      titleStyle={{color: '#22BAD9', fontSize: 20}}
                       onPress={() => this.navigateToQuoteScreen(key)}
-                      titleStyle={{fontSize: 20}}
                     />
                 ))
               }

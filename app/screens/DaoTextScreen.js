@@ -8,9 +8,6 @@ import {
   Dimensions,
   Modal
 } from 'react-native';
-import { scrapedDao, chineseText } from './content/daoDeChing'
-import { chineseTranslation } from './content/wikiSource'
-import { hoganDao } from './content/hoganSource'
 import {withNavigationFocus} from 'react-navigation';
 import TypeWriter from 'react-native-typewriter';
 import AudioServiceSingleton from '../services/AudioService'
@@ -33,12 +30,6 @@ const TEXT_COLOR_3 = '#fff';
 
 const HEIGHT_IPHONE_X = 896;
 const WIDTH_IPHONE_X = 414;
-
-const TRANSLATIONS = [
-  hoganDao,
-  scrapedDao,
-  chineseTranslation,
-]
 
 const B = (props) => 
   <Text 
@@ -148,7 +139,7 @@ class DaoTextScreen extends React.Component {
         this.restartTyping(this.daoText)
       }
       console.log(this.state.translationIndex)
-      this.daoOfTheDay = TRANSLATIONS[this.state.translationIndex - 1][14].title
+      this.daoOfTheDay = GLOBAL_STATE.TRANSLATIONS[this.state.translationIndex - 1][this.numberOfTheDay].title
       thirdLastOccurenceIndex = this.daoOfTheDay.lastIndexOf('\n', (this.daoOfTheDay.lastIndexOf('\n', this.daoOfTheDay.lastIndexOf('\n')-1) -1))
       this.quote = this.daoOfTheDay.substring(thirdLastOccurenceIndex + 1)
       this.daoOfTheDay = this.daoOfTheDay.substring(0, thirdLastOccurenceIndex + 1)
@@ -169,6 +160,7 @@ class DaoTextScreen extends React.Component {
     GLOBAL_STATE.unloadStorageTriggers(this)
 
     this.blurAway.remove()
+    this.willFocus.remove()
   }
 
   navigateAway = () => {
@@ -256,7 +248,7 @@ class DaoTextScreen extends React.Component {
               ...styles.chapterTitle,
               color: this.state.textColor
             }}
-          >{'Chapter ' + this.numberOfTheDay + '\n'}</Text>
+          >{'Chapter ' + (this.numberOfTheDay+1) + '\n'}</Text>
         </View>
         <View
           style={styles.controlsHeader}

@@ -1,4 +1,7 @@
 import { AsyncStorage } from 'react-native';
+import { scrapedDao, chineseText } from '../screens/content/daoDeChing'
+import { chineseTranslation } from '../screens/content/wikiSource'
+import { hoganDao } from '../screens/content/hoganSource'
 
 const ASYNC_STORAGE_KEY = 'GoLloyd'
 
@@ -11,6 +14,12 @@ class GlobalState {
         'colorIndex': 1,
         'typingSpeed': 'x3'
     }
+
+    TRANSLATIONS = [
+        hoganDao,
+        scrapedDao,
+        chineseTranslation,
+      ]
 
     loadPastState(that) {
         AsyncStorage.getItem(ASYNC_STORAGE_KEY).then((oldSetting) => {
@@ -25,7 +34,6 @@ class GlobalState {
         const { navigation } = that.props;
 
         that.focusListener = navigation.addListener("willFocus", () => {
-            // setTimeout(() => this.loadPastState(that), 50)
             this.loadPastState(that)
         });
     }

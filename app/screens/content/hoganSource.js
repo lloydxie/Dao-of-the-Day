@@ -14,7 +14,6 @@ export const hoganDao = [{
 
     These two statements have the same meaning.
     Figure them out, and you've got it made.
-
     `
 },
 {
@@ -41,7 +40,6 @@ export const hoganDao = [{
     When the job is finished, 
     they move on to the next job.
     That's why their work is so damn good.
-
     `
 },
 {
@@ -67,8 +65,7 @@ export const hoganDao = [{
 
     Stop doing stuff all the time,
     and watch what happens.
-    
-        `
+    `
 },
 {
     "url": "4",
@@ -81,7 +78,6 @@ export const hoganDao = [{
     You can't see Dao, but it's there.
     Damned if I know where it came from.
     It's just always been around.
-    
     `
 },
 {
@@ -98,7 +94,6 @@ export const hoganDao = [{
     If you keep talking about it, it won't make any sense.
 
     Keep cool.
-    
     `
 },
 {
@@ -109,7 +104,6 @@ export const hoganDao = [{
     
     Everybody has Dao in them.
     They just have to use it.
-    
     `
 },
 {
@@ -124,7 +118,6 @@ export const hoganDao = [{
     That's how they manage to keep them.
     They don't worry about what they can't control.
     That's why they're always satisfied.
-    
     `
 },
 {
@@ -144,7 +137,6 @@ export const hoganDao = [{
     
     If you don't compare yourself to others,
     nobody can compare to you.
-    
     `
 },
 {
@@ -160,7 +152,6 @@ export const hoganDao = [{
     
     Do what you have to do, then walk away.
     Anything else will drive you nuts.
-    
     `
 },
 {
@@ -184,7 +175,6 @@ export const hoganDao = [{
     Doing the job without expecting anything,
     Delegating authority without giving orders.
     That's the way you do it.
-    
     `
 },
 {
@@ -201,7 +191,6 @@ export const hoganDao = [{
     
     We work with something,
     but we use nothing.
-    
     `
 },
 {
@@ -215,7 +204,6 @@ export const hoganDao = [{
     
     A Master watches the world
     but keeps focused on what's real.
-    
     `
 },
 {
@@ -237,7 +225,6 @@ export const hoganDao = [{
     
     Know your limits, and nothing can ever hold you back.
     Deal with what you can, and the rest will follow.
-    
     `
 },
 {
@@ -253,7 +240,6 @@ export const hoganDao = [{
     and it's all around you.
     
     Remember that.
-    
     `
 },
 {
@@ -279,7 +265,6 @@ export const hoganDao = [{
     
     When you act without expectations,
     you can accomplish great things.
-    
     `
 },
 {
@@ -302,7 +287,6 @@ export const hoganDao = [{
     If you get right with Dao,
     you won't be afraid to die,
     because you know you will.
-    
     `
 },
 {
@@ -322,7 +306,6 @@ export const hoganDao = [{
     they work with everybody else.
     When the job's done,
     people are amazed at what they accomplished.
-    
     `
 },
 {
@@ -338,7 +321,6 @@ export const hoganDao = [{
     and "family values".
     When the nation is unstable,
     they start talking about "patriotism".
-    
     `
 },
 {
@@ -356,7 +338,6 @@ export const hoganDao = [{
     Do your work as best you can. 
     Don't think about what you get for it.
     Stay focused. Get rid of all your crap.
-    
     `
 },
 {
@@ -392,7 +373,6 @@ export const hoganDao = [{
     
     I'm not like other people.
     I'm getting right with Dao.
-    
     `
 },
 {
@@ -416,7 +396,6 @@ export const hoganDao = [{
     ever since the world began.
     How can I be so sure?
     I just know.
-    
     `
 },
 {
@@ -453,7 +432,6 @@ export const hoganDao = [{
     That's not as crazy as it sounds.
     Get in touch with Dao,
     and you'll see what I mean.
-    
     `
 },
 {
@@ -470,7 +448,6 @@ export const hoganDao = [{
     If you're ready to fail, you can live with failure.
     
     Trust your instincts, and others will trust you.
-    
     `
 },
 {
@@ -491,7 +468,6 @@ export const hoganDao = [{
     Think of being in touch with Dao like eating at a buffet:
     Put on your plate only as much as you need.
     Save some for everybody else.
-    
     `
 },
 {
@@ -526,7 +502,6 @@ export const hoganDao = [{
     The earth is in touch with heaven.
     Heaven's in touch with Dao.
     Dao's in touch with the way things are.
-    
     `
 },
 {
@@ -547,7 +522,6 @@ export const hoganDao = [{
     you lose your bearings.
     If you act recklessly,
     you lose your self-control.
-    
     `
 },
 {
@@ -575,7 +549,6 @@ export const hoganDao = [{
     if you fail to respect your teachers
     or to honor the potential in others.
     That's one of the most important lessons of Dao.
-    
     `
 },
 {
@@ -601,7 +574,6 @@ export const hoganDao = [{
     
     Let Dao show you how to get right with Dao,
     so your slightest gesture can change the world.
-    
     `
 },
 {
@@ -624,7 +596,6 @@ export const hoganDao = [{
     
     A Master lives simply, 
     avoiding extravagance and excess.
-    
     `
 },
 {
@@ -652,7 +623,6 @@ export const hoganDao = [{
     if you're not right with Dao, 
     you might as well be dead.
     
-    
     `
 },
 {
@@ -672,7 +642,6 @@ export const hoganDao = [{
     
     When you win a war, you preside over a funeral.
     Pay your respects to the dead.
-    
     `
 },
 {
@@ -693,7 +662,6 @@ export const hoganDao = [{
     
     Everything in the universe is full of Dao and leads to Dao,
     just as the water in rivers flows into oceans.
-    
     `
 },
 {
@@ -712,7 +680,6 @@ export const hoganDao = [{
     you will never be lost.
     If you live your entire life,
     you've really lived.
-    
     `
 },
 {
@@ -734,7 +701,6 @@ export const hoganDao = [{
     
     It doesn't strive for success. That's why it succeeds.
     
-    
     `
 },
 {
@@ -750,7 +716,6 @@ export const hoganDao = [{
     It doesn't look like much.
     It doesn't sound like much.
     But no matter how much you use, there's still plenty left.
-    
     `
 },
 {
@@ -767,7 +732,6 @@ export const hoganDao = [{
     
     This is a subtle truth.
     Sensitivity and weakness overcome unfeeling strength
-    
     `
 },
 {
@@ -783,7 +747,6 @@ export const hoganDao = [{
     
     When our lives are that simple, we want for nothing.
     We can relax, and the world becomes a better place.
-    
     `
 },
 {
@@ -837,7 +800,6 @@ export const hoganDao = [{
     but eat the fruit.
     They turn all that down, 
     so they can accept this.
-    
     `
 },
 {
@@ -877,7 +839,6 @@ export const hoganDao = [{
     but pay no attention to hollow praise.
     Don't call attention to yourself. 
     Don't make a scene.
-    
     `
 },
 {
@@ -889,7 +850,6 @@ export const hoganDao = [{
     
     Things exist because they are.
     They are because they once were not.
-    
     `
 },
 {
@@ -929,7 +889,6 @@ export const hoganDao = [{
     Dao is hidden to us
     and it has no name.
     It is the source and the strength of all things.
-    
     `
 },
 {
@@ -961,7 +920,6 @@ export const hoganDao = [{
     That's pretty much what Chapter 42
     boils down to.
     (See Chapter 46 for more details.)
-    
     `
 },
 {
@@ -979,7 +937,6 @@ export const hoganDao = [{
     and the power of doing nothing
     can only be understood 
     by a few people.
-    
     `
 },
 {
@@ -1003,7 +960,6 @@ export const hoganDao = [{
     you can stay out of trouble.
     
     And that's the secret to lasting success.
-    
     `
 },
 {
@@ -1031,7 +987,6 @@ export const hoganDao = [{
     But whatever the weather, 
     if you stay calm,
     the world will sort itself out around you.
-    
     `
 },
 {
@@ -1049,7 +1004,6 @@ export const hoganDao = [{
     
     If you know when enough is enough,
     you will always have enough.
-    
     `
 },
 {
@@ -1070,7 +1024,6 @@ export const hoganDao = [{
     They understand.
     They don't do anything, 
     but the work gets done.
-    
     `
 },
 {
@@ -1092,7 +1045,6 @@ export const hoganDao = [{
     in your favor.
     If you act on your ambitions, 
     they will never pan out.
-    
     `
 },
 {
@@ -1116,7 +1068,6 @@ export const hoganDao = [{
     forgetting everything he's been told.
     People pay attention to him
     because he lives a life of child-like wonder.
-    
     `
 },
 {
@@ -1145,7 +1096,6 @@ export const hoganDao = [{
     Lao Tzu said,
     "because his body 
     wasn't where he kept his death."
-    
     `
 },
 {
@@ -1175,7 +1125,6 @@ export const hoganDao = [{
     Lead people 
     without giving them orders.
     That's the secret of the power of Dao.
-    
     `
 },
 {
@@ -1202,7 +1151,6 @@ export const hoganDao = [{
     to hang on to your insight,
     and you will always be at peace.
     That's how to get right with Dao.
-    
     `
 },
 {
@@ -1232,7 +1180,6 @@ export const hoganDao = [{
     They're nothing 
     but gangsters and crooks.
     That's not what Dao's about.
-    
     `
 },
 {
@@ -1264,7 +1211,6 @@ export const hoganDao = [{
     
     How can I know this?
     I just do.
-    
     `
 },
 {
@@ -1300,7 +1246,6 @@ export const hoganDao = [{
     They've lost touch with Dao,
     and when you lose touch with Dao,
     you might as well be dead.
-    
     `
 },
 {
@@ -1322,7 +1267,6 @@ export const hoganDao = [{
     about winning or losing,
     about honor or disgrace.
     That's the way to be.
-    
     `
 },
 {
@@ -1361,7 +1305,6 @@ export const hoganDao = [{
     and they prosper.
     I want for nothing, 
     and they lead simple lives."
-    
     `
 },
 {
@@ -1395,7 +1338,6 @@ export const hoganDao = [{
     but not provocative.
     They are brilliant, 
     but not flashy.
-    
     `
 },
 {
@@ -1418,7 +1360,6 @@ export const hoganDao = [{
     Plant deep roots in firm soil.
     Get right with Dao,
     and you'll always see things clearly.
-    
     `
 },
 {
@@ -1442,7 +1383,6 @@ export const hoganDao = [{
     about getting hurt,
     and they'll take the opportunity 
     to do the right thing.
-    
     `
 },
 {
@@ -1470,7 +1410,6 @@ export const hoganDao = [{
     So if you want to get ahead, 
     lay low and bide your time.
     That way, everybody's happy.
-    
     `
 },
 {
@@ -1499,7 +1438,6 @@ export const hoganDao = [{
     you can always find 
     what you need to get by,
     and trouble can never find you.
-    
     `
 },
 {
@@ -1537,7 +1475,6 @@ export const hoganDao = [{
     of the difficulties involved,
     which is why 
     they never have to deal with them.
-    
     `
 },
 {
@@ -1583,7 +1520,6 @@ export const hoganDao = [{
     to what everybody else ignores.
     They help the world get right with Dao,
     but don't try to change a thing.
-    
     `
 },
 {
@@ -1609,7 +1545,6 @@ export const hoganDao = [{
     That kind of power is so deep, 
     so extensive,
     it penetrates into every level of existence.
-    
     `
 },
 {
@@ -1634,7 +1569,6 @@ export const hoganDao = [{
     and because he doesn't try 
     to compete with anybody,
     nobody is able to compete with him.
-    
     `
 },
 {
@@ -1679,7 +1613,6 @@ export const hoganDao = [{
     When other people attack you,
     defend yourself with compassion.
     It's the most powerful force in the universe.
-    
     `
 },
 {
@@ -1695,7 +1628,6 @@ export const hoganDao = [{
     It's the best way to deal with people.
     It's always been an excellent way
     to get right with Dao.
-    
     `
 },
 {
@@ -1722,7 +1654,6 @@ export const hoganDao = [{
     is a costly mistake.
     When two forces oppose each other,
     the winner is the one most reluctant to fight.
-    
     `
 },
 {
@@ -1745,7 +1676,6 @@ export const hoganDao = [{
     
     That's why the Masters live simply,
     hiding their wisdom deep within themselves.
-    
     `
 },
 {
@@ -1764,7 +1694,6 @@ export const hoganDao = [{
     
     The Masters aren't sick,
     because they got sick of being sick.
-    
     `
 },
 {
@@ -1786,7 +1715,6 @@ export const hoganDao = [{
     what their lives are worth.
     They let go of all that 
     to concentrate on this.
-    
     `
 },
 {
@@ -1811,7 +1739,6 @@ export const hoganDao = [{
     with big holes,"
     Lao Tzu used to say, 
     "but nothing ever gets by it."
-    
     `
 },
 {
@@ -1834,7 +1761,6 @@ export const hoganDao = [{
     and trying to use it 
     without any training.
     We'd only end up hurting ourselves.
-    
     `
 },
 {
@@ -1852,7 +1778,6 @@ export const hoganDao = [{
     
     People who know how to enjoy life
     are wiser than people who value their lives.
-    
     `
 },
 {
@@ -1879,7 +1804,6 @@ export const hoganDao = [{
     
     Here's another:
     The meek shall inherit the earth.
-    
     `
 },
 {
@@ -1906,7 +1830,6 @@ export const hoganDao = [{
     without taking credit.
     They get the job done and move on.
     They aren't interested in showing off.
-    
     `
 },
 {
@@ -1932,7 +1855,6 @@ export const hoganDao = [{
     and you'll be a Master."
     
     Sometimes the truth makes no sense.
-    
     `
 },
 {
@@ -1956,7 +1878,6 @@ export const hoganDao = [{
     Dao doesn't play favorites.
     But if you do right by Dao,
     Dao will do right by you.
-    
     `
 },
 {
@@ -1994,7 +1915,6 @@ export const hoganDao = [{
     in leaving their homes,
     where they grew old peacefully 
     and died.
-    
     `
 },
 {
@@ -2023,7 +1943,6 @@ export const hoganDao = [{
     help other people, don't hurt them.
     The Masters always work with people, 
     never against them.    
-    
     `
 }
 ]
