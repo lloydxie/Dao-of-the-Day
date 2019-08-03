@@ -39,13 +39,13 @@ export default class HomeScreen extends React.Component {
   componentDidMount() {
     this.lottieNinja.play();
     this.lottieYinYang.play();
-    // AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['lily_1.mp3'])
+    AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['lily_1.mp3'])
     setTimeout(() => {
       console.log(this.state.isExitingScreen)
       if (!this.state.isExitingScreen) {
-        // AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['typing.mp3'])
+        AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['typing.mp3'])
       }
-    }, 1250)
+    }, 2500)
     setTimeout(() => {
       Animated.timing(                  // Animate over time
         this.state.yinYangFade,            // The animated value to drive
@@ -168,14 +168,14 @@ export default class HomeScreen extends React.Component {
           <TypeWriter
               typing={1}
               style={styles.title2}
-              minDelay={200}
-              maxDelay={300}
-              initialDelay={5000}
+              minDelay={120}
+              maxDelay={200}
+              initialDelay={2500}
               delayMap={delayMap}
               fixed={true}
               onTypingEnd={() => {AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])}}
-              >Welcome, fellow adventurer...
-              Read with intention...
+              >{`Welcome, fellow adventurer...
+          Read with intention...`}
           </TypeWriter>
           <Animatable.Text
             animation='fadeIn'
@@ -196,7 +196,7 @@ export default class HomeScreen extends React.Component {
 }
 
 let delayMap = [
-  { at: ' ', delay: 250 }
+  { at: ' ', delay: 150 }
 ]
 
 const styles = StyleSheet.create({
