@@ -12,22 +12,34 @@ import MusicSelectionScreen from '../screens/MusicSelectionScreen';
 import TableOfContentsScreen from '../screens/TableOfContentsScreen';
 import AboutScreen from '../screens/AboutScreen';
 import { fadeIn } from 'react-navigation-transitions';
+import StackViewStyleInterpolator from 'react-navigation-stack/src/views/StackView/StackViewStyleInterpolator'
 
 import { Ionicons } from '@expo/vector-icons';
+
+const screensToFade = [
+  'Home',
+  'DaoText',
+  'Quote'
+]
 
 const HomeStack = createStackNavigator(
   {
     Home: {
       screen: HomeScreen,
       navigationOptions: {
-        header: null
-      }
+        header: null,
+        headerStyle: {
+          backgroundColor: '#1f1f1f',
+        },
+      },
     },
     DaoText: {
       screen: DaoTextScreen,
       navigationOptions: {
         header: null,
-        headerTransparent: true
+        headerStyle: {
+          backgroundColor: '#1f1f1f',
+        },
       }
     },
     Contents: {
@@ -42,8 +54,10 @@ const HomeStack = createStackNavigator(
     Quote: {
       screen: QuoteScreen,
       navigationOptions: {
+        headerStyle: {
+          backgroundColor: '#1f1f1f',
+        },
         header: null,
-        headerTransparent: true
       }
     },
     Translation: {
@@ -60,9 +74,24 @@ const HomeStack = createStackNavigator(
     initialRouteName: 'Quote',
     // headerMode: 'none',
     defaultNavigationOptions: {
-      gesturesEnabled: false
+      gesturesEnabled: false,
     },
-    transitionConfig: () => fadeIn(1000),
+    // transitionConfig: () => fadeIn(1000),
+    transitionConfig: () => ({
+      transitionSpec: {
+        duration: 400,
+      },
+      screenInterpolator: props => {
+        const last = props.scenes[props.scenes.length - 1];
+  
+        // Transitioning from these screens (goBack)
+        if (screensToFade.includes(last.route.routeName)) {
+          return StackViewStyleInterpolator.forFade(props);
+        }
+  
+        return StackViewStyleInterpolator.forVertical(props);
+      },
+    }),
   }
 );
 
