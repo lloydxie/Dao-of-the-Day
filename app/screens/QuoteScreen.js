@@ -22,6 +22,8 @@ const TEXT_COLOR_3 = '#fff';
 const HEIGHT_IPHONE_X = 896;
 const WIDTH_IPHONE_X = 414;
 
+const AnimatableTouchableOpacity = Animatable.createAnimatableComponent(TouchableOpacity)
+
 export default class QuoteScreen extends React.Component {
   static navigationOptions = {
     header: null,
@@ -39,7 +41,7 @@ export default class QuoteScreen extends React.Component {
   }
 
   componentWillMount() {
-    GLOBAL_STATE.initializeStorageTriggers(this)
+    GLOBAL_STATE.initializeStorageTriggers(this, this.reinitializeText)
     this.numberOfTheDay = this.props.navigation.getParam('index',  Math.floor(Math.random() * 81));
     this.reinitializeText()
   }
@@ -87,7 +89,7 @@ export default class QuoteScreen extends React.Component {
     // fade in new one
     setTimeout(() => {
       this.numberOfTheDay = Math.floor(Math.random() * 81)
-      this.daoOfTheDay = scrapedDao[this.numberOfTheDay].title
+      this.daoOfTheDay = GLOBAL_STATE.TRANSLATIONS[this.state.translationIndex - 1][this.numberOfTheDay].title
       thirdLastOccurenceIndex = this.daoOfTheDay.lastIndexOf('\n', (this.daoOfTheDay.lastIndexOf('\n', this.daoOfTheDay.lastIndexOf('\n')-1) -1))
       this.quote = this.daoOfTheDay.substring(thirdLastOccurenceIndex + 1)
       this.setState({isExitingScreen: false})
@@ -111,13 +113,105 @@ export default class QuoteScreen extends React.Component {
             ...styles.helpContainer,
             backgroundColor: this.state.backgroundColor
           }}>
+            <AnimatableTouchableOpacity
+              style={{
+                position: 'absolute',
+                top: '7%',
+                left: '5%',
+              }}
+              animation={this.state.isExitingScreen ? 'fadeOutLeftBig' : 'fadeInLeftBig'}
+              direction='normal'
+              duration={1000}
+              useNativeDriver={true}
+              onPress={() => this.navigateToDaoText()}
+            >
+              <Animatable.Text
+                  style={{
+                      ...styles.helpLinkText,
+                      color: this.state.textColor,
+                      ...styles.actionsContainer,
+                  }}
+              >
+                  {`Continue
+Reading...`}
+              </Animatable.Text>
+            </AnimatableTouchableOpacity> 
+            <AnimatableTouchableOpacity
+              style={{
+                position: 'absolute',
+                ...styles.actionsContainer,
+                top: '7.4%',
+                right: '5%'
+              }}
+              animation={this.state.isExitingScreen ? 'fadeOutRightBig' : 'fadeInRightBig'}
+              direction='normal'
+              duration={1000}
+              useNativeDriver={true}
+              onPress={() => this.newPassage()}
+            >
+            <Animatable.Text
+                style={{
+                    ...styles.helpLinkText,
+                    color: this.state.textColor,
+                    ...styles.actionsContainer,
+                }}
+            >
+                New Passage
+            </Animatable.Text>
+            </AnimatableTouchableOpacity> 
+            <AnimatableTouchableOpacity
+              style={{
+                position: 'absolute',
+                ...styles.actionsContainer,
+                bottom: '5%',
+                left: '5%'
+              }}
+              animation={this.state.isExitingScreen ? 'fadeOutLeftBig' : 'fadeInLeftBig'}
+              direction='normal'
+              duration={1000}
+              useNativeDriver={true}
+              onPress={() => this.navigateBack()}
+            >
+            <Animatable.Text
+                style={{
+                    ...styles.helpLinkText,
+                    color: this.state.textColor,
+                    ...styles.actionsContainer,
+                }}
+            >
+                Go Back Home
+            </Animatable.Text>
+            </AnimatableTouchableOpacity> 
+            <AnimatableTouchableOpacity
+              style={{
+                position: 'absolute',
+                ...styles.actionsContainer,
+                bottom: '5%',
+                right: '5%'
+              }}
+              animation={this.state.isExitingScreen ? 'fadeOutRightBig' : 'fadeInRightBig'}
+              direction='normal'
+              duration={1000}
+              useNativeDriver={true}
+              onPress={() => this.navigateToContents()}
+            >
+            <Animatable.Text
+                style={{
+                    ...styles.helpLinkText,
+                    color: this.state.textColor,
+                    ...styles.actionsContainer,
+                }}
+            >
+                Select Passage
+            </Animatable.Text>
+            </AnimatableTouchableOpacity> 
             <Animatable.Text 
                 style={{
                     ...styles.helpLinkText,
                     color: this.state.textColor,
                     marginBottom: '10%',
                 }}
-                animation={this.state.isExitingScreen ? 'fadeOutLeft' : 'fadeInRight'}
+                animation={this.state.isExitingScreen ? 'fadeOutLeftBig' : 'fadeInRightBig'}
             >
                 {'Chapter ' + (this.numberOfTheDay+1) + '\n'}
             </Animatable.Text>
@@ -131,7 +225,7 @@ export default class QuoteScreen extends React.Component {
                     color: this.state.textColor
                     }}
                     ref={this.handleViewRef}
-                    animation={this.state.isExitingScreen ? 'fadeOutLeft' : 'fadeInRight'}
+                    animation={this.state.isExitingScreen ? 'fadeOutLeftBig' : 'fadeInRightBig'}
                     direction='alternate'
                 >
                     {this.capitalize(this.quote) + '\n                        – Lao Tzu'}
@@ -142,62 +236,6 @@ export default class QuoteScreen extends React.Component {
                 ...styles.actionsContainer
               }}
             >
-                <Animatable.Text
-                    style={{
-                        ...styles.helpLinkText,
-                        color: this.state.textColor
-                    }}
-                    animation={this.state.isExitingScreen ? 'fadeOutLeft' : 'fadeInRight'}
-                    direction='normal'
-                    duration={1000}
-                    delay={this.state.isExitingScreen ? 0: 900}
-                    useNativeDriver={true}
-                    onPress={() => this.navigateToDaoText()}
-                >
-                    Continue reading...
-                </Animatable.Text>
-                <Animatable.Text
-                    style={{
-                        ...styles.helpLinkText,
-                        color: this.state.textColor
-                    }}
-                    animation={this.state.isExitingScreen ? 'fadeOutLeft' : 'fadeInRight'}
-                    direction='normal'
-                    duration={1000}
-                    delay={this.state.isExitingScreen ? 0: 1100}
-                    useNativeDriver={true}
-                    onPress={() => this.newPassage()}
-                >
-                    New random passage
-                </Animatable.Text>
-                <Animatable.Text
-                    style={{
-                        ...styles.helpLinkText,
-                        color: this.state.textColor
-                    }}
-                    animation={this.state.isExitingScreen ? 'fadeOutLeft' : 'fadeInRight'}
-                    direction='normal'
-                    duration={1000}
-                    delay={this.state.isExitingScreen ? 0: 1300}
-                    useNativeDriver={true}
-                    onPress={() => this.navigateBack()}
-                >
-                    Go back home
-                </Animatable.Text>
-                <Animatable.Text
-                    style={{
-                        ...styles.helpLinkText,
-                        color: this.state.textColor
-                    }}
-                    animation={this.state.isExitingScreen ? 'fadeOutLeft' : 'fadeInRight'}
-                    direction='normal'
-                    duration={1000}
-                    delay={this.state.isExitingScreen ? 0: 1500}
-                    useNativeDriver={true}
-                    onPress={() => this.navigateToContents()}
-                >
-                    Table of Contents
-                </Animatable.Text>
             </View>
           </View>
       </View> 
@@ -207,7 +245,7 @@ export default class QuoteScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
   },  
   helpContainer: {
     flex: 1,
@@ -222,10 +260,7 @@ const styles = StyleSheet.create({
     fontSize: 28 * (Dimensions.get('window').height / HEIGHT_IPHONE_X),
   },
   actionsContainer: {
-    // opacity: 0.5,
-    flexBasis: '33.33%',
-    justifyContent: 'center',
-    // alignItems: 'center',
+    opacity: 0.5
   },
   chapterTitle: {
     fontSize: 36 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
