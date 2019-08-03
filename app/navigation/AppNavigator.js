@@ -58,11 +58,12 @@ const HomeStack = createStackNavigator(
   },
   {
     initialRouteName: 'DaoText',
+    unmountInactiveRoutes: true,
     // headerMode: 'none',
     defaultNavigationOptions: {
       gesturesEnabled: false
     },
-    transitionConfig: () => fadeIn(1000),
+    transitionConfig: () => fadeIn(500),
   }
 );
 

@@ -39,13 +39,13 @@ export default class HomeScreen extends React.Component {
   componentDidMount() {
     this.lottieNinja.play();
     this.lottieYinYang.play();
-    // AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['lily_1.mp3'])
+    AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['lily_1.mp3'])
     setTimeout(() => {
       console.log(this.state.isExitingScreen)
       if (!this.state.isExitingScreen) {
-        // AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['typing.mp3'])
+        AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['typing.mp3'])
       }
-    }, 1250)
+    }, 2500)
     setTimeout(() => {
       Animated.timing(                  // Animate over time
         this.state.yinYangFade,            // The animated value to drive
@@ -57,18 +57,20 @@ export default class HomeScreen extends React.Component {
     }, 1000)
 
     this.focusListener = this.props.navigation.addListener("willFocus", () => {
-      this.setState(
-        {
-          speed: 0,
-          yinYangFade: new Animated.Value(0),  // Initial value for opacity: 0
-          isExitingScreen: false,
-          backgroundFade: new Animated.Value(1)
-        }
-      )
+      // this.setState(
+      //   {
+      //     speed: 0,
+      //     yinYangFade: new Animated.Value(0),  // Initial value for opacity: 0
+      //     isExitingScreen: false,
+      //     backgroundFade: new Animated.Value(1)
+      //   }
+      // )
+      // this.setState({isExitingScreen: false})
     });
   }
 
   componentWillUnmount() {
+    console.log('home is unmounting')
     this.focusListener.remove();
   }
 
@@ -92,8 +94,19 @@ export default class HomeScreen extends React.Component {
     
     setTimeout(() => {
       this.props.navigation.navigate('Quote', { index: index })
-      this.setState({isExitingScreen: false})
     }, 500)
+
+    setTimeout(() => {
+      this.setState({isExitingScreen: false})
+      this.setState(
+        {
+          speed: 0,
+          yinYangFade: new Animated.Value(0),  // Initial value for opacity: 0
+          isExitingScreen: false,
+          backgroundFade: new Animated.Value(1)
+        }
+      )
+    }, 2000)
   }
 
   render() {
@@ -168,9 +181,9 @@ export default class HomeScreen extends React.Component {
           <TypeWriter
               typing={1}
               style={styles.title2}
-              minDelay={200}
-              maxDelay={300}
-              initialDelay={5000}
+              minDelay={120}
+              maxDelay={250}
+              initialDelay={2500}
               delayMap={delayMap}
               fixed={true}
               onTypingEnd={() => {AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])}}

@@ -19,6 +19,7 @@ export default class SettingsScreen extends Component {
   }
 
   componentWillUnmount() {
+    console.log('unmounting tranny')
     GLOBAL_STATE.unloadStorageTriggers(this)
   }
 

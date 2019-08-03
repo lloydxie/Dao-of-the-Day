@@ -14,7 +14,6 @@ import AudioServiceSingleton from '../services/AudioService'
 import { Ionicons } from '@expo/vector-icons';
 import * as Brightness from 'expo-brightness';
 import * as Animatable from 'react-native-animatable';
-import TranslationScreen from './TranslationScreen'
 
 import GLOBAL_STATE from '../services/GlobalState';
 
@@ -64,7 +63,6 @@ class DaoTextScreen extends React.Component {
       paused: false,
       dummy: false,
     }
-
     this.state = {...state, ...GLOBAL_STATE.DEFAULT_SETTINGS}
   }
 
@@ -75,7 +73,7 @@ class DaoTextScreen extends React.Component {
 
   componentWillMount() {
     GLOBAL_STATE.initializeStorageTriggers(this)
-    this.numberOfTheDay = this.props.navigation.getParam('index',  Math.floor(Math.random() * 81));
+    this.numberOfTheDay = this.props.navigation.getParam('index',  Math.floor(Math.random() * 81))
     this.reinitializeText()
     AnimatableIonicons = Animatable.createAnimatableComponent(Ionicons)
   }
@@ -87,10 +85,10 @@ class DaoTextScreen extends React.Component {
       this.keyName = Object.keys(backgroundMusicFilesMap)[0];
     }
     else if (numberOfTheDay < 50) {
-      this.keyName = Object.keys(backgroundMusicFilesMap)[0];
+      this.keyName = Object.keys(backgroundMusicFilesMap)[1];
     }
     else {
-      this.keyName = Object.keys(backgroundMusicFilesMap)[0];
+      this.keyName = Object.keys(backgroundMusicFilesMap)[2];
     }
     
     if (!AudioServiceSingleton.backgroundMusicFilesMap[this.keyName]) {
@@ -107,12 +105,6 @@ class DaoTextScreen extends React.Component {
       this.setState({paused: true})
     });
 
-    this.willFocus = this.props.navigation.addListener("willFocus", () => {
-      setTimeout(() => {
-         this.reinitializeText()
-      }, 50)
-    })
-
     this.oldBrightness = Brightness.getBrightnessAsync()
     this.brightnessValue = 0
     this.interval = setInterval(() => this.increaseBrightness(), 100);
@@ -125,18 +117,29 @@ class DaoTextScreen extends React.Component {
     // }, 500)
 
     soundObject = await this.loadAudioFile(this.numberOfTheDay)
+    console.log('fuckin a chigga')
     setTimeout(() => {
       if (!this.state.isExitingScreen) {
+        console.log('fuckin a nigga')
         AudioServiceSingleton.play(soundObject)
       }
     }, 100)
 
+    this.willFocus = this.props.navigation.addListener("willFocus", () => {
+      this.numberOfTheDay = this.props.navigation.getParam('index', this.numberOfTheDay)
+      setTimeout(() => {
+         this.reinitializeText()
+      }, 50)
+    })
+
     this.reinitializeText()
-    this.setState({dummy: true})
+    this.setState({showAll: false})
+    console.log(this.state.showAll)
   }
 
   reinitializeText() {
-      if (this.daoText) {
+      console.log('reinit text')
+      if (this.daoText || this.fullText) {
         this.restartTyping(this.daoText)
       }
       this.daoOfTheDay = GLOBAL_STATE.TRANSLATIONS[this.state.translationIndex - 1][this.numberOfTheDay].title
@@ -150,11 +153,12 @@ class DaoTextScreen extends React.Component {
 
     this.blurAway.remove()
     this.willFocus.remove()
+
+    AudioServiceSingleton.unmount(AudioServiceSingleton.backgroundMusicFilesMap[this.keyName])
   }
 
-  navigateAway = () => {
+  navigateAway() {
     this.setState({isExitingScreen: true})
-    AudioServiceSingleton.unmount(AudioServiceSingleton.backgroundMusicFilesMap[this.keyName])
     AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])
     this.props.navigation.navigate('Quote', {index: this.numberOfTheDay})
   }
@@ -201,10 +205,12 @@ class DaoTextScreen extends React.Component {
 
   restartTyping(daoText) {
     if (this.state.showAll) {
+      console.log('set showall to false')
       this.setState({showAll: false})
     }
     else {
-      daoText.setState({visibleChars: 0})
+      console.log('set visible chars')
+      daoText.setState({visibleChars: 1})
     }
   }
   
@@ -267,7 +273,10 @@ class DaoTextScreen extends React.Component {
             style={{
               ...styles.iconContainer
             }}
-            onPress={() => GLOBAL_STATE.toggleSetting(this, 'paused')}
+            onPress={() => {
+              GLOBAL_STATE.toggleSetting(this, 'paused')
+              AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])
+            }}
           >
             <AnimatableIonicons
               animation='flash'
@@ -300,7 +309,7 @@ class DaoTextScreen extends React.Component {
             style={{
               ...styles.iconContainer
             }}
-            onPress={() => this.skipForward}
+            onPress={() => this.skipForward()}
           >
             <AnimatableIonicons
               animation='flash'
@@ -371,6 +380,7 @@ class DaoTextScreen extends React.Component {
                     ...styles.helpLinkText,
                     color: this.state.textColor
                   }}
+                  ref={ref => this.fullText = ref}
                 >
                   {this.daoOfTheDay}<B>{this.quote}</B>
                 </Text>
@@ -384,7 +394,7 @@ class DaoTextScreen extends React.Component {
               <Ionicons 
                 name="md-arrow-down" 
                 color={this.state.textColor}
-                onPress={this.navigateAway}
+                onPress={() => this.navigateAway()}
                 style={{
                   ...styles.icon,
                   marginBottom: '5%',
