@@ -21,6 +21,7 @@ export default class SettingsScreen extends Component {
   render() {
     return (
       <View>
+          <Text> As we grow older we grow both more foolish and wiser at the same time. - Francois de La Rochefoucauld</Text>
           <TypeWriter
               typing={1}
               style={styles.title2}

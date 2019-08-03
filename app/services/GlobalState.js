@@ -21,20 +21,25 @@ class GlobalState {
         chineseTranslation,
       ]
 
-    loadPastState(that) {
+    loadPastState(that, cb = null) {
         AsyncStorage.getItem(ASYNC_STORAGE_KEY).then((oldSetting) => {
             if (!oldSetting) {
                 AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify(this.DEFAULT_SETTINGS))
             }
+            console.log('focusing')
+            console.log(oldSetting)
             that.setState(JSON.parse(oldSetting))
+            if (cb) {
+                cb()
+            }
         })
     }
 
-    initializeStorageTriggers(that) {
+    initializeStorageTriggers(that, cb) {
         const { navigation } = that.props;
 
         that.focusListener = navigation.addListener("willFocus", () => {
-            this.loadPastState(that)
+            this.loadPastState(that, cb)
         });
     }
 

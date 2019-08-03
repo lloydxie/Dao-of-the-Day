@@ -39,34 +39,28 @@ export default class QuoteScreen extends React.Component {
   }
 
   componentWillMount() {
-    GLOBAL_STATE.initializeStorageTriggers(this)
+    GLOBAL_STATE.initializeStorageTriggers(this, this.reinitializeText)
     this.numberOfTheDay = this.props.navigation.getParam('index',  Math.floor(Math.random() * 81));
     this.reinitializeText()
   }
 
-  reinitializeText() {
+  reinitializeText = () => {
     this.numberOfTheDay = this.props.navigation.getParam('index', this.numberOfTheDay)
     this.daoOfTheDay = GLOBAL_STATE.TRANSLATIONS[this.state.translationIndex - 1][this.numberOfTheDay].title
     thirdLastOccurenceIndex = this.daoOfTheDay.lastIndexOf('\n', (this.daoOfTheDay.lastIndexOf('\n', this.daoOfTheDay.lastIndexOf('\n')-1) -1))
     this.quote = this.daoOfTheDay.substring(thirdLastOccurenceIndex + 1)
+    this.setState({isExitingScreen: false})
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     setTimeout(() => {
       if (!this.state.isExitingScreen) {
         // AudioServiceSingleton.play(soundObject)
       }
     }, 2000)
-
-    const { navigation } = this.props;
-
-    this.focusListener = navigation.addListener("willFocus", () => {
-      this.setState({isExitingScreen: false})
-      this.reinitializeText()
-    });
   }
+
   componentWillUnmount() {
-    this.focusListener.remove();
     GLOBAL_STATE.unloadStorageTriggers(this)
   }
 
