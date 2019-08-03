@@ -34,8 +34,8 @@ const WIDTH_IPHONE_X = 414;
 const B = (props) => 
   <Text 
     style={{
-      fontSize: 18 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
-      fontFamily: 'dreamOrphans',
+      fontSize: 20 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
+      fontWeight: 'bold'
     }}>
     {props.children}
   </Text>
@@ -74,7 +74,7 @@ class DaoTextScreen extends React.Component {
   }
 
   componentWillMount() {
-    GLOBAL_STATE.initializeStorageTriggers(this)
+    GLOBAL_STATE.initializeStorageTriggers(this, this.reinitializeText)
     this.numberOfTheDay = this.props.navigation.getParam('index',  Math.floor(Math.random() * 81));
     this.reinitializeText()
     AnimatableIonicons = Animatable.createAnimatableComponent(Ionicons)
@@ -109,7 +109,7 @@ class DaoTextScreen extends React.Component {
 
     this.willFocus = this.props.navigation.addListener("willFocus", () => {
       setTimeout(() => {
-         this.reinitializeText()
+        //  this.reinitializeText()
       }, 50)
     })
 
@@ -135,10 +135,11 @@ class DaoTextScreen extends React.Component {
     this.setState({dummy: true})
   }
 
-  reinitializeText() {
+  reinitializeText = () => {
       if (this.daoText) {
         this.restartTyping(this.daoText)
       }
+      this.numberOfTheDay = this.props.navigation.getParam('index', this.numberOfTheDay)
       this.daoOfTheDay = GLOBAL_STATE.TRANSLATIONS[this.state.translationIndex - 1][this.numberOfTheDay].title
       thirdLastOccurenceIndex = this.daoOfTheDay.lastIndexOf('\n', (this.daoOfTheDay.lastIndexOf('\n', this.daoOfTheDay.lastIndexOf('\n')-1) -1))
       this.quote = this.daoOfTheDay.substring(thirdLastOccurenceIndex + 1)
@@ -235,6 +236,24 @@ class DaoTextScreen extends React.Component {
         backgroundColor: this.state.backgroundColor
       }}>
         <View style={styles.titleView}>
+          <TouchableOpacity
+            style={{
+              ...styles.iconContainer,
+              left: 28 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
+              top: -5 * (Dimensions.get('window').height / HEIGHT_IPHONE_X),
+              position: "absolute"
+            }}
+          >
+            <Ionicons 
+              name="md-arrow-back" 
+              color={this.state.textColor}
+              onPress={() => this.navigateAway()}
+              style={{
+                ...styles.icon,
+                fontSize: 36 * (Dimensions.get('window').height / HEIGHT_IPHONE_X),
+              }}
+            />
+          </TouchableOpacity>
           <Text
             style={{
               ...styles.chapterTitle,
@@ -362,6 +381,7 @@ class DaoTextScreen extends React.Component {
                   ref={ref => this.daoText = ref}
                   minDelay={MIN_DELAY[this.state.typingSpeed]}
                   maxDelay={MAX_DELAY[this.state.typingSpeed]}
+                  initialDelay={300}
                   fixed={true}
                   delayMap={delayMap}
                   onTyped={this.playOrPauseTypingAudio}
@@ -378,23 +398,6 @@ class DaoTextScreen extends React.Component {
                 </Text>
               )
             }
-            <TouchableOpacity
-              style={{
-                ...styles.iconContainer
-              }}
-            >
-              <Ionicons 
-                name="md-arrow-down" 
-                color={this.state.textColor}
-                onPress={() => this.navigateAway()}
-                style={{
-                  ...styles.icon,
-                  marginBottom: '5%',
-                  marginTop: '12%',
-                  fontSize: 36 * (Dimensions.get('window').height / HEIGHT_IPHONE_X),
-                }}
-              />
-            </TouchableOpacity>
           </View>
         </ScrollView>
       </View> 
@@ -455,14 +458,15 @@ const styles = StyleSheet.create({
     fontSize: 28 * (Dimensions.get('window').height / HEIGHT_IPHONE_X),
   },
   iconContainer: {
-    opacity: 0.5,
-    flexBasis: '16.66%',
+    opacity: 0.6,
+    flexBasis: '20%',
     justifyContent: 'center',
     alignItems: 'center',
   },
   chapterTitle: {
     fontSize: 36 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
     fontFamily: 'smite',
+    opacity: 0.7
   },
   titleView: {
     justifyContent: 'center',

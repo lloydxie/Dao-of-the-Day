@@ -39,7 +39,7 @@ export default class QuoteScreen extends React.Component {
   }
 
   componentWillMount() {
-    GLOBAL_STATE.initializeStorageTriggers(this, this.reinitializeText)
+    GLOBAL_STATE.initializeStorageTriggers(this)
     this.numberOfTheDay = this.props.navigation.getParam('index',  Math.floor(Math.random() * 81));
     this.reinitializeText()
   }
