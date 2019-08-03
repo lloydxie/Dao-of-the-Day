@@ -120,7 +120,8 @@ export default class QuoteScreen extends React.Component {
             <Animatable.Text 
                 style={{
                     ...styles.helpLinkText,
-                    color: this.state.textColor
+                    color: this.state.textColor,
+                    marginBottom: '10%',
                 }}
                 animation={this.state.isExitingScreen ? 'fadeOutLeft' : 'fadeInRight'}
             >

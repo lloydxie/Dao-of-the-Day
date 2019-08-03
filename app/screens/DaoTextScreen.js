@@ -41,7 +41,7 @@ const B = (props) =>
   </Text>
 
 const MIN_DELAY = {
-  'x1': 100,
+  'x1': 80,
   'x2': 50,
   'x3': 30,
 }
@@ -103,6 +103,7 @@ class DaoTextScreen extends React.Component {
 
   async componentDidMount() {
     this.blurAway = this.props.navigation.addListener("willBlur", () => {
+      AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])
       this.setState({paused: true})
     });
 
@@ -116,19 +117,19 @@ class DaoTextScreen extends React.Component {
     this.brightnessValue = 0
     this.interval = setInterval(() => this.increaseBrightness(), 100);
 
-    setTimeout(() => {
-      if (!this.state.isExitingScreen) {
-        AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['typing.mp3'])
-        this.setState({isTypingAudio: true})
-      }
-    }, 5000)
+    // setTimeout(() => {
+    //   if (!this.state.isExitingScreen) {
+    //     AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['typing.mp3'])
+    //     this.setState({isTypingAudio: true})
+    //   }
+    // }, 500)
 
     soundObject = await this.loadAudioFile(this.numberOfTheDay)
     setTimeout(() => {
       if (!this.state.isExitingScreen) {
         AudioServiceSingleton.play(soundObject)
       }
-    }, 2000)
+    }, 100)
 
     this.reinitializeText()
     this.setState({dummy: true})
@@ -138,22 +139,10 @@ class DaoTextScreen extends React.Component {
       if (this.daoText) {
         this.restartTyping(this.daoText)
       }
-      console.log(this.state.translationIndex)
       this.daoOfTheDay = GLOBAL_STATE.TRANSLATIONS[this.state.translationIndex - 1][this.numberOfTheDay].title
       thirdLastOccurenceIndex = this.daoOfTheDay.lastIndexOf('\n', (this.daoOfTheDay.lastIndexOf('\n', this.daoOfTheDay.lastIndexOf('\n')-1) -1))
       this.quote = this.daoOfTheDay.substring(thirdLastOccurenceIndex + 1)
       this.daoOfTheDay = this.daoOfTheDay.substring(0, thirdLastOccurenceIndex + 1)
-  }
-
-  changeVolume = () => {
-    if (this.state.volumeLevel == HIGH) {
-      AudioServiceSingleton.initialLoadMap['typing.mp3'].setVolumeAsync(0)
-      this.setState({volumeLevel: MUTE})
-    }
-    else if (this.state.volumeLevel == MUTE) {
-      AudioServiceSingleton.initialLoadMap['typing.mp3'].setVolumeAsync(1)
-      this.setState({volumeLevel: HIGH})
-    }
   }
 
   componentWillUnmount() {
@@ -182,15 +171,18 @@ class DaoTextScreen extends React.Component {
     Brightness.setBrightnessAsync(this.brightnessValue)
   }
 
-  playOrPauseTypingAudio(token) {
-    if (token == '\n') {
-      AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])
-      // this.setState({isTypingAudio: false})
-    }
-    else {
-      // use state to store if already playing so that it doesn't play the first 2 seconds every damn character
-      AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['typing.mp3'])
-      // this.setState({isTypingAudio: true})
+  playOrPauseTypingAudio = (token) => {
+    if (this.state.typingSpeed == 'x1' && !this.state.paused) {
+      if (token == '\n') {
+        AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])
+        // this.setState({isTypingAudio: false})
+      }
+      else {
+        // use state to store if already playing so that it doesn't play the first 2 seconds every damn character
+        // console.log(token)
+        AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['typing.mp3'])
+        // this.setState({isTypingAudio: true})
+      }
     }
   }
 
@@ -202,8 +194,9 @@ class DaoTextScreen extends React.Component {
     }
   }
   
-  skipForward = () => {
+  skipForward() {
     this.setState({showAll: true})
+    AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])
   }
 
   restartTyping(daoText) {
@@ -257,7 +250,7 @@ class DaoTextScreen extends React.Component {
             style={{
               ...styles.iconContainer
             }}
-            onPress={this.speedUp}
+            onPress={() => this.restartTyping(this.daoText)}
           >
             <AnimatableIonicons
               animation='flash'
@@ -268,14 +261,13 @@ class DaoTextScreen extends React.Component {
               style={{
                 ...styles.icon
               }}
-              onPress={() => this.restartTyping(this.daoText)}
             />
           </TouchableOpacity>
           <TouchableOpacity
             style={{
               ...styles.iconContainer
             }}
-            onPress={this.playOrPause}
+            onPress={() => GLOBAL_STATE.toggleSetting(this, 'paused')}
           >
             <AnimatableIonicons
               animation='flash'
@@ -286,14 +278,13 @@ class DaoTextScreen extends React.Component {
               style={{
                 ...styles.icon
               }}
-              onPress={() => GLOBAL_STATE.toggleSetting(this, 'paused')}
             />
           </TouchableOpacity>
           <TouchableOpacity
             style={{
               ...styles.iconContainer
             }}
-            onPress={this.speedUp}
+            onPress={() => this.toggleTypingSpeed()}
           >
             <Animatable.Text
               animation='flash'
@@ -303,14 +294,13 @@ class DaoTextScreen extends React.Component {
                 ...styles.icon,
                 color: this.state.textColor
               }}
-              onPress={() => this.toggleTypingSpeed()}
             >{this.state.typingSpeed}</Animatable.Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={{
               ...styles.iconContainer
             }}
-            onPress={this.changeVolume}
+            onPress={() => this.skipForward}
           >
             <AnimatableIonicons
               animation='flash'
@@ -321,14 +311,13 @@ class DaoTextScreen extends React.Component {
               style={{
                 ...styles.icon,
               }}
-              onPress={() => this.skipForward()}
             />
           </TouchableOpacity>
           <TouchableOpacity
             style={{
               ...styles.iconContainer
             }}
-            onPress={this.changeVolume}
+            onPress={() => this.props.navigation.navigate('Translation')}
           >
             <AnimatableIonicons
               animation='flash'
@@ -339,7 +328,6 @@ class DaoTextScreen extends React.Component {
               style={{
                 ...styles.icon,
               }}
-              onPress={() => this.props.navigation.navigate('Translation')}
             />
           </TouchableOpacity>
         </View>
@@ -374,7 +362,7 @@ class DaoTextScreen extends React.Component {
                   maxDelay={MAX_DELAY[this.state.typingSpeed]}
                   fixed={true}
                   delayMap={delayMap}
-                  onTyped={() => this.playOrPauseTypingAudio}
+                  onTyped={this.playOrPauseTypingAudio}
                   speed={this.state.typingSpeed}
                   paused={this.state.paused}
                 >{this.daoOfTheDay}<B>{this.quote}</B></TypeWriter> : 
@@ -417,9 +405,11 @@ class DaoTextScreen extends React.Component {
     }
     else if (this.state.typingSpeed == 'x1') {
       GLOBAL_STATE.updateSetting(this, 'typingSpeed', 'x2')  
+      AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])
     }
     else {
       GLOBAL_STATE.updateSetting(this, 'typingSpeed', 'x3')  
+      AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])
     }
   }
 }
