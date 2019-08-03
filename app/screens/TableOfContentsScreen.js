@@ -28,7 +28,7 @@ export default class TableOfContentsScreen extends Component {
       <View style={{backgroundColor:'#1f1f1f',flex:1}}>
         <View style={{flex:1, marginTop:50}}>
         <SettingsList backgroundColor='#1f1f1f'>
-            <SettingsList.Header headerText='Table Of Contents' headerStyle={{color:'#22BAD9', fontSize: '22'}}/>
+            <SettingsList.Header headerText='Table Of Contents' headerStyle={{color:'#22BAD9', fontSize: 22}}/>
               {
                 scrapedDao.map((passage, key) => (
                     <SettingsList.Item

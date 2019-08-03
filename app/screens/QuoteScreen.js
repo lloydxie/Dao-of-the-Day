@@ -33,8 +33,12 @@ export default class QuoteScreen extends React.Component {
     textColor: TEXT_COLOR_1,
   }
 
-  componentWillMount() {
+  constructor() {
+    super()
     this.state = {...this.state, ...GLOBAL_STATE.DEFAULT_SETTINGS}
+  }
+
+  componentWillMount() {
     GLOBAL_STATE.initializeStorageTriggers(this)
     this.numberOfTheDay = this.props.navigation.getParam('index',  Math.floor(Math.random() * 81));
     this.reinitializeText()
@@ -150,8 +154,8 @@ export default class QuoteScreen extends React.Component {
                     }}
                     animation={this.state.isExitingScreen ? 'fadeOutLeft' : 'fadeInRight'}
                     direction='normal'
-                    duration='1000'
-                    delay={this.state.isExitingScreen ? '0': '900'}
+                    duration={1000}
+                    delay={this.state.isExitingScreen ? 0: 900}
                     useNativeDriver={true}
                     onPress={() => this.navigateToDaoText()}
                 >
@@ -164,8 +168,8 @@ export default class QuoteScreen extends React.Component {
                     }}
                     animation={this.state.isExitingScreen ? 'fadeOutLeft' : 'fadeInRight'}
                     direction='normal'
-                    duration='1000'
-                    delay={this.state.isExitingScreen ? '0': '1100'}
+                    duration={1000}
+                    delay={this.state.isExitingScreen ? 0: 1100}
                     useNativeDriver={true}
                     onPress={() => this.newPassage()}
                 >
@@ -178,8 +182,8 @@ export default class QuoteScreen extends React.Component {
                     }}
                     animation={this.state.isExitingScreen ? 'fadeOutLeft' : 'fadeInRight'}
                     direction='normal'
-                    duration='1000'
-                    delay={this.state.isExitingScreen ? '0': '1300'}
+                    duration={1000}
+                    delay={this.state.isExitingScreen ? 0: 1300}
                     useNativeDriver={true}
                     onPress={() => this.navigateBack()}
                 >
@@ -192,8 +196,8 @@ export default class QuoteScreen extends React.Component {
                     }}
                     animation={this.state.isExitingScreen ? 'fadeOutLeft' : 'fadeInRight'}
                     direction='normal'
-                    duration='1000'
-                    delay={this.state.isExitingScreen ? '0': '1500'}
+                    duration={1000}
+                    delay={this.state.isExitingScreen ? 0: 1500}
                     useNativeDriver={true}
                     onPress={() => this.navigateToContents()}
                 >

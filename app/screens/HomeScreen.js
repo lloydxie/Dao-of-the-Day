@@ -122,8 +122,8 @@ export default class HomeScreen extends React.Component {
               }}
               animation='zoomIn'
               direction='alternate'
-              delay='250'
-              duration='1500'
+              delay={250}
+              duration={1500}
               useNativeDriver={true}
             >wiser each</Animatable.Text>
             <View style={styles.headerRow}>
@@ -131,8 +131,8 @@ export default class HomeScreen extends React.Component {
                 style={styles.title}
                 animation='zoomIn'
                 direction='alternate'
-                delay='250'
-                duration='1500'
+                delay={250}
+                duration={1500}
                 useNativeDriver={true}
               >da</Animatable.Text>
               <TouchableOpacity onPress={this.playYinYangAnimation}
@@ -181,8 +181,8 @@ export default class HomeScreen extends React.Component {
             animation='fadeIn'
             iterationCount='infinite'
             direction='alternate'
-            delay='0'
-            iterationDelay='250'
+            delay={0}
+            iterationDelay={250}
             useNativeDriver={true}
             style={styles.beginReading}
             onPress={() => this.navigateAway()}
