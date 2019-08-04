@@ -12,7 +12,8 @@ class GlobalState {
         'musicIndex': 2,
         'translationIndex': 1,
         'colorIndex': 1,
-        'typingSpeed': 'x3'
+        'typingSpeed': 'x3',
+        'isFirstAppLoad': true
     }
 
     TRANSLATIONS = [

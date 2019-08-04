@@ -27,13 +27,13 @@ export default class AboutScreen extends Component {
     this.aboutAuthor1 = 
     `   The creator of this app had his first encounter with finding the `
     
-    this.aboutAuthor2 = `online in high school. He was undergoing severe unhappiness, loneliness, and alienation from his classmates.
+    this.aboutAuthor2 = `online in high school.
     
-    After his first romantic obsession came to a tulmutuous halt, he felt a broken longing for a sense of true companionship. He dreamed of a day where he could be flourishing and ecstatic in his life.
+    His first romantic obsession filled with insecurity and shame came to a tulmutuous halt at the age of 15. He felt a broken longing for a sense of true companionship. He was undergoing severe unhappiness, loneliness, and alienation from his classmates. He dreamed of a day where life would flourish again.
     
     Two things kept him alive for the time being – music, and the ` 
     
-    this.aboutAuthor3 = ` By reading it, he soon found the ultimate truth that our relationships determines the fruition of our life.`
+    this.aboutAuthor3 = ` By reading it, he soon discovered the ultimate truth of the universe that our relationships determine the fruition of our life.`
     
     this.title2 = `
     About the Dao De Ching`

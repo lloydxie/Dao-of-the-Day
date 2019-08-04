@@ -53,7 +53,7 @@ export default class SettingsScreen extends Component {
             <SettingsList.Header headerText='Settings' headerStyle={{color:'black'}}/>
               <SettingsList.Item
                 hasNavArrow={false}
-                title='About the App'
+                title='Why did I create this?'
                 onPress={() => this.props.navigation.navigate('About')}
               />
               <SettingsList.Item
