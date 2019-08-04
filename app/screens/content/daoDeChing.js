@@ -11,15 +11,15 @@ export const scrapedDao = [{
     "title": "\nIf you overesteem great men,\npeople become powerless.\nIf you overvalue possessions,\npeople begin to steal.\n\nThe Master leads\nby emptying people's minds\nand filling their cores,\nby weakening their ambition\nand toughening their resolve.\nHe helps people lose everything\nthey know, everything they desire,\nand creates confusion\nin those who think that they know.\n\nPractice not-doing,\nand everything will fall into place.\n",
     },
     {
+        "url": "http://thetaoteching.com/taoteching4.html",
+        "title": "\nThe One is like a well:\nused but never used up.\nIt is like the eternal void:\nfilled with infinite possibilities.\n\nIt is hidden but always present.\nI don't know who gave birth to it.\nIt is older than God.\n",
+    },
+    {
     "url": "http://thetaoteching.com/taoteching5.html",
     "title": "\nThe Dao doesn't take sides;\nit gives birth to both good and evil.\nThe Master doesn't take sides;\nshe welcomes both saints and sinners.\n\nThe One is like a bellows:\nit is empty yet infinitely capable.\nThe more you use it, the more it produces;\nthe more you talk of it, the less you understand.\n\nHold on to the center.\n",
     },
     {
-    "url": "http://thetaoteching.com/taoteching4.html",
-    "title": "\nThe One is like a well:\nused but never used up.\nIt is like the eternal void:\nfilled with infinite possibilities.\n\nIt is hidden but always present.\nI don't know who gave birth to it.\nIt is older than God.\n",
-    },
-    {
-    "url": "http://thetaoteching.com/taoteching6.html",
+        "url": "http://thetaoteching.com/taoteching6.html",
     "title": "\nThe One is called the Great Mother:\nempty yet inexhaustible,\nit gives birth to infinite worlds.\n\nIt is always present within you.\nYou can use it any way you want.\n",
     },
     {
@@ -87,12 +87,12 @@ export const scrapedDao = [{
     "title": "\nIf you want to become whole,\nlet yourself be partial.\nIf you want to become straight,\nlet yourself be crooked.\nIf you want to become full,\nlet yourself be empty.\nIf you want to be reborn,\nlet yourself die.\nIf you want to be given everything,\ngive everything up.\n\nThe Master, by residing in the One,\nsets an example for all beings.\nBecause he doesn't display himself,\npeople can see his light.\nBecause he has nothing to prove,\npeople can trust his words.\nBecause he doesn't know who he is,\npeople recognize themselves in him.\nBecause he has no goad in mind,\neverything he does succeeds.\n\nWhen the ancient Masters said,\n\"If you want to be given everything,\ngive everything up,\"\nthey weren't using empty phrases.\nOnly in being lived by the One\ncan you be truly yourself.\n",
     },
     {
-    "url": "http://thetaoteching.com/taoteching24.html",
-    "title": "\nHe who stands on tiptoe\ndoesn't stand form.\nHe who rushes ahead\ndoesn't go far.\nHe who tries to shine\ndims his own light.\nHe who defines himself\ncan't know who he really is.\nHe who has power over others\ncan't empower himself.\nHe who clings to his work\nwill create nothing that endures.\n\nIf you want to accord with the One,\njust do your job, then let go.\n",
-    },
-    {
     "url": "http://thetaoteching.com/taoteching23.html",
     "title": "\nExpress yourself completely,\nthen keep quiet.\nBe like the forces of nature:\nwhen it blows, there is only wind;\nwhen it rains, there is only rain;\nwhen the clouds pass, the sun shines through.\n\nIf you open yourself to the One,\nyou are at one with the One\nand you can embody it completely.\nIf you open yourself to insight,\nyou are at one with insight\nand you can use it completely.\nIf you open yourself to loss,\nyou are at one with loss\nand you can accept it completely.\n\nOpen yourself to the One,\nthen trust your natural responses;\nand everything will fall into place.\n",
+    },
+    {
+    "url": "http://thetaoteching.com/taoteching24.html",
+    "title": "\nHe who stands on tiptoe\ndoesn't stand form.\nHe who rushes ahead\ndoesn't go far.\nHe who tries to shine\ndims his own light.\nHe who defines himself\ncan't know who he really is.\nHe who has power over others\ncan't empower himself.\nHe who clings to his work\nwill create nothing that endures.\n\nIf you want to accord with the One,\njust do your job, then let go.\n",
     },
     {
     "url": "http://thetaoteching.com/taoteching25.html",
@@ -167,16 +167,16 @@ export const scrapedDao = [{
     "title": "\nThe One gives birth to One.\nOne gives birth to Two.\nTwo gives birth to Three.\nThree gives birth to all things.\n\nAll things have their backs to the female\nand stand facing the male.\nWhen male and female combine,\nall things achieve harmony.\n\nOrdinary men hate solitude.\nBut the Master makes use of it,\nembracing his aloneness, realizing\nhe is one with the whole universe.\n",
     },
     {
+        "url": "http://thetaoteching.com/taoteching43.html",
+        "title": "\nThe gentlest thing in the world\novercomes the hardest thing in the world.\nThat which has no substance\nenters where there is no space.\nThis shows the value of non-action.\n\nTeaching without words,\nperforming without actions:\nthat is the Master's way.\n",
+    },
+    {
     "url": "http://thetaoteching.com/taoteching44.html",
     "title": "\nFame or integrity: which is more important?\nMoney or happiness: which is more valuable?\nSuccess of failure: which is more destructive?\n\nIf you look to others for fulfillment,\nyou will never truly be fulfilled.\nIf your happiness depends on money,\nyou will never be happy with yourself.\n\nBe content with what you have;\nrejoice in the way things are.\nWhen you realize there is nothing lacking,\nthe whole world belongs to you.\n",
     },
     {
-    "url": "http://thetaoteching.com/taoteching43.html",
-    "title": "\nThe gentlest thing in the world\novercomes the hardest thing in the world.\nThat which has no substance\nenters where there is no space.\nThis shows the value of non-action.\n\nTeaching without words,\nperforming without actions:\nthat is the Master's way.\n",
-    },
-    {
-    "url": "http://thetaoteching.com/taoteching45.html",
-    "title": "\nTrue perfection seems imperfect,\nyet it is perfectly itself.\nTrue fullness seems empty,\nyet it is fully present.\n\nTrue straightness seems crooked.\nTrue wisdom seems foolish.\nTrue art seems artless.\n\nThe Master allows things to happen.\nShe shapes events as they come.\nShe steps out of the way\nand lets the One speak for itself.\n",
+        "url": "http://thetaoteching.com/taoteching45.html",
+        "title": "\nTrue perfection seems imperfect,\nyet it is perfectly itself.\nTrue fullness seems empty,\nyet it is fully present.\n\nTrue straightness seems crooked.\nTrue wisdom seems foolish.\nTrue art seems artless.\n\nThe Master allows things to happen.\nShe shapes events as they come.\nShe steps out of the way\nand lets the One speak for itself.\n",
     },
     {
     "url": "http://thetaoteching.com/taoteching46.html",
@@ -195,20 +195,20 @@ export const scrapedDao = [{
     "title": "\nThe Master has no mind of her own.\nShe works with the mind of the people.\n\nShe is good to people who are good.\nShe is also good to people who aren't good.\nThis is true goodness.\n\nShe trusts people who are trustworthy.\nShe also trusts people who aren't trustworthy.\nThis is true trust.\n\nThe Master's mind is like space.\nPeople don't understand her.\nThey look to her and wait.\nShe treats them like her own children.\n",
     },
     {
-    "url": "http://thetaoteching.com/taoteching51.html",
-    "title": "\nEvery being in the universe\nis an expression of the One.\nIt springs into existence,\nunconscious, perfect, free,\ntakes on a physical body,\nlets circumstances complete it.\nThat is why every being\nspontaneously honors the One.\n\nThe One gives birth to all beings,\nnourishes them, maintains them,\ncares for them, comforts them, protects them,\ntakes them back to itself,\ncreating without possessing,\nacting without expecting,\nguiding without interfering.\nThat is why love of the One\nis in the very nature of things.\n",
-    },
-    {
     "url": "http://thetaoteching.com/taoteching50.html",
     "title": "\nThe Master gives himself up\nto whatever the moment brings.\nHe knows that he is going to die,\nand her has nothing left to hold on to:\nno illusions in his mind,\nno resistances in his body.\nHe doesn't think about his actions;\nthey flow from the core of his being.\nHe holds nothing back from life;\ntherefore he is ready for death,\nas a man is ready for sleep\nafter a good day's work.\n",
     },
     {
-    "url": "http://thetaoteching.com/taoteching53.html",
-    "title": "\nThe great Way is easy,\nyet people prefer the side paths.\nBe aware when things are out of balance.\nStay centered within the One.\n\nWhen rich speculators prosper\nWhile farmers lose their land;\nwhen government officials spend money\non weapons instead of cures;\nwhen the upper class is extravagant and irresponsible\nwhile the poor have nowhere to turn-\nall this is robbery and chaos.\nIt is not in keeping with the One.\n",
+    "url": "http://thetaoteching.com/taoteching51.html",
+    "title": "\nEvery being in the universe\nis an expression of the One.\nIt springs into existence,\nunconscious, perfect, free,\ntakes on a physical body,\nlets circumstances complete it.\nThat is why every being\nspontaneously honors the One.\n\nThe One gives birth to all beings,\nnourishes them, maintains them,\ncares for them, comforts them, protects them,\ntakes them back to itself,\ncreating without possessing,\nacting without expecting,\nguiding without interfering.\nThat is why love of the One\nis in the very nature of things.\n",
     },
     {
     "url": "http://thetaoteching.com/taoteching52.html",
     "title": "\nIn the beginning was the One.\nAll things issue from it;\nall things return to it.\n\nTo find the origin,\ntrace back the manifestations.\nWhen you recognize the children\nand find the mother,\nyou will be free of sorrow.\n\nIf you close your mind in judgements\nand traffic with desires,\nyour heart will be troubled.\nIf you keep your mind from judging\nand aren't led by the senses,\nyour heart will find peace.\n\nSeeing into darkness is clarity.\nKnowing how to yield is strength.\nUse your own light\nand return to the source of light.\nThis is called practicing eternity.\n",
+    },
+    {
+    "url": "http://thetaoteching.com/taoteching53.html",
+    "title": "\nThe great Way is easy,\nyet people prefer the side paths.\nBe aware when things are out of balance.\nStay centered within the One.\n\nWhen rich speculators prosper\nWhile farmers lose their land;\nwhen government officials spend money\non weapons instead of cures;\nwhen the upper class is extravagant and irresponsible\nwhile the poor have nowhere to turn-\nall this is robbery and chaos.\nIt is not in keeping with the One.\n",
     },
     {
     "url": "http://thetaoteching.com/taoteching54.html",
@@ -219,36 +219,36 @@ export const scrapedDao = [{
     "title": "\nWhoever is planted in the One\nwill not be rooted up.\nWhoever embraces the One\nwill not slip away.\nHer name will be held in honor\nfrom generation to generation.\n\nLet the One be present in your life\nand you will become genuine.\nLet it be present in your family\nand your family will flourish.\nLet it be present in your country\nand your country will be an example\nto all countries in the world.\nLet it be present in the universe\nand the universe will sing.\n\nHow do I know this is true?\nBy looking inside myself.\n",
     },
     {
-    "url": "http://thetaoteching.com/taoteching57.html",
-    "title": "\nIf you want to be a great leader,\nyou must learn to follow the One.\nStop trying to control.\nLet go of fixed plans and concepts,\nand the world will govern itself.\n\nThe more prohibitions you have,\nthe less virtuous people will be.\nThe more weapons you have,\nthe less secure people will be.\nThe more subsidies you have,\nthe less self-reliant people will be.\n\nTherefore the Master says:\nI let go of the law,\nand people become honest.\nI let go of economics,\nand people become prosperous.\nI let go of religion,\nand people become serene.\nI let go of all desire for the common good,\nand the good becomes common as grass.\n",
-    },
-    {
     "url": "http://thetaoteching.com/taoteching56.html",
     "title": "\nThose who know don't talk.\nThose who talk don't know.\n\nClose your mouth,\nblock off your senses,\nblunt your sharpness,\nuntie your knots,\nsoften your glare,\nsettle your dust.\nThis is the primal identity.\n\nBe like the One.\nIt can't be approached or withdrawn from,\nbenefited or harmed,\nhonored or brought into disgrace.\nIt gives itself up continually.\nThat is why it endures.\n",
+    },
+    {
+    "url": "http://thetaoteching.com/taoteching57.html",
+    "title": "\nIf you want to be a great leader,\nyou must learn to follow the One.\nStop trying to control.\nLet go of fixed plans and concepts,\nand the world will govern itself.\n\nThe more prohibitions you have,\nthe less virtuous people will be.\nThe more weapons you have,\nthe less secure people will be.\nThe more subsidies you have,\nthe less self-reliant people will be.\n\nTherefore the Master says:\nI let go of the law,\nand people become honest.\nI let go of economics,\nand people become prosperous.\nI let go of religion,\nand people become serene.\nI let go of all desire for the common good,\nand the good becomes common as grass.\n",
     },
     {
     "url": "http://thetaoteching.com/taoteching58.html",
     "title": "\nIf a country is governed with tolerance,\nthe people are comfortable and honest.\nIf a country is governed with repression,\nthe people are depressed and crafty.\n\nWhen the will to power is in charge,\nthe higher the ideals, the lower the results.\nTry to make people happy,\nand you lay the groundwork for misery.\nTry to make people moral,\nand you lay the groundwork for vice.\n\nThus the Master is content\nto serve as an example\nand not to impose her will.\nShe is pointed, but doesn't pierce.\nStraightforward, but supple.\nRadiant, but easy on the eyes.\n",
     },
     {
-    "url": "http://thetaoteching.com/taoteching60.html",
-    "title": "\nGoverning a large country\nis like frying a small fish.\nYou spoil it with too much poking.\n\nCenter your country in the One\nand evil will have no power.\nNot that it isn't there,\nbut you'll be able to step out of its way.\n\nGive evil nothing to oppose\nand it will disappear by itself.\n",
-    },
-    {
     "url": "http://thetaoteching.com/taoteching59.html",
     "title": "\nFor governing a country well\nthere is nothing better than moderation.\n\nThe mark of a moderate man\nis freedom from his own ideas.\nTolerant like the sky,\nall-pervading like sunlight,\nfirm like a mountain,\nsupple like a tree in the wind,\nhe has no destination in view\nand makes use of anything\nlife happens to bring his way.\n\nNothing is impossible for him.\nBecause he has let go,\nhe can care for the people's welfare\nas a mother cares for her child.\n",
+    },
+    {
+    "url": "http://thetaoteching.com/taoteching60.html",
+    "title": "\nGoverning a large country\nis like frying a small fish.\nYou spoil it with too much poking.\n\nCenter your country in the One\nand evil will have no power.\nNot that it isn't there,\nbut you'll be able to step out of its way.\n\nGive evil nothing to oppose\nand it will disappear by itself.\n",
     },
     {
     "url": "http://thetaoteching.com/taoteching61.html",
     "title": "\nWhen a country obtains great power,\nit becomes like the sea:\nall streams run downward into it.\nThe more powerful it grows,\nthe greater the need for humility.\nHumility means trusting the One,\nthus never needing to be defensive.\n\nA great nation is like a great man:\nWhen he makes a mistake, he realizes it.\nHaving realized it, he admits it.\nHaving admitted it, he corrects it.\nHe considers those who point out his faults\nas his most benevolent teachers.\nHe thinks of his enemy\nas the shadow that he himself casts.\n\nIf a nation is centered in the One,\nif it nourishes its own people\nand doesn't meddle in the affairs of others,\nit will be a light to all nations in the world.\n",
     },
     {
-    "url": "http://thetaoteching.com/taoteching63.html",
-    "title": "\nAct without doing;\nwork without effort.\nThink of the small as large\nand the few as many.\nConfront the difficult\nwhile it is still easy;\naccomplish the great task\nby a series of small acts.\n\nThe Master never reaches for the great;\nthus she achieves greatness.\nWhen she runs into a difficulty,\nshe stops and gives herself to it.\nShe doesn't cling to her own comfort;\nthus problems are no problem for her.\n",
-    },
-    {
     "url": "http://thetaoteching.com/taoteching62.html",
     "title": "\nThe One is the center of the universe,\nthe good man's treasure,\nthe bad man's refuge.\n\nHonors can be bought with fine words,\nrespect can be won with good deeds;\nbut the One is beyond all value,\nand no one can achieve it.\n\nThus, when a new leader is chosen,\ndon't offer to help him\nwith your wealth or your expertise.\nOffer instead\nto teach him about the One.\n\nWhy did the ancient Masters esteem the One?\nBecause, being one with the One,\nwhen you seek, you find;\nand when you make a mistake, you are forgiven.\nThat is why everybody loves it.\n",
+    },
+    {
+    "url": "http://thetaoteching.com/taoteching63.html",
+    "title": "\nAct without doing;\nwork without effort.\nThink of the small as large\nand the few as many.\nConfront the difficult\nwhile it is still easy;\naccomplish the great task\nby a series of small acts.\n\nThe Master never reaches for the great;\nthus she achieves greatness.\nWhen she runs into a difficulty,\nshe stops and gives herself to it.\nShe doesn't cling to her own comfort;\nthus problems are no problem for her.\n",
     },
     {
     "url": "http://thetaoteching.com/taoteching64.html",
@@ -259,12 +259,16 @@ export const scrapedDao = [{
     "title": "\nThe ancient Masters\ndidn't try to educate the people,\nbut kindly taught them to not-know.\n\nWhen they think that they know the answers,\npeople are difficult to guide.\nWhen they know that they don't know,\npeople can find their own way.\n\nIf you want to learn how to govern,\navoid being clever or rich.\nThe simplest pattern is the clearest.\nContent with an ordinary life,\nyou can show all people the way\nback to their own true nature.\n",
     },
     {
+    "url": "http://thetaoteching.com/taoteching66.html",
+    "title": "\nAll streams flow to the sea\nbecause it is lower than they are.\nHumility gives it its power.\n\nIf you want to govern the people,\nyou must place yourself below them.\nIf you want to lead the people,\nyou must learn how to follow them.\n\nThe Master is above the people,\nand no one feels oppressed.\nShe goes ahead of the people,\nand no one feels manipulated.\nThe whole world is grateful to her.\nBecause she competes with no one,\nno one can compete with her.\n",
+    },
+    {
     "url": "http://thetaoteching.com/taoteching67.html",
     "title": "\nSome say that my teaching is nonsense.\nOthers call it lofty but impractical.\nBut to those who have looked inside themselves,\nthis nonsense makes perfect sense.\nAnd to those who put it into practice,\nthis loftiness has roots that go deep.\n\nI have just three things to teach:\nsimplicity, patience, compassion.\nThese three are your greatest treasures.\nSimple in actions and in thoughts,\nyou return to the source of being.\nPatient with both friends and enemies,\nyou accord with the way things are.\nCompassionate toward yourself,\nyou reconcile all beings in the world.\n",
     },
     {
-    "url": "http://thetaoteching.com/taoteching66.html",
-    "title": "\nAll streams flow to the sea\nbecause it is lower than they are.\nHumility gives it its power.\n\nIf you want to govern the people,\nyou must place yourself below them.\nIf you want to lead the people,\nyou must learn how to follow them.\n\nThe Master is above the people,\nand no one feels oppressed.\nShe goes ahead of the people,\nand no one feels manipulated.\nThe whole world is grateful to her.\nBecause she competes with no one,\nno one can compete with her.\n",
+    "url": "http://thetaoteching.com/taoteching68.html",
+    "title": "\nThe best athlete\nwants his opponent at his best.\nThe best general\nenters the mind of his enemy.\nThe best businessman\nserves the communal good.\nThe best leader\nfollows the will of the people.\n\nAll of the embody\nthe virtue of non-competition.\nNot that they don't love to compete,\nbut they do it in the spirit of play.\nIn this they are like children\nand in harmony with the One.\n",
     },
     {
     "url": "http://thetaoteching.com/taoteching69.html",
@@ -275,16 +279,12 @@ export const scrapedDao = [{
     "title": "\nMy teachings are easy to understand\nand easy to put into practice.\nYet your intellect will never grasp them,\nand if you try to practice them, you'll fail.\n\nMy teachings are older than the world.\nHow can you grasp their meaning?\n\nIf you want to know me,\nlook inside your heart.\n",
     },
     {
-    "url": "http://thetaoteching.com/taoteching68.html",
-    "title": "\nThe best athlete\nwants his opponent at his best.\nThe best general\nenters the mind of his enemy.\nThe best businessman\nserves the communal good.\nThe best leader\nfollows the will of the people.\n\nAll of the embody\nthe virtue of non-competition.\nNot that they don't love to compete,\nbut they do it in the spirit of play.\nIn this they are like children\nand in harmony with the One.\n",
+    "url": "http://thetaoteching.com/taoteching71.html",
+    "title": "\nNot-knowing is true knowledge.\nPresuming to know is a disease.\nFirst realize that you are sick;\nthen you can move toward health.\n\nThe Master is her own physician.\nShe has healed herself of all knowing.\nThus she is truly whole.\n",
     },
     {
     "url": "http://thetaoteching.com/taoteching72.html",
     "title": "\nWhen they lose their sense of awe,\npeople turn to religion.\nWhen they no longer trust themselves,\nthey begin to depend upon authority.\n\nTherefore the Master steps back\nso that people won't be confused.\nHe teaches without a teaching,\nso that people will have nothing to learn.\n",
-    },
-    {
-    "url": "http://thetaoteching.com/taoteching71.html",
-    "title": "\nNot-knowing is true knowledge.\nPresuming to know is a disease.\nFirst realize that you are sick;\nthen you can move toward health.\n\nThe Master is her own physician.\nShe has healed herself of all knowing.\nThus she is truly whole.\n",
     },
     {
     "url": "http://thetaoteching.com/taoteching73.html",
@@ -299,20 +299,20 @@ export const scrapedDao = [{
     "title": "\nWhen taxes are too high,\npeople go hungry.\nWhen the government is too intrusive,\npeople lose their spirit.\n\nAct for the people's benefit.\nTrust them; leave them alone.\n",
     },
     {
-    "url": "http://thetaoteching.com/taoteching77.html",
-    "title": "\nAs it acts in the world, the One\nis like the bending of a bow.\nThe top is bent downward;\nthe bottom is bent up.\nIt adjusts excess and deficiency\nso that there is perfect balance.\nIt takes from what is too much\nand give to what isn't enough.\n\nThose who try to control,\nwho use force to protect their power,\ngo against the direction of the One.\nThey take from those who don't have enough\nand give to those who have far too much.\n\nThe Master can keep giving\nbecause there is no end to her wealth.\nShe acts without expectation,\nsucceeds without taking credit,\nand doesn't think that she is better\nthan anyone else.\n",
-    },
-    {
     "url": "http://thetaoteching.com/taoteching76.html",
     "title": "\nMen are born soft and supple;\ndead, they are stiff and hard.\nPlats are born tender and pliant;\ndead, they are brittle and dry.\n\nThus whoever is stiff and inflexible\nis a disciple of death.\nWhoever is soft and yielding\nis a disciple of life.\n\nThe hard and stiff will be broken.\nThe soft and supple will prevail.\n",
     },
     {
-    "url": "http://thetaoteching.com/taoteching79.html",
-    "title": "\nFailure is an opportunity.\nIf you blame someone else,\nthere is no end to the blame.\n\nTherefore the Master\nfulfills her own obligations\nand corrects her own mistakes.\nShe does what she needs to do\nand demands nothing of others.\n",
+    "url": "http://thetaoteching.com/taoteching77.html",
+    "title": "\nAs it acts in the world, the One\nis like the bending of a bow.\nThe top is bent downward;\nthe bottom is bent up.\nIt adjusts excess and deficiency\nso that there is perfect balance.\nIt takes from what is too much\nand give to what isn't enough.\n\nThose who try to control,\nwho use force to protect their power,\ngo against the direction of the One.\nThey take from those who don't have enough\nand give to those who have far too much.\n\nThe Master can keep giving\nbecause there is no end to her wealth.\nShe acts without expectation,\nsucceeds without taking credit,\nand doesn't think that she is better\nthan anyone else.\n",
     },
     {
     "url": "http://thetaoteching.com/taoteching78.html",
     "title": "\nNothing in the world\nis as soft and yielding as water.\nYet for dissolving the hard and inflexible,\nnothing can surpass it.\n\nThe soft overcomes the hard;\nthe gentle overcomes the rigid.\nEveryone knows this is true,\nbut few can put it into practice.\n\nTherefore the Master remains\nserene in the midst of sorrow.\nEvil cannot enter his heart.\nBecause he has given up helping,\nhe is people's greatest help.\n\nTrue words seem paradoxical.\n",
+    },
+    {
+    "url": "http://thetaoteching.com/taoteching79.html",
+    "title": "\nFailure is an opportunity.\nIf you blame someone else,\nthere is no end to the blame.\n\nTherefore the Master\nfulfills her own obligations\nand corrects her own mistakes.\nShe does what she needs to do\nand demands nothing of others.\n",
     },
     {
     "url": "http://thetaoteching.com/taoteching80.html",
