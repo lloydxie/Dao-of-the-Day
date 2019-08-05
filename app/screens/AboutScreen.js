@@ -38,17 +38,18 @@ export default class AboutScreen extends Component {
     this.title2 = `
     About the Dao De Ching`
     
-    this.content1 = `   Wiser Each Dao was inspired by the life-altering experience of reading the #1 renowned Daoist text – the `
+    this.content1 = `   Wiser Each Dao was inspired by the life-altering experience of reading the `
     
     this.content2 = 
     `
     
-    Written pre-1000 by the royal court advisor / philosopher / all-around-master Lao Tzu, it stands the test of time in the value people extract from it.
+    The way the Dao De Ching is written is meant to make you come up with your own conclusions. 
     
     It will help you look at your relationships and leadership ability from a 180 degree perspective – with dating, friends, coworkers, and the most important one of all – your relationship with yourself.
+
+    With the typing effect, the speed may seem slow to you – but wisdom is found in between the lines.
     
-    We’ll send you a short quote from it daily – and if it sparks interest, you can read the entire 50 - 300 word passage in full context. 
-    
+    When your eyes follow the flow of the passage progressing in its development, that is when you give yourself the space that can cause you to intuitively fill in the blanks or make unique connections to other ideas or concepts.
     
     
     

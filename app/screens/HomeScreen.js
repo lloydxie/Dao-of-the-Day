@@ -105,7 +105,8 @@ export default class HomeScreen extends React.Component {
     AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])
     
     setTimeout(() => {
-      this.props.navigation.navigate('Quote', { index: index })
+      let nextScreen = this.state.isFirstAppLoad ? 'Intro' : 'Quote'
+      this.props.navigation.navigate(nextScreen, { index: index })
       this.setState({isExitingScreen: false})
       GLOBAL_STATE.updateSetting(this, 'isFirstAppLoad', false)
     }, 500)

@@ -13,7 +13,6 @@ import TableOfContentsScreen from '../screens/TableOfContentsScreen';
 import AboutScreen from '../screens/AboutScreen';
 import IntroScreen from '../screens/IntroScreen';
 import StackViewStyleInterpolator from 'react-navigation-stack/src/views/StackView/StackViewStyleInterpolator'
-import GLOBAL_STATE from '../services/GlobalState'
 
 import { Ionicons } from '@expo/vector-icons';
 
@@ -23,15 +22,6 @@ const screensToFade = [
   'Quote',
   'Intro'
 ]
-
-const determineInitialScreen = function() {
-  this.state = GLOBAL_STATE.DEFAULT_SETTINGS
-  settings = GLOBAL_STATE.loadPastStateForNonComponent()
-  settings.then((ret) => {
-    console.log(ret ? 'Home' : 'Intro')
-    return ret ? 'Home' : 'Intro'
-  })
-}
 
 const HomeStack = createStackNavigator(
   {
@@ -127,18 +117,21 @@ export default createAppContainer(createMaterialBottomTabNavigator(
   {
     Home: { 
       screen: HomeStack,
-      navigationOptions:{  
-        tabBarLabel:<Text style={{ fontSize: 14 }}>Home</Text>,
-        tabBarIcon: ({ tintColor }) => (  
-          <View>  
-            <Ionicons style={[{color: tintColor}]} size={30} name={'ios-home'}/>  
-          </View>
-        ),  
-      }  
+      navigationOptions: ({ navigation }) => {  
+        return {
+          tabBarLabel:<Text style={{ fontSize: 14 }}>Home</Text>,
+          tabBarIcon: ({ tintColor }) => (  
+            <View>  
+              <Ionicons style={[{color: tintColor}]} size={30} name={'ios-home'}/>  
+            </View>
+          ),
+          tabBarVisible: navigation.state.routes[navigation.state.index].routeName === 'Intro' ? false : true
+        }
+      }
     },
     Settings: { 
       screen: SettingsStack,
-      navigationOptions:{  
+      navigationOptions: {  
         tabBarLabel:<Text style={{ fontSize: 14 }}>Settings</Text>,
         tabBarIcon: ({ tintColor }) => (  
           <View style={[{height: '150%'}]}>  
@@ -152,7 +145,7 @@ export default createAppContainer(createMaterialBottomTabNavigator(
   {
     activeColor: '#f0edf6',  
     inactiveColor: '#226557',  
-    barStyle: { backgroundColor: '#3BAD87' },  
+    barStyle: { backgroundColor: '#22BAD9' },  
     initialRouteName: 'Home',
     shifting: true,
   }
