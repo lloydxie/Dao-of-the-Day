@@ -7,8 +7,8 @@ const ASYNC_STORAGE_KEY = 'GoLloyd'
 
 class GlobalState {
     DEFAULT_SETTINGS = {
-        'typingSoundToggle': false,
-        'musicToggle': false,
+        'typingSoundToggle': true,
+        'musicToggle': true,
         'musicIndex': 2,
         'translationIndex': 1,
         'colorIndex': 1,
@@ -36,7 +36,7 @@ class GlobalState {
         })
     }
 
-    initializeStorageTriggers(that, cb) {
+    initializeStorageTriggers(that, cb = null) {
         const { navigation } = that.props;
 
         that.focusListener = navigation.addListener("willFocus", () => {

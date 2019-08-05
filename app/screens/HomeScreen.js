@@ -14,6 +14,8 @@ import AudioServiceSingleton from '../services/AudioService'
 import * as Animatable from 'react-native-animatable';
 import { DAO_BLUE } from './DaoTextScreen';
 
+import GLOBAL_STATE from '../services/GlobalState';
+
 NUM_COLUMNS = 3;
 HEIGHT_IPHONE_X = 896;
 WIDTH_IPHONE_X = 414;
@@ -25,15 +27,17 @@ export default class HomeScreen extends React.Component {
   
   state = {
     speed: 0,
-    yinYangFade: new Animated.Value(0),  // Initial value for opacity: 0
     isExitingScreen: false,
-    backgroundFade: new Animated.Value(1)
   };
+
+  yinYangFade = new Animated.Value(0)  // Initial value for opacity: 0
+  backgroundFade =  new Animated.Value(1)
 
   constructor() {
     super()
     console.log(Dimensions.get('window').width)
     AnimatedLottie = Animated.createAnimatedComponent(Lottie)
+    this.state = {...this.state, ...GLOBAL_STATE.DEFAULT_SETTINGS}
   }
 
   componentDidMount() {
@@ -41,35 +45,32 @@ export default class HomeScreen extends React.Component {
     this.lottieYinYang.play();
     AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['lily_1.mp3'])
     setTimeout(() => {
-      console.log(this.state.isExitingScreen)
       if (!this.state.isExitingScreen) {
         AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['typing.mp3'])
       }
     }, 2500)
-    setTimeout(() => {
-      Animated.timing(                  // Animate over time
-        this.state.yinYangFade,            // The animated value to drive
-        {
-          toValue: 1,                   // Animate to opacity: 1 (opaque)
-          duration: 1500,              // Make it take a while
-        }
-      ).start();  
-    }, 1000)
+    
+    // this.fadeInYinYangLottie()
 
     this.focusListener = this.props.navigation.addListener("willFocus", () => {
       this.setState(
         {
           speed: 0,
-          yinYangFade: new Animated.Value(0),  // Initial value for opacity: 0
           isExitingScreen: false,
-          backgroundFade: new Animated.Value(1)
         }
       )
+      this.yinYangFade = new Animated.Value(0)
+      this.backgroundFade = new Animated.Value(1)
     });
+  }
+
+  componentWillMount() {
+    GLOBAL_STATE.initializeStorageTriggers(this, this.fadeInYinYangLottie)
   }
 
   componentWillUnmount() {
     this.focusListener.remove();
+    GLOBAL_STATE.unloadStorageTriggers(this)
   }
 
 
@@ -77,10 +78,23 @@ export default class HomeScreen extends React.Component {
     this.setState({speed: .6})
   }
 
+  fadeInYinYangLottie = () => {
+    setTimeout(() => {
+      Animated.timing(                  // Animate over time
+        this.yinYangFade,            // The animated value to drive
+        {
+          toValue: 1,                   // Animate to opacity: 1 (opaque)
+          duration: 1500,              // Make it take a while
+        }
+      ).start();
+    }, 1000)
+  }
+  
+
   navigateAway() {
     this.setState({isExitingScreen: true})
     Animated.timing(                  // Animate over time
-      this.state.backgroundFade,            // The animated value to drive
+      this.backgroundFade,            // The animated value to drive
       {
         toValue: 0,                   // Animate to opacity: 0 (opaque)
         duration: 500,              // Make it take a while
@@ -93,6 +107,7 @@ export default class HomeScreen extends React.Component {
     setTimeout(() => {
       this.props.navigation.navigate('Quote', { index: index })
       this.setState({isExitingScreen: false})
+      GLOBAL_STATE.updateSetting(this, 'isFirstAppLoad', false)
     }, 500)
   }
 
@@ -102,7 +117,7 @@ export default class HomeScreen extends React.Component {
         style={{
           ...styles.container,
           backgroundColor: '#fff',
-          opacity: this.state.backgroundFade,
+          opacity: this.backgroundFade,
         }}
       >
         <ScrollView 
@@ -142,7 +157,7 @@ export default class HomeScreen extends React.Component {
                 activeOpacity={0.4}
               >
                 <Animated.View style={{
-                  opacity: this.state.yinYangFade,
+                  opacity: this.yinYangFade,
                 }}>
                   <Lottie
                     ref={animation => {
@@ -174,8 +189,7 @@ export default class HomeScreen extends React.Component {
               delayMap={delayMap}
               fixed={true}
               onTypingEnd={() => {AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])}}
-              >{`Welcome, fellow adventurer...
-          Read with intention...`}
+              >{this.state.isFirstAppLoad ? `Welcome, fellow adventurer!` : `Begin with intention yet again.`}
           </TypeWriter>
           <Animatable.Text
             animation='fadeIn'

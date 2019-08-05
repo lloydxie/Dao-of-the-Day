@@ -4,6 +4,8 @@ import React, {Component} from 'react';
 import {
   View,
   Share,
+  AsyncStorage,
+  Alert
 } from 'react-native';
 import SettingsList from 'react-native-settings-list';
 import { StoreReview } from 'expo';
@@ -79,6 +81,11 @@ export default class SettingsScreen extends Component {
                 title='Share me'
                 onPress={this.onShare}
               />
+              <SettingsList.Item
+                hasNavArrow={false}
+                title='Reset Default Settings'
+                onPress={this.resetSettingsAlert}
+              />
           </SettingsList>
         </View>
       </View>
@@ -87,5 +94,17 @@ export default class SettingsScreen extends Component {
 
   navigateToMusicSelection() {
     this.props.navigation.navigate('MusicSelection')
+  }
+
+  resetSettingsAlert() {
+    Alert.alert(
+      'Are you sure you want to reset?',
+      'You will be shown the intro again the next app load',
+      [
+        {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+        {text: 'OK', onPress: () => AsyncStorage.clear()}
+      ],
+      { cancelable: true }
+    )
   }
 }
