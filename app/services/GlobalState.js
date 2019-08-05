@@ -27,8 +27,6 @@ class GlobalState {
             if (!oldSetting) {
                 AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify(this.DEFAULT_SETTINGS))
             }
-            console.log('focusing')
-            console.log(oldSetting)
             that.setState(JSON.parse(oldSetting))
             if (cb) {
                 cb()
@@ -61,6 +59,15 @@ class GlobalState {
         newState[key] = !oldValue
         that.setState(newState)
         AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify(newState))
+    }
+
+    loadPastStateForNonComponent(cb = null) {
+        return AsyncStorage.getItem(ASYNC_STORAGE_KEY).then((oldSetting) => {
+            if (cb) {
+                cb()
+            }
+            return oldSetting
+        })
     }
 }
 const GLOBAL_STATE = new GlobalState();

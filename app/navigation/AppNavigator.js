@@ -11,16 +11,27 @@ import TranslationScreen from '../screens/TranslationScreen';
 import MusicSelectionScreen from '../screens/MusicSelectionScreen';
 import TableOfContentsScreen from '../screens/TableOfContentsScreen';
 import AboutScreen from '../screens/AboutScreen';
-import { fadeIn } from 'react-navigation-transitions';
+import IntroScreen from '../screens/IntroScreen';
 import StackViewStyleInterpolator from 'react-navigation-stack/src/views/StackView/StackViewStyleInterpolator'
+import GLOBAL_STATE from '../services/GlobalState'
 
 import { Ionicons } from '@expo/vector-icons';
 
 const screensToFade = [
   'Home',
   'DaoText',
-  'Quote'
+  'Quote',
+  'Intro'
 ]
+
+const determineInitialScreen = function() {
+  this.state = GLOBAL_STATE.DEFAULT_SETTINGS
+  settings = GLOBAL_STATE.loadPastStateForNonComponent()
+  settings.then((ret) => {
+    console.log(ret ? 'Home' : 'Intro')
+    return ret ? 'Home' : 'Intro'
+  })
+}
 
 const HomeStack = createStackNavigator(
   {
@@ -69,6 +80,17 @@ const HomeStack = createStackNavigator(
         headerTintColor: '#22BAD9',
       },
     },
+    // Intro Screens
+    Intro: {
+      screen: IntroScreen,
+      navigationOptions: {
+        headerStyle: {
+          backgroundColor: '#1f1f1f',
+        },
+        headerTintColor: '#22BAD9',
+        header: null,
+      },
+    }
   },
   {
     initialRouteName: 'Home',

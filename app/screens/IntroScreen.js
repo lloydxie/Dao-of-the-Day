@@ -4,10 +4,11 @@ import TypeWriter from 'react-native-typewriter';
 
 import {
   View,
-  Text
+  Text,
+  StyleSheet
 } from 'react-native';
 
-export default class SettingsScreen extends Component {
+export default class IntroScreen extends Component {
   constructor(){
     super()
   }
@@ -172,3 +173,13 @@ export default class SettingsScreen extends Component {
     );
   }
 }
+
+let delayMap = [
+  { at: ' ', delay: 150 }
+]
+
+const styles = StyleSheet.create({
+  title2: {
+
+  },
+})
