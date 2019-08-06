@@ -52,7 +52,7 @@ export default class SettingsScreen extends Component {
       <View style={{backgroundColor:'#EFEFF4',flex:1}}>
         <View style={{flex:1, marginTop:50}}>
           <SettingsList>
-            <SettingsList.Header headerText='Settings' headerStyle={{color:'black'}}/>
+            <SettingsList.Header headerText='Settings' headerStyle={{color:'black', fontSize: 22, marginLeft: '3.5%'}}/>
               <SettingsList.Item
                 hasNavArrow={false}
                 title='Why did I create this?'

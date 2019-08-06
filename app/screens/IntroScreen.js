@@ -24,7 +24,7 @@ const introLines = [
   "These are dense, mysterious words. This is not to be read the way you read a book. If anything, it is more akin to reading a poem. It is paradoxical wisdom that hopefully leaves you pondering each line.",
   "There is an option to switch between translations – if vague paradoxes find you frustrating, there is a 'No Bullshit' modern interpretation by Hogan.",
   "We strongly suggest use in the nighttime only and with headphones or speakers.",
-  "Now fellow adventurer, embark on your own journey toward that which you seek. And don't forget to enjoy it every step of the way."
+  "Now fellow adventurer, embark on your own journey toward that which you seek...\n\nAnd don't forget to enjoy it every step of the way."
 ]
 
 export default class IntroScreen extends Component {
@@ -92,7 +92,7 @@ export default class IntroScreen extends Component {
       this.hasRefreshed = false
       this.finishedTyping = false
       this.view.fadeOut(200).then(() => {
-        if (this.state.introLineIndex < 10) {
+        if (this.state.introLineIndex < 9) {
           this.loadNextLine()          
         }
         else {
