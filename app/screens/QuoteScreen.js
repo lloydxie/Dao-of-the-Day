@@ -3,11 +3,10 @@ import {
   StyleSheet,
   TouchableOpacity,
   View,
-  Text,
   Dimensions
 } from 'react-native';
-import { scrapedDao } from './content/daoDeChing'
 import * as Animatable from 'react-native-animatable';
+import AudioServiceSingleton from '../services/AudioService'
 
 import GLOBAL_STATE from '../services/GlobalState';
 
@@ -73,6 +72,7 @@ export default class QuoteScreen extends React.Component {
 
   navigateToDaoText = () => {
     this.setState({isExitingScreen: true})
+    AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['lily_1.mp3'])
     setTimeout(() => this.props.navigation.navigate('DaoText', {index: this.numberOfTheDay}), 1000)
   }
 

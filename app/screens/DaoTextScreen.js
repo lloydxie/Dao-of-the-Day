@@ -6,7 +6,6 @@ import {
   View,
   Text,
   Dimensions,
-  Modal
 } from 'react-native';
 import {withNavigationFocus} from 'react-navigation';
 import TypeWriter from 'react-native-typewriter';
@@ -14,7 +13,6 @@ import AudioServiceSingleton from '../services/AudioService'
 import { Ionicons } from '@expo/vector-icons';
 import * as Brightness from 'expo-brightness';
 import * as Animatable from 'react-native-animatable';
-import TranslationScreen from './TranslationScreen'
 
 import GLOBAL_STATE from '../services/GlobalState';
 
@@ -87,10 +85,10 @@ class DaoTextScreen extends React.Component {
       this.keyName = Object.keys(backgroundMusicFilesMap)[0];
     }
     else if (numberOfTheDay < 50) {
-      this.keyName = Object.keys(backgroundMusicFilesMap)[0];
+      this.keyName = Object.keys(backgroundMusicFilesMap)[1];
     }
     else {
-      this.keyName = Object.keys(backgroundMusicFilesMap)[0];
+      this.keyName = Object.keys(backgroundMusicFilesMap)[2];
     }
     
     if (!AudioServiceSingleton.backgroundMusicFilesMap[this.keyName]) {
@@ -117,22 +115,34 @@ class DaoTextScreen extends React.Component {
     this.brightnessValue = 0
     this.interval = setInterval(() => this.increaseBrightness(), 100);
 
-    setTimeout(() => {
-      if (!this.state.isExitingScreen) {
-        // AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['typing.mp3'])
-        // this.setState({isTypingAudio: true})
-      }
-    }, 5000)
+    isCurrentlyPlayingMusic = await this.checkIfMusicIsPlaying()
+    if (!isCurrentlyPlayingMusic) {
+      soundObject = await this.loadAudioFile(this.numberOfTheDay)
+      AudioServiceSingleton.play(soundObject)
+    }
 
-    soundObject = await this.loadAudioFile(this.numberOfTheDay)
     setTimeout(() => {
       if (!this.state.isExitingScreen) {
-        AudioServiceSingleton.play(soundObject)
       }
     }, 2000)
 
     this.reinitializeText()
     this.setState({dummy: true})
+  }
+
+  async checkIfMusicIsPlaying() {
+    isCurrentlyPlayingMusic = false
+    for (key in AudioServiceSingleton.backgroundMusicFilesMap) {
+      soundObject = AudioServiceSingleton.backgroundMusicFilesMap[key]
+      if (soundObject) {
+        let audioStatus = await soundObject.getStatusAsync()
+        if (audioStatus.isPlaying) {
+          isCurrentlyPlayingMusic = true
+        }
+      }
+    }
+
+    return isCurrentlyPlayingMusic
   }
 
   reinitializeText = () => {
@@ -155,7 +165,7 @@ class DaoTextScreen extends React.Component {
 
   navigateAway() {
     this.setState({isExitingScreen: true})
-    AudioServiceSingleton.unmount(AudioServiceSingleton.backgroundMusicFilesMap[this.keyName])
+    // AudioServiceSingleton.unmount(AudioServiceSingleton.backgroundMusicFilesMap[this.keyName])
     AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])
     this.props.navigation.navigate('Quote', {index: this.numberOfTheDay})
   }

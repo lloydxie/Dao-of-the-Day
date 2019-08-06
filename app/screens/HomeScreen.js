@@ -41,6 +41,7 @@ export default class HomeScreen extends React.Component {
   }
 
   componentDidMount() {
+    console.log('home did mount')
     this.lottieYinYang.play();
     this.lottieNinja.play();
     AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['lily_1.mp3'])
@@ -101,13 +102,11 @@ export default class HomeScreen extends React.Component {
       }
     ).start()
     index = Math.floor(Math.random() * 81)
-    AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['lily_1.mp3'])
     AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])
     
     setTimeout(() => {
       let nextScreen = this.state.isFirstAppLoad ? 'Intro' : 'Quote'
       this.props.navigation.navigate(nextScreen, { index: index })
-      this.setState({isExitingScreen: false})
       GLOBAL_STATE.updateSetting(this, 'isFirstAppLoad', false)
     }, 500)
   }
