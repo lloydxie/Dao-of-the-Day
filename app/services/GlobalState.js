@@ -50,6 +50,9 @@ class GlobalState {
         let newState = {...that.state}
         newState[key] = value
         that.setState(newState)
+
+        // only store global state fields, not the other fields in the component
+        globalState = this.whitelistGlobalStateFields(newState)
         AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify(newState))
     }
 
@@ -58,7 +61,17 @@ class GlobalState {
         let newState = {...that.state}
         newState[key] = !oldValue
         that.setState(newState)
+        
+        globalState = this.whitelistGlobalStateFields(newState)
         AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify(newState))
+    }
+
+    whitelistGlobalStateFields(componentState) {
+        whitelist = Object.keys(componentState)
+        const globalState = whitelist
+            .reduce((obj, key) => ({ ...obj, [key]: componentState[key] }), {})
+        
+        return globalState
     }
 
     loadPastStateForNonComponent(cb = null) {

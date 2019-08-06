@@ -41,8 +41,8 @@ export default class HomeScreen extends React.Component {
   }
 
   componentDidMount() {
-    this.lottieNinja.play();
     this.lottieYinYang.play();
+    this.lottieNinja.play();
     AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['lily_1.mp3'])
     setTimeout(() => {
       if (!this.state.isExitingScreen) {
@@ -50,8 +50,6 @@ export default class HomeScreen extends React.Component {
       }
     }, 2500)
     
-    // this.fadeInYinYangLottie()
-
     this.focusListener = this.props.navigation.addListener("willFocus", () => {
       this.setState(
         {
@@ -79,7 +77,9 @@ export default class HomeScreen extends React.Component {
   }
 
   fadeInYinYangLottie = () => {
+    console.log(this.state.speed)
     setTimeout(() => {
+      console.log(this.state.speed)
       Animated.timing(                  // Animate over time
         this.yinYangFade,            // The animated value to drive
         {
@@ -179,19 +179,9 @@ export default class HomeScreen extends React.Component {
               }}
               style={styles.lottieNinja}
               source={require('../assets/lottie/ninja.json')}
+              onPress={() => this.lottieNinja.play()}
             />
           </View>
-          <TypeWriter
-              typing={1}
-              style={styles.title2}
-              minDelay={120}
-              maxDelay={200}
-              initialDelay={2500}
-              delayMap={delayMap}
-              fixed={true}
-              onTypingEnd={() => {AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])}}
-              >{this.state.isFirstAppLoad ? `Welcome, fellow adventurer!` : `Begin with intention yet again.`}
-          </TypeWriter>
           <Animatable.Text
             animation='fadeIn'
             iterationCount='infinite'
@@ -204,6 +194,17 @@ export default class HomeScreen extends React.Component {
           >
             start reading
           </Animatable.Text>
+          <TypeWriter
+              typing={1}
+              style={styles.title2}
+              minDelay={120}
+              maxDelay={200}
+              initialDelay={2500}
+              delayMap={delayMap}
+              fixed={true}
+              onTypingEnd={() => {AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])}}
+              >{this.state.isFirstAppLoad ? `Welcome, fellow adventurer!` : `Begin with intention yet again.`}
+          </TypeWriter>
         </ScrollView>
       </Animated.View>
     );
@@ -225,22 +226,6 @@ const styles = StyleSheet.create({
     fontSize: 20 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
     fontWeight: 'bold'
   },
-  grid: {
-    backgroundColor: '#22BAD9',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginHorizontal: 10 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
-    marginVertical: 30 * (Dimensions.get('window').height / HEIGHT_IPHONE_X),
-    height: Dimensions.get('window').width / (NUM_COLUMNS * 1.5),
-    width: Dimensions.get('window').width / (NUM_COLUMNS * 1.5),
-    shadowColor: '#000',
-    shadowOffset: { width: 3, height: 3 },
-    shadowOpacity: 0.7,
-    shadowRadius: 2,
-    borderRadius: 15,
-    borderWidth: 1,
-    borderColor: '#ffe'
-  },
   title: {
     fontSize: 52 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
     color: '#1f1f1f',
@@ -248,9 +233,9 @@ const styles = StyleSheet.create({
   },
   title2: {
     fontSize: 26 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
-    marginTop: 5 * (Dimensions.get('window').height / HEIGHT_IPHONE_X),
     color: '#1f1f1f',
     fontFamily: 'dreamOrphans',
+    marginTop: '15%'
   },
   lottieNinja: {
     width: 300 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
@@ -276,7 +261,6 @@ const styles = StyleSheet.create({
   beginReading: {
     fontSize: 30,
     fontFamily: 'dreamOrphans',
-    marginTop: 60 * (Dimensions.get('window').height / HEIGHT_IPHONE_X),
     color: DAO_BLUE
   }
 });
