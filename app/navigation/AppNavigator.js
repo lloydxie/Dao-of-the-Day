@@ -88,10 +88,9 @@ const HomeStack = createStackNavigator(
     defaultNavigationOptions: {
       gesturesEnabled: false,
     },
-    // transitionConfig: () => fadeIn(1000),
     transitionConfig: () => ({
       transitionSpec: {
-        duration: 400,
+        duration: 500,
       },
       screenInterpolator: props => {
         const last = props.scenes[props.scenes.length - 1];

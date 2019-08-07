@@ -105,12 +105,6 @@ class DaoTextScreen extends React.Component {
       this.setState({paused: true})
     });
 
-    this.willFocus = this.props.navigation.addListener("willFocus", () => {
-      setTimeout(() => {
-        //  this.reinitializeText()
-      }, 50)
-    })
-
     this.oldBrightness = Brightness.getBrightnessAsync()
     this.brightnessValue = 0
     this.interval = setInterval(() => this.increaseBrightness(), 100);
@@ -120,11 +114,6 @@ class DaoTextScreen extends React.Component {
       soundObject = await this.loadAudioFile(this.numberOfTheDay)
       AudioServiceSingleton.play(soundObject)
     }
-
-    setTimeout(() => {
-      if (!this.state.isExitingScreen) {
-      }
-    }, 2000)
 
     this.reinitializeText()
     this.setState({dummy: true})
@@ -160,12 +149,10 @@ class DaoTextScreen extends React.Component {
     GLOBAL_STATE.unloadStorageTriggers(this)
 
     this.blurAway.remove()
-    this.willFocus.remove()
   }
 
   navigateAway() {
     this.setState({isExitingScreen: true})
-    // AudioServiceSingleton.unmount(AudioServiceSingleton.backgroundMusicFilesMap[this.keyName])
     AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])
     this.props.navigation.navigate('Quote', {index: this.numberOfTheDay})
   }

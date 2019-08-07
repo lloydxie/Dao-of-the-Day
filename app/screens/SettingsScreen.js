@@ -58,7 +58,7 @@ export default class SettingsScreen extends Component {
                 title='Why did I create this?'
                 onPress={() => this.props.navigation.navigate('About')}
               />
-              <SettingsList.Item
+              {/* <SettingsList.Item
                 hasNavArrow={false}
                 switchState={this.state.typingSoundToggle}
                 switchOnValueChange={() => GLOBAL_STATE.toggleSetting(this, 'typingSoundToggle')}
@@ -69,7 +69,7 @@ export default class SettingsScreen extends Component {
                 switchState={this.state.musicToggle}
                 switchOnValueChange={() => GLOBAL_STATE.toggleSetting(this, 'musicToggle')}
                 hasSwitch={true}
-                title='BG Music (turn off for slower phones)'/>
+                title='BG Music (turn off for slower phones)'/> */}
               <SettingsList.Item
                 hasNavArrow={false}
                 title='Rate the App'

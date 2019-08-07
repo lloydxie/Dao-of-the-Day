@@ -93,22 +93,24 @@ export default class HomeScreen extends React.Component {
   
 
   navigateAway() {
-    this.setState({isExitingScreen: true})
-    Animated.timing(                  // Animate over time
-      this.backgroundFade,            // The animated value to drive
-      {
-        toValue: 0,                   // Animate to opacity: 0 (opaque)
-        duration: 500,              // Make it take a while
-      }
-    ).start()
-    index = Math.floor(Math.random() * 81)
-    AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])
-    
-    setTimeout(() => {
-      let nextScreen = this.state.isFirstAppLoad ? 'Intro' : 'Quote'
-      this.props.navigation.navigate(nextScreen, { index: index })
-      GLOBAL_STATE.updateSetting(this, 'isFirstAppLoad', false)
-    }, 500)
+    if (!this.state.isExitingScreen) {
+      this.setState({isExitingScreen: true})
+      Animated.timing(                  // Animate over time
+        this.backgroundFade,            // The animated value to drive
+        {
+          toValue: 0,                   // Animate to opacity: 0 (opaque)
+          duration: 500,              // Make it take a while
+        }
+      ).start()
+      index = Math.floor(Math.random() * 81)
+      AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])
+      
+      setTimeout(() => {
+        let nextScreen = this.state.isFirstAppLoad ? 'Intro' : 'Quote'
+        this.props.navigation.navigate(nextScreen, { index: index })
+        GLOBAL_STATE.updateSetting(this, 'isFirstAppLoad', false)
+      }, 500)
+    }
   }
 
   render() {

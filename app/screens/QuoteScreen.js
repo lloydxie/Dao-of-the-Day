@@ -54,11 +54,6 @@ export default class QuoteScreen extends React.Component {
   }
 
   componentDidMount() {
-    setTimeout(() => {
-      if (!this.state.isExitingScreen) {
-        // AudioServiceSingleton.play(soundObject)
-      }
-    }, 2000)
   }
 
   componentWillUnmount() {
