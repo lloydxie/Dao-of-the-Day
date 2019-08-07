@@ -133,7 +133,7 @@ export default class HomeScreen extends React.Component {
             <Animatable.Text
               style={{
                 ...styles.title,
-                marginTop: 100 * (Dimensions.get('window').height / HEIGHT_IPHONE_X)
+                marginTop: 50 * (Dimensions.get('window').height / HEIGHT_IPHONE_X)
               }}
               animation='zoomIn'
               direction='alternate'
@@ -171,6 +171,17 @@ export default class HomeScreen extends React.Component {
               </TouchableOpacity>
             </View>
           </View>
+          <TypeWriter
+              typing={1}
+              style={styles.title2}
+              minDelay={120}
+              maxDelay={200}
+              initialDelay={2500}
+              delayMap={delayMap}
+              fixed={true}
+              onTypingEnd={() => {AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])}}
+              >{this.state.isFirstAppLoad ? `Welcome, fellow adventurer!` : `Begin with intention yet again.`}
+          </TypeWriter>
           <View style={styles.lottieNinja}>
             <Lottie
               ref={animation => {
@@ -193,17 +204,6 @@ export default class HomeScreen extends React.Component {
           >
             start reading
           </Animatable.Text>
-          <TypeWriter
-              typing={1}
-              style={styles.title2}
-              minDelay={120}
-              maxDelay={200}
-              initialDelay={2500}
-              delayMap={delayMap}
-              fixed={true}
-              onTypingEnd={() => {AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])}}
-              >{this.state.isFirstAppLoad ? `Welcome, fellow adventurer!` : `Begin with intention yet again.`}
-          </TypeWriter>
         </ScrollView>
       </Animated.View>
     );
@@ -231,15 +231,16 @@ const styles = StyleSheet.create({
     fontFamily: 'dreamOrphans',
   },
   title2: {
-    fontSize: 26 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
+    fontSize: 20 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
     color: '#1f1f1f',
     fontFamily: 'dreamOrphans',
-    marginTop: '15%'
+    marginTop: '10%'
   },
   lottieNinja: {
-    width: 300 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
-    height: 300 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
-    aspectRatio: 1
+    width: 250 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
+    height: 250 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
+    aspectRatio: 1,
+    marginTop: '-3%'
   },
   lottieYinYang: {
     width: 50 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
@@ -258,8 +259,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   beginReading: {
-    fontSize: 30,
+    fontSize: 42 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
     fontFamily: 'dreamOrphans',
-    color: DAO_BLUE
+    color: DAO_BLUE,
+    marginTop: '7%'
   }
 });

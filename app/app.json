@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Wiser Each Day",
-    "slug": "wiser-each-day",
+    "name": "Wiser Each Dao",
+    "slug": "wiser-each-dao",
     "privacy": "public",
     "sdkVersion": "33.0.0",
     "platforms": [
@@ -23,8 +23,12 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": false
+      "supportsTablet": true,
+      "bundleIdentifier": "com.lloydX.wisereachdao"
     },
-    "description": "A Dao A Day, keeps the Doctor away. "
+    "android": {
+      "package": "com.lloydX.wisereachdao"
+    },
+    "description": "Wiser each Dao: The Dao of the Hero's journey"
   }
 }
