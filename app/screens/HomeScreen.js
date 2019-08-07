@@ -118,7 +118,7 @@ export default class HomeScreen extends React.Component {
       <Animated.View
         style={{
           ...styles.container,
-          backgroundColor: '#fff',
+          backgroundColor: '#ffffff',
           opacity: this.backgroundFade,
         }}
       >
@@ -223,7 +223,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   daoNumber: {
-    color: '#fff',
+    color: '#ffffff',
     fontSize: 20 * (windowWidth / WIDTH_IPHONE_X),
     fontWeight: 'bold'
   },

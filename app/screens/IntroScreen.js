@@ -17,13 +17,13 @@ const AnimatableTouchableOpacity = Animatable.createAnimatableComponent(Touchabl
 const introLines = [
   'As we grow older we grow both more foolish and wiser at the same time.\n\n             - Anonymous',
   "Welcome to Wiser Each Dao. Inspired by the life-altering reading of the Dao De Ching, this app is an interactive experience to help bring the most out of Lao Tzu's timeless wisdom.",
-  "Lao Tzu was a well-esteemed ancient Chinese royal court advisor and philosopher. The Dao De Ching is like a bible for the Hero's Journey. ",
+  "Lao Tzu was a well-esteemed royal court advisor and philosopher in Ancient China. The Dao De Ching is like a bible for the Hero's Journey. ",
   "The best teachers are the ones who don’t just tell you what to do, but make you seek the answers yourself. They give you the space to find your own way. And that is precisely the method of Lao Tzu.",
   "Online and social media gurus can give you all the greatest advice in the world – but it will do nothing for you until you start doing things your own way.",
   "It is a waste of time to read the Dao De Ching when you have no patience for it. This app will help cultivate that patience whilst reading it because of a typing effect that acts as a reading pacer.",
   "These are dense, mysterious words. This is not to be read the way you read a book. If anything, it is more akin to reading a poem. It is paradoxical wisdom that hopefully leaves you pondering each line.",
   "There is an option to switch between translations – if vague paradoxes find you frustrating, there is a 'No Bullshit' modern interpretation by Hogan.",
-  "We strongly suggest use in the nighttime only and with headphones or speakers.",
+  "Our best advice is to use it in the nighttime with headphones or speakers.",
   "Now fellow adventurer, embark on your own journey toward that which you seek...\n\nAnd don't forget to enjoy it every step of the way."
 ]
 
@@ -124,7 +124,8 @@ export default class IntroScreen extends Component {
 }
 
 let delayMap = [
-  { at: ' ', delay: 10 }
+  { at: ' ', delay: 10 },
+  { at: '–', delay: 500 }
 ]
 
 const styles = StyleSheet.create({

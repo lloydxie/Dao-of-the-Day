@@ -6,9 +6,9 @@ export default {
   tabIconSelected: tintColor,
   tabBar: '#fefefe',
   errorBackground: 'red',
-  errorText: '#fff',
+  errorText: '#ffffff',
   warningBackground: '#EAEB5E',
   warningText: '#666804',
   noticeBackground: tintColor,
-  noticeText: '#fff',
+  noticeText: '#ffffff',
 };

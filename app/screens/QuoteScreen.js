@@ -12,11 +12,11 @@ import GLOBAL_STATE from '../services/GlobalState';
 
 const DAO_BLUE = "#22BAD9";
 const BG_COLOR_1 = '#1f1f1f';
-const BG_COLOR_2 = '#fff';
+const BG_COLOR_2 = '#ffffff';
 const BG_COLOR_3 = 'black';
 const TEXT_COLOR_1 = DAO_BLUE;
 const TEXT_COLOR_2 = 'black';
-const TEXT_COLOR_3 = '#fff';
+const TEXT_COLOR_3 = '#ffffff';
 
 const HEIGHT_IPHONE_X = 896;
 const WIDTH_IPHONE_X = 414;
@@ -122,7 +122,6 @@ export default class QuoteScreen extends React.Component {
             >
               <Animatable.Text
                   style={{
-                      ...styles.helpLinkText,
                       color: this.state.textColor,
                       ...styles.actionsContainer,
                   }}
@@ -146,7 +145,6 @@ Reading...`}
             >
             <Animatable.Text
                 style={{
-                    ...styles.helpLinkText,
                     color: this.state.textColor,
                     ...styles.actionsContainer,
                 }}
@@ -169,7 +167,6 @@ Reading...`}
             >
             <Animatable.Text
                 style={{
-                    ...styles.helpLinkText,
                     color: this.state.textColor,
                     ...styles.actionsContainer,
                 }}
@@ -192,7 +189,6 @@ Reading...`}
             >
             <Animatable.Text
                 style={{
-                    ...styles.helpLinkText,
                     color: this.state.textColor,
                     ...styles.actionsContainer,
                 }}
@@ -226,12 +222,6 @@ Reading...`}
                     {this.capitalize(this.quote) + '\n                        – Lao Tzu'}
                 </Animatable.Text>
             </TouchableOpacity>
-            <View
-              style={{
-                ...styles.actionsContainer
-              }}
-            >
-            </View>
           </View>
       </View> 
     );
@@ -255,7 +245,8 @@ const styles = StyleSheet.create({
     fontFamily: 'smite',
   },
   actionsContainer: {
-    opacity: 0.5
+    fontSize: 18 * (windowWidth / WIDTH_IPHONE_X),
+    opacity: 0.4
   },
   chapterTitle: {
     fontSize: 36 * (windowWidth / WIDTH_IPHONE_X),
