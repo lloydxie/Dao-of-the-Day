@@ -136,6 +136,7 @@ class DaoTextScreen extends React.Component {
 
   reinitializeText = () => {
       if (this.daoText) {
+        this.setState({paused: false})
         this.restartTyping(this.daoText)
       }
       this.numberOfTheDay = this.props.navigation.getParam('index', this.numberOfTheDay)
@@ -378,7 +379,7 @@ class DaoTextScreen extends React.Component {
                   ref={ref => this.daoText = ref}
                   minDelay={MIN_DELAY[this.state.typingSpeed]}
                   maxDelay={MAX_DELAY[this.state.typingSpeed]}
-                  initialDelay={300}
+                  initialDelay={900}
                   fixed={true}
                   delayMap={delayMap}
                   onTyped={this.playOrPauseTypingAudio}

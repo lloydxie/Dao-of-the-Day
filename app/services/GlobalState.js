@@ -15,8 +15,8 @@ class GlobalState {
     }
 
     TRANSLATIONS = [
-        hoganDao,
         scrapedDao,
+        hoganDao,
         chineseTranslation,
       ]
 
