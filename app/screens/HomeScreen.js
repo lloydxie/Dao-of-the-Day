@@ -35,13 +35,11 @@ export default class HomeScreen extends React.Component {
 
   constructor() {
     super()
-    console.log(Dimensions.get('window').width)
     AnimatedLottie = Animated.createAnimatedComponent(Lottie)
     this.state = {...this.state, ...GLOBAL_STATE.DEFAULT_SETTINGS}
   }
 
   componentDidMount() {
-    console.log('home did mount')
     this.lottieYinYang.play();
     this.lottieNinja.play();
     AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['lily_1.mp3'])
@@ -74,13 +72,15 @@ export default class HomeScreen extends React.Component {
 
 
   playYinYangAnimation = () => {
+    this.lottieYinYang.play()
     this.setState({speed: .6})
   }
 
   fadeInYinYangLottie = () => {
-    console.log(this.state.speed)
     setTimeout(() => {
-      console.log(this.state.speed)
+      if (this.state.isFirstAppLoad) {
+        this.playYinYangAnimation()
+      }
       Animated.timing(                  // Animate over time
         this.yinYangFade,            // The animated value to drive
         {
@@ -151,9 +151,6 @@ export default class HomeScreen extends React.Component {
                 useNativeDriver={true}
               >da</Animatable.Text>
               <TouchableOpacity onPress={this.playYinYangAnimation}
-                style={{
-                  // marginTop: 100 * (Dimensions.get('window').height / HEIGHT_IPHONE_X),
-                }}
                 activeOpacity={0.4}
               >
                 <Animated.View style={{

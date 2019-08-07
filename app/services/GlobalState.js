@@ -9,9 +9,7 @@ class GlobalState {
     DEFAULT_SETTINGS = {
         'typingSoundToggle': true,
         'musicToggle': true,
-        'musicIndex': 2,
         'translationIndex': 1,
-        'colorIndex': 1,
         'typingSpeed': 'x3',
         'isFirstAppLoad': true
     }
@@ -27,7 +25,10 @@ class GlobalState {
             if (!oldSetting) {
                 AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify(this.DEFAULT_SETTINGS))
             }
-            that.setState(JSON.parse(oldSetting))
+            else {
+                that.setState(JSON.parse(oldSetting))
+            }
+            
             if (cb) {
                 cb()
             }
@@ -53,7 +54,7 @@ class GlobalState {
 
         // only store global state fields, not the other fields in the component
         globalState = this.whitelistGlobalStateFields(newState)
-        AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify(newState))
+        AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify(globalState))
     }
 
     toggleSetting(that, key) {
@@ -63,11 +64,11 @@ class GlobalState {
         that.setState(newState)
         
         globalState = this.whitelistGlobalStateFields(newState)
-        AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify(newState))
+        AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify(globalState))
     }
 
     whitelistGlobalStateFields(componentState) {
-        whitelist = Object.keys(componentState)
+        whitelist = Object.keys(this.DEFAULT_SETTINGS)
         const globalState = whitelist
             .reduce((obj, key) => ({ ...obj, [key]: componentState[key] }), {})
         
