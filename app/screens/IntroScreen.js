@@ -29,7 +29,7 @@ const introLines = [
 
 export default class IntroScreen extends Component {
   state = {
-    introLineIndex: 9
+    introLineIndex: 0
   };
   
   constructor(){

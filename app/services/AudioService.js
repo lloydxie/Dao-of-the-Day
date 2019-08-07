@@ -111,3 +111,8 @@ class AudioService {
 
 const AudioServiceSingleton = AudioService.getInstance();
 export default AudioServiceSingleton;
+
+// 1) stop existing sounds
+    // loop through sound objects, call "stop"
+// 2) prevent future plays (with if statement)
+    // check if music or typing – must be able to identify from the sound object.

@@ -32,7 +32,7 @@ const WIDTH_IPHONE_X = 414;
 const B = (props) => 
   <Text 
     style={{
-      fontSize: 20 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
+      fontSize: 20 * (windowWidth / WIDTH_IPHONE_X),
       fontWeight: 'bold'
     }}>
     {props.children}
@@ -440,6 +440,9 @@ const delayMap = [
   { at: ';', delay: 500 },
 ]
 
+// for ipads
+const windowWidth = Dimensions.get('window').width > 900 ? 700 : Dimensions.get('window').width
+
 const styles = StyleSheet.create({
   container: {
     flex: 1
@@ -454,7 +457,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   helpLinkText: {
-    fontSize: 20 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
+    fontSize: 20 * (windowWidth / WIDTH_IPHONE_X),
     // fontFamily: 'smite',
     // justifyContent: 'center',
   },
@@ -474,7 +477,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   chapterTitle: {
-    fontSize: 36 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
+    fontSize: 36 * (windowWidth / WIDTH_IPHONE_X),
     fontFamily: 'smite',
     opacity: 0.7
   },

@@ -192,19 +192,19 @@ export default class HomeScreen extends React.Component {
               onPress={() => this.lottieNinja.play()}
             />
           </View>
-          <Animatable.Text
-            animation='fadeIn'
-            iterationCount='infinite'
-            direction='alternate'
-            delay={0}
-            iterationDelay={250}
-            useNativeDriver={true}
-            style={styles.beginReading}
-            onPress={() => this.navigateAway()}
-          >
-            start reading
-          </Animatable.Text>
         </ScrollView>
+        <Animatable.Text
+          animation='fadeIn'
+          iterationCount='infinite'
+          direction='alternate'
+          delay={0}
+          iterationDelay={250}
+          useNativeDriver={true}
+          style={styles.beginReading}
+          onPress={() => this.navigateAway()}
+        >
+          start reading
+        </Animatable.Text>
       </Animated.View>
     );
   }
@@ -214,6 +214,9 @@ let delayMap = [
   { at: ' ', delay: 150 }
 ]
 
+// for ipads
+const windowWidth = Dimensions.get('window').width > 900 ? 700 : Dimensions.get('window').width
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -222,29 +225,29 @@ const styles = StyleSheet.create({
   },
   daoNumber: {
     color: '#fff',
-    fontSize: 20 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
+    fontSize: 20 * (windowWidth / WIDTH_IPHONE_X),
     fontWeight: 'bold'
   },
   title: {
-    fontSize: 52 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
+    fontSize: 52 * (windowWidth / WIDTH_IPHONE_X),
     color: '#1f1f1f',
     fontFamily: 'dreamOrphans',
   },
   title2: {
-    fontSize: 20 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
+    fontSize: 24 * (windowWidth / WIDTH_IPHONE_X),
     color: '#1f1f1f',
-    fontFamily: 'dreamOrphans',
-    marginTop: '10%'
+    fontFamily: 'smite',
+    marginTop: '15%'
   },
   lottieNinja: {
-    width: 250 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
-    height: 250 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
+    width: 250 * (windowWidth / WIDTH_IPHONE_X),
+    height: 250 * (windowWidth / WIDTH_IPHONE_X),
     aspectRatio: 1,
     marginTop: '-3%'
   },
   lottieYinYang: {
-    width: 50 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
-    height: 50 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
+    width: 50 * (windowWidth / WIDTH_IPHONE_X),
+    height: 50 * (windowWidth / WIDTH_IPHONE_X),
     aspectRatio: 2,
     marginLeft: '-9%',
     marginTop: '3.5%',
@@ -252,16 +255,17 @@ const styles = StyleSheet.create({
   header: {
     flex: 1,
     flexDirection: 'column',
-    width: Dimensions.get('window').width / 3.5,
+    width: windowWidth / 3.5,
   },
   headerRow: {
     flex: 1,
     flexDirection: 'row',
   },
   beginReading: {
-    fontSize: 42 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
+    fontSize: 42 * (windowWidth / WIDTH_IPHONE_X),
     fontFamily: 'dreamOrphans',
     color: DAO_BLUE,
-    marginTop: '7%'
+    position: 'absolute',
+    bottom: '7%'
   }
 });

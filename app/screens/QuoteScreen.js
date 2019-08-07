@@ -243,6 +243,9 @@ Reading...`}
   }
 }
 
+// for ipads
+const windowWidth = Dimensions.get('window').width > 900 ? 700 : Dimensions.get('window').width
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -253,17 +256,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   helpLinkText: {
-    fontSize: 23 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
+    fontSize: 23 * (windowWidth / WIDTH_IPHONE_X),
     fontFamily: 'smite',
-  },
-  icon: {
-    fontSize: 28 * (Dimensions.get('window').height / HEIGHT_IPHONE_X),
   },
   actionsContainer: {
     opacity: 0.5
   },
   chapterTitle: {
-    fontSize: 36 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
+    fontSize: 36 * (windowWidth / WIDTH_IPHONE_X),
     fontFamily: 'smite',
   },
 });
