@@ -35,7 +35,7 @@ export default class TableOfContentsScreen extends Component {
                       key={key}
                       hasNavArrow={true}
                       arrowStyle={{tintColor: '#22BAD9'}}
-                      title={`Chapter ${key + 1}: ` + passage.title.substring(1, 25).replace(/\n/g, ' ') + '...'}
+                      title={`Chapter ${key + 1}: ` + passage.title.substring(1, 20).replace(/\n/g, ' ') + '...'}
                       titleStyle={{color: '#22BAD9', fontSize: 20}}
                       onPress={() => this.navigateToQuoteScreen(key)}
                     />

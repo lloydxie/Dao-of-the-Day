@@ -1,21 +1,23 @@
 'use strict';
 import React, {Component} from 'react';
 import TypeWriter from 'react-native-typewriter';
-import AudioServiceSingleton from '../services/AudioService'
 import * as Animatable from 'react-native-animatable';
+import Lottie from 'lottie-react-native'
 
 import {
   View,
   StyleSheet,
   Dimensions,
   TouchableOpacity,
-  Text
+  Text,
+  Image,
+  ImageBackground,
 } from 'react-native';
 
 const AnimatableTouchableOpacity = Animatable.createAnimatableComponent(TouchableOpacity)
 
 const introLines = [
-  'As we grow older we grow both more foolish and wiser at the same time.\n\n             - Anonymous',
+  'As we grow older we grow both more foolish and wiser at the same time.\n             - Anonymous',
   "Welcome to Wiser Each Dao. Inspired by the life-altering reading of the Dao De Ching, this app is an interactive experience to help bring the most out of Lao Tzu's timeless wisdom.",
   "Lao Tzu was a well-esteemed royal court advisor and philosopher in Ancient China. The Dao De Ching is like a bible for the Hero's Journey. ",
   "The best teachers are the ones who don’t just tell you what to do, but make you seek the answers yourself. They give you the space to find your own way. And that is precisely the method of Lao Tzu.",
@@ -26,6 +28,10 @@ const introLines = [
   "Our best advice is to use it in the nighttime with headphones or speakers.",
   "Now fellow adventurer, embark on your own journey toward that which you seek...\n\nAnd don't forget to enjoy it every step of the way."
 ]
+
+const DAO_BLUE = "#22BAD9";
+const BG_COLOR_1 = '#1f1f1f';
+WIDTH_IPHONE_X = 414;
 
 export default class IntroScreen extends Component {
   state = {
@@ -49,40 +55,68 @@ export default class IntroScreen extends Component {
       <View
         style={styles.container}
       >
-        <Text
-          style={styles.title}
+        <ImageBackground
+          src={"../assets/images/night_phone_1.jpg"}
         >
-          {"Intro"}
-        </Text>
-        <Text
-          style={styles.subtitle}
-        >
-          {(this.state.introLineIndex + 1) + " / 10"}
-        </Text>
-        <AnimatableTouchableOpacity
-          direction={this.finishedTyping ? 'alternate' : 'normal'}
-          iterationCount={this.finishedTyping ? 'infinite' : 1}
-          duration={this.finishedTyping ? 1000 : 800}
-          iterationDelay={250}
-          useNativeDriver={true}
-          style={styles.textContainer}
-          ref={ref => this.view = ref}
-          onPress={() => this.fadeOutLine()}
-        >
-          <TypeWriter
-              ref={ref => this.daoText = ref}
-              typing={1}
-              style={styles.text}
-              minDelay={30}
-              maxDelay={60}
-              initialDelay={800}
-              delayMap={delayMap}
-              fixed={true}
-              onTypingEnd={() => this.onTypingEnd()}
-              >
-            {introLines[this.state.introLineIndex]}
-          </TypeWriter>
-        </AnimatableTouchableOpacity>
+          <Text
+            style={styles.title}
+          >
+            {"Intro"}
+          </Text>
+          <Text
+            style={styles.subtitle}
+          >
+            {(this.state.introLineIndex + 1) + " / 10"}
+          </Text>
+          <AnimatableTouchableOpacity
+            direction={this.finishedTyping ? 'alternate' : 'normal'}
+            iterationCount={this.finishedTyping ? 'infinite' : 1}
+            duration={this.finishedTyping ? 1000 : 800}
+            iterationDelay={250}
+            useNativeDriver={true}
+            style={styles.textContainer}
+            ref={ref => this.view = ref}
+            onPress={() => this.fadeOutLine()}
+          >
+            <TypeWriter
+                ref={ref => this.daoText = ref}
+                typing={1}
+                style={styles.text}
+                minDelay={30}
+                maxDelay={50}
+                initialDelay={800}
+                delayMap={delayMap}
+                fixed={true}
+                onTypingEnd={() => this.onTypingEnd()}
+                >
+              {introLines[this.state.introLineIndex]}
+            </TypeWriter>
+          </AnimatableTouchableOpacity>
+          {
+            this.state.introLineIndex == 0 ? <Image style={{width: '15%', height: '15%', top: '26%', position: 'absolute'}} source={require('../assets/images/lao_tzu.jpg')} /> :
+            this.state.introLineIndex == 1 ? 
+              <Lottie
+                autoPlay={true}
+                source={require('../assets/lottie/panda.json')}
+                speed={0.8}
+                style={styles.lottieYinYang}
+              /> : 
+            this.state.introLineIndex == 4 ? 
+              <Lottie
+                autoPlay={true}
+                source={require('../assets/lottie/headphones.json')}
+                speed={0.8}
+                style={styles.lottieYinYang}
+              /> : 
+              this.state.introLineIndex == 8 ?
+              <Lottie
+                autoPlay={true}
+                source={require('../assets/lottie/earphones.json')}
+                speed={0.8}
+                style={styles.lottieYinYang}
+              /> : null
+          }
+        </ImageBackground>
       </View>
     );
   }
@@ -124,36 +158,49 @@ export default class IntroScreen extends Component {
 }
 
 let delayMap = [
-  { at: ' ', delay: 10 },
-  { at: '–', delay: 500 }
+  // { at: ' ', delay: 10 },
+  { at: '–', delay: 500 },
+  // { at: '.', delay: 500 },
 ]
+
+// for ipads
+const windowWidth = Dimensions.get('window').width > 900 ? 700 : Dimensions.get('window').width
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'black'
   },
   text: {
     fontSize: 26 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
     fontFamily: 'smite',
+    color: DAO_BLUE
   },
   title: {
     fontSize: 38 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
     fontFamily: 'smite',
     position: 'absolute',
-    top: '12%'
+    top: '12%',
+    color: DAO_BLUE
   },
   subtitle: {
     fontSize: 22 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
     fontFamily: 'smite',
     position: 'absolute',
-    top: '18%'
+    top: '18%',
+    color: DAO_BLUE
   },
   textContainer: {
     width: '85%',
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center'
-  }
+  },
+  lottieYinYang: {
+    width: 50 * (windowWidth / WIDTH_IPHONE_X),
+    height: 50 * (windowWidth / WIDTH_IPHONE_X),
+    aspectRatio: 2,
+  },
 })

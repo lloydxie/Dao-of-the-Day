@@ -3,7 +3,8 @@ const bg = {
     "bg_1.mp3": require("./bg_1.mp3"),
     "lily_3.mp3": require("./lily_3.mp3"),
     "lily_4.mp3": require("./lily_4.mp3"),
-    "typing.mp3": require("./typing.mp3")
+    "typing.mp3": require("./typing.mp3"),
+    "is_everything_alright?.mp3": require("./is_everything_alright?.mp3"),
 }
 
 export default bg;
