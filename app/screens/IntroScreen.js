@@ -10,8 +10,6 @@ import {
   Dimensions,
   TouchableOpacity,
   Text,
-  Image,
-  ImageBackground,
 } from 'react-native';
 
 const AnimatableTouchableOpacity = Animatable.createAnimatableComponent(TouchableOpacity)
@@ -168,19 +166,19 @@ const styles = StyleSheet.create({
     backgroundColor: '#181818'
   },
   text: {
-    fontSize: 26 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
+    fontSize: 26 * (windowWidth / WIDTH_IPHONE_X),
     fontFamily: 'smite',
     color: DAO_BLUE
   },
   title: {
-    fontSize: 38 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
+    fontSize: 38 * (windowWidth / WIDTH_IPHONE_X),
     fontFamily: 'smite',
     position: 'absolute',
     top: '12%',
     color: DAO_BLUE
   },
   subtitle: {
-    fontSize: 22 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
+    fontSize: 22 * (windowWidth / WIDTH_IPHONE_X),
     fontFamily: 'smite',
     position: 'absolute',
     top: '18%',
