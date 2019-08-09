@@ -76,14 +76,21 @@ export default class IntroScreen extends Component {
           </Text>
           {
             this.state.introLineIndex == 2 ? <Image style={{width: '15%', height: '15%', top: '24%', position: 'absolute'}} source={require('../assets/images/lao_tzu.jpg')} /> :
+            this.state.introLineIndex == 0 || this.state.introLineIndex == 1 ? 
+              <Lottie
+                autoPlay={true}
+                source={require('../assets/lottie/ninja.json')}
+                speed={0.7}
+                style={styles.lottiePanda}
+              /> : 
             this.state.introLineIndex == 9 ? 
               <Lottie
                 autoPlay={true}
                 source={require('../assets/lottie/panda.json')}
-                speed={0.5}
+                speed={0.6}
                 style={styles.lottiePanda}
               /> : 
-            this.state.introLineIndex == 1 ? 
+            this.state.introLineIndex == 5 ? 
               <Lottie
                 autoPlay={true}
                 source={require('../assets/lottie/headphones.json')}
