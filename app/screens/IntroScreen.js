@@ -21,7 +21,7 @@ const introLines = [
   "Lao Tzu was a well-esteemed royal court advisor and philosopher in Ancient China. A little before Buddha was born supposedly. The Dao De Jing is the most translated work in the world second to the Bible. ",
   "The best teachers are the ones who don’t just tell you what to do, but make you seek the answers yourself. They give you the space to find your own way. And that is precisely the method of Lao Tzu.",
   "Online and social media gurus can give you all the greatest advice in the world – but it will do nothing for you until you start doing things your own way.",
-  "It is a waste of time to read the Dao De Jing when you have no patience for it.\n This typing effect can help cultivate that patience by acting as a reading pacer.",
+  "It is a waste of time to read the Dao De Jing when you have no patience for it.\nThis typing effect can help cultivate that patience by acting as a reading pacer.",
   "It is paradoxical wisdom that hopefully leaves you pondering each line.\nNot to be read like a book, but if anything, it is more akin to reading poetry.",
   "There is an option to switch between translations – if vague paradoxes find you frustrating, there is a 'No Bullshit' modern interpretation by Hogan.",
   "Our advice is to use it in the nighttime with headphones or speakers.\nBest enjoyed with the lush soundscapes of Debussy that come from the Ether, is it not?",
@@ -75,14 +75,14 @@ export default class IntroScreen extends Component {
             {(this.state.introLineIndex + 1) + " / 10"}
           </Text>
           {
-            this.state.introLineIndex == 2 ? <Image style={{width: '15%', height: '15%', top: '24%', position: 'absolute'}} source={require('../assets/images/lao_tzu.jpg')} /> :
+            this.state.introLineIndex == 2 ? <Image style={{width: '30%', height: '15%', top: '24%', position: 'absolute'}} source={require('../assets/images/lao_tzu.jpg')} /> :
             this.state.introLineIndex == 0 || this.state.introLineIndex == 1 ? 
               <Lottie
                 autoPlay={true}
                 source={require('../assets/lottie/ninja.json')}
                 speed={0.7}
                 style={styles.lottiePanda}
-              /> : 
+              /> :
             this.state.introLineIndex == 9 ? 
               <Lottie
                 autoPlay={true}
@@ -207,24 +207,25 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
+    marginTop: '10%'
   },
   lottiePanda: {
     width: '65%',
     height: '65%',
     position:'absolute',
-    bottom: '31%',
+    bottom: '29%',
     left: '12.5%'
   },
   lottieHeadphones: {
-    width: '70%',
-    height: '70%',
+    width: '65%',
+    height: '65%',
     position:'absolute',
     bottom: '8%',
-    left: '10.6%'
+    left: '11%'
   },
   lottieEarphones: {
-    width: '60%',
-    height: '60%',
+    width: '55%',
+    height: '55%',
     position:'absolute',
     bottom: '16%',
     left: '15%'
