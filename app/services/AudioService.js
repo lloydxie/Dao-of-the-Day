@@ -107,6 +107,21 @@ class AudioService {
     unmount = async (soundObject) => {
         await soundObject.stopAsync();
     }
+
+    async checkIfMusicIsPlaying() {
+        isCurrentlyPlayingMusic = false
+        for (key in AudioServiceSingleton.backgroundMusicFilesMap) {
+          soundObject = AudioServiceSingleton.backgroundMusicFilesMap[key]
+          if (soundObject) {
+            let audioStatus = await soundObject.getStatusAsync()
+            if (audioStatus.isPlaying) {
+              isCurrentlyPlayingMusic = true
+            }
+          }
+        }
+    
+        return isCurrentlyPlayingMusic
+      }
 }
 
 const AudioServiceSingleton = AudioService.getInstance();

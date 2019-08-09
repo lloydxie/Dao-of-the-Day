@@ -110,7 +110,7 @@ class DaoTextScreen extends React.Component {
     this.brightnessValue = 0
     this.interval = setInterval(() => this.increaseBrightness(), 100);
 
-    isCurrentlyPlayingMusic = await this.checkIfMusicIsPlaying()
+    isCurrentlyPlayingMusic = await AudioServiceSingleton.checkIfMusicIsPlaying()
     if (!isCurrentlyPlayingMusic) {
       soundObject = await this.loadAudioFile(this.numberOfTheDay)
       AudioServiceSingleton.play(soundObject)
@@ -118,21 +118,6 @@ class DaoTextScreen extends React.Component {
 
     this.reinitializeText()
     this.setState({dummy: true})
-  }
-
-  async checkIfMusicIsPlaying() {
-    isCurrentlyPlayingMusic = false
-    for (key in AudioServiceSingleton.backgroundMusicFilesMap) {
-      soundObject = AudioServiceSingleton.backgroundMusicFilesMap[key]
-      if (soundObject) {
-        let audioStatus = await soundObject.getStatusAsync()
-        if (audioStatus.isPlaying) {
-          isCurrentlyPlayingMusic = true
-        }
-      }
-    }
-
-    return isCurrentlyPlayingMusic
   }
 
   reinitializeText = () => {
