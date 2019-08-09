@@ -12,7 +12,6 @@ import {withNavigationFocus} from 'react-navigation';
 import TypeWriter from 'react-native-typewriter';
 import AudioServiceSingleton from '../services/AudioService'
 import { Ionicons } from '@expo/vector-icons';
-import * as Brightness from 'expo-brightness';
 import * as Animatable from 'react-native-animatable';
 
 import GLOBAL_STATE from '../services/GlobalState';
@@ -106,10 +105,6 @@ class DaoTextScreen extends React.Component {
       this.setState({paused: true})
     });
 
-    this.oldBrightness = Brightness.getBrightnessAsync()
-    this.brightnessValue = 0
-    this.interval = setInterval(() => this.increaseBrightness(), 100);
-
     isCurrentlyPlayingMusic = await AudioServiceSingleton.checkIfMusicIsPlaying()
     if (!isCurrentlyPlayingMusic) {
       soundObject = await this.loadAudioFile(this.numberOfTheDay)
@@ -142,18 +137,6 @@ class DaoTextScreen extends React.Component {
     this.setState({isExitingScreen: true})
     AudioServiceSingleton.unmount(AudioServiceSingleton.initialLoadMap['typing.mp3'])
     this.props.navigation.navigate('Quote', {index: this.numberOfTheDay})
-  }
-
-  increaseBrightness() {
-    if (this.brightnessValue > 0.99) {
-      this.brightnessValue = this.oldBrightness
-      clearInterval(this.interval)
-      return
-    }
-    else {
-      this.brightnessValue += 0.05
-    }
-    Brightness.setBrightnessAsync(this.brightnessValue)
   }
 
   playOrPauseTypingAudio = (token) => {

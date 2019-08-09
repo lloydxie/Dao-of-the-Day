@@ -60,12 +60,12 @@ class AudioService {
         try {
             await Audio.setIsEnabledAsync(true);
             await Audio.setAudioModeAsync({
-                playsInSilentModeIOS: true,
+                playsInSilentModeIOS: false,
                 allowsRecordingIOS: false,
                 interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
                 shouldDuckAndroid: false,
                 interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
-                playThroughEarpieceAndroid: false,
+                playThroughEarpieceAndroid: true,
                 staysActiveInBackground: false
             });
             await soundObject.loadAsync(bg[fileName]);
