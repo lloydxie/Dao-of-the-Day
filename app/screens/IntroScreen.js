@@ -18,13 +18,13 @@ const AnimatableTouchableOpacity = Animatable.createAnimatableComponent(Touchabl
 const introLines = [
   'As we grow older we grow both more foolish and wiser at the same time.\n             - Anonymous',
   "Welcome to Wiser Each Dao.\nInspired by the life-altering reading of the Dao De Jing, this app is an interactive experience to help bring the most out of Lao Tzu's timeless wisdom.",
-  "Lao Tzu was a well-esteemed royal court advisor and philosopher in Ancient China. A little before Buddha was born supposedly. The Dao De Jing is the most translated work in the world second to the Bible. ",
-  "The best teachers are the ones who don’t just tell you what to do, but make you seek the answers yourself. They give you the space to find your own way. And that is precisely the method of Lao Tzu.",
+  "Lao Tzu was a well-esteemed royal court advisor and philosopher in Ancient China.\nHe was around a little before Buddha supposedly.\nThe Dao De Jing is the most translated work in the world second to the Bible.",
+  "The best teachers are the ones who don’t just tell you what to do, but make you seek the answers yourself.\nThey give you the space to find your own way. And that is precisely the method of Lao Tzu.",
   "Online and social media gurus can give you all the greatest advice in the world – but it will do nothing for you until you start doing things your own way.",
   "It is a waste of time to read the Dao De Jing when you have no patience for it.\nThis typing effect can help cultivate that patience by acting as a reading pacer.",
   "It is paradoxical wisdom that hopefully leaves you pondering each line.\nNot to be read like a book, but if anything, it is more akin to reading poetry.",
   "There is an option to switch between translations – if vague paradoxes find you frustrating, there is a 'No Bullshit' modern interpretation by Hogan.",
-  "Our advice is to use it in the nighttime with headphones or speakers.\nBest enjoyed with the lush soundscapes of Debussy that come from the Ether, is it not?",
+  "Our advice is: Use the app during the night with headphones or speakers.\nIt's best enjoyed with the lush soundscapes of Debussy that come from the Ether...",
   "Now fellow adventurer, embark on your own journey toward that which you seek...\n\nAnd don't forget to enjoy it every step of the way."
 ]
 
@@ -186,7 +186,8 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 26 * (windowWidth / WIDTH_IPHONE_X),
     fontFamily: 'smite',
-    color: DAO_BLUE
+    color: DAO_BLUE,
+    marginTop: '30%'
   },
   title: {
     fontSize: 38 * (windowWidth / WIDTH_IPHONE_X),
@@ -207,7 +208,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
-    marginTop: '10%'
   },
   lottiePanda: {
     width: '65%',
@@ -221,7 +221,7 @@ const styles = StyleSheet.create({
     height: '65%',
     position:'absolute',
     bottom: '8%',
-    left: '11%'
+    left: '12%'
   },
   lottieEarphones: {
     width: '55%',
