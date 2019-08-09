@@ -110,14 +110,14 @@ export default class QuoteScreen extends React.Component {
             backgroundColor: this.state.backgroundColor
           }}>
             <Image
-          source={require('../assets/images/starry.jpg')}
+          source={require('../assets/images/starry_2.jpg')}
           style={{
             width: '100%',
             height: '100%',
             position: 'absolute',
-            opacity: 0.6,
+            opacity: 0.4,
           }}
-          resizeMode="stretch"
+          // resizeMode="stretch"
         />
             <AnimatableTouchableOpacity
               style={{
@@ -252,7 +252,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   helpLinkText: {
-    fontSize: 23 * (windowWidth / WIDTH_IPHONE_X),
+    fontSize: 26 * (windowWidth / WIDTH_IPHONE_X),
     fontFamily: 'smite',
   },
   actionsContainer: {

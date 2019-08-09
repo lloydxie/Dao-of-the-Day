@@ -4,9 +4,9 @@ import {
   StyleSheet,
   View,
   TouchableOpacity,
-  Text,
   Dimensions,
   Animated,
+  Image
 } from 'react-native';
 import Lottie from 'lottie-react-native'
 import TypeWriter from 'react-native-typewriter';
@@ -122,6 +122,15 @@ export default class HomeScreen extends React.Component {
           opacity: this.backgroundFade,
         }}
       >
+        <Image
+          source={require('../assets/images/night_phone_1.jpg')}
+          style={{
+            width: '100%',
+            height: '100%',
+            position: 'absolute',
+            opacity: 0.7,
+          }}
+        />
         <ScrollView 
           contentContainerStyle={{
             alignItems: 'center',
@@ -233,14 +242,14 @@ const styles = StyleSheet.create({
     fontFamily: 'dreamOrphans',
   },
   title2: {
-    fontSize: 24 * (windowWidth / WIDTH_IPHONE_X),
+    fontSize: 28 * (windowWidth / WIDTH_IPHONE_X),
     color: '#181818',
     fontFamily: 'smite',
-    marginTop: '15%'
+    marginTop: '15%',
   },
   lottieNinja: {
-    width: 250 * (windowWidth / WIDTH_IPHONE_X),
-    height: 250 * (windowWidth / WIDTH_IPHONE_X),
+    width: 0 * (windowWidth / WIDTH_IPHONE_X),
+    height: 0 * (windowWidth / WIDTH_IPHONE_X),
     aspectRatio: 1,
     marginTop: '-3%'
   },

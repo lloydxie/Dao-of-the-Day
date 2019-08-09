@@ -234,16 +234,38 @@ class DaoTextScreen extends React.Component {
         ...styles.container,
         backgroundColor: this.state.backgroundColor
       }}>
+        {
+        this.numberOfTheDay < 25 ? 
         <Image
           source={require('../assets/images/starry.jpg')}
           style={{
             width: '100%',
             height: '100%',
             position: 'absolute',
-            opacity: 0.4,
+            opacity: 0.3,
           }}
           resizeMode="stretch"
+        /> :
+        this.numberOfTheDay < 50 ? 
+        <Image
+          source={require('../assets/images/starry_3.jpg')}
+          style={{
+            width: '100%',
+            height: '100%',
+            position: 'absolute',
+            opacity: 0.3,
+          }}
+        /> :
+        <Image
+          source={require('../assets/images/cosmos.jpg')}
+          style={{
+            width: '100%',
+            height: '100%',
+            position: 'absolute',
+            opacity: 0.05,
+          }}
         />
+        }
         <View style={styles.titleView}>
           <TouchableOpacity
             style={{
