@@ -19,7 +19,7 @@ import GLOBAL_STATE from '../services/GlobalState';
 NUM_COLUMNS = 3;
 HEIGHT_IPHONE_X = 896;
 WIDTH_IPHONE_X = 414;
-const BG_COLOR_1 = '#1f1f1f';
+const BG_COLOR_1 = '#181818';
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
@@ -229,12 +229,12 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 52 * (windowWidth / WIDTH_IPHONE_X),
-    color: '#1f1f1f',
+    color: '#181818',
     fontFamily: 'dreamOrphans',
   },
   title2: {
     fontSize: 24 * (windowWidth / WIDTH_IPHONE_X),
-    color: '#1f1f1f',
+    color: '#181818',
     fontFamily: 'smite',
     marginTop: '15%'
   },

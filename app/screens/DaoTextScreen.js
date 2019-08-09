@@ -6,6 +6,7 @@ import {
   View,
   Text,
   Dimensions,
+  Image
 } from 'react-native';
 import {withNavigationFocus} from 'react-navigation';
 import TypeWriter from 'react-native-typewriter';
@@ -19,7 +20,7 @@ import GLOBAL_STATE from '../services/GlobalState';
 const HIGH = 'HIGH';
 const MUTE = 'MUTE';
 export const DAO_BLUE = "#22BAD9";
-const BG_COLOR_1 = '#1f1f1f';
+const BG_COLOR_1 = '#181818';
 const BG_COLOR_2 = '#ffffff';
 const BG_COLOR_3 = 'black';
 const TEXT_COLOR_1 = DAO_BLUE;
@@ -233,6 +234,16 @@ class DaoTextScreen extends React.Component {
         ...styles.container,
         backgroundColor: this.state.backgroundColor
       }}>
+        <Image
+          source={require('../assets/images/starry.jpg')}
+          style={{
+            width: '100%',
+            height: '100%',
+            position: 'absolute',
+            opacity: 0.4,
+          }}
+          resizeMode="stretch"
+        />
         <View style={styles.titleView}>
           <TouchableOpacity
             style={{
@@ -357,7 +368,7 @@ class DaoTextScreen extends React.Component {
         >
           <View style={{
             ...styles.helpContainer,
-            backgroundColor: this.state.backgroundColor
+            // backgroundColor: this.state.backgroundColor
           }}>
             {
               this.state.showChineseText ? 

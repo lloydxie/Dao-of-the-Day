@@ -1,5 +1,5 @@
 import React from 'react';  
-import { View, Text  } from 'react-native';  
+import { View, Text } from 'react-native';  
 import { createAppContainer, createStackNavigator } from 'react-navigation';
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
 
@@ -30,7 +30,7 @@ const HomeStack = createStackNavigator(
       navigationOptions: {
         header: null,
         headerStyle: {
-          backgroundColor: '#1f1f1f',
+          backgroundColor: '#181818',
         },
       },
     },
@@ -39,7 +39,7 @@ const HomeStack = createStackNavigator(
       navigationOptions: {
         header: null,
         headerStyle: {
-          backgroundColor: '#1f1f1f',
+          backgroundColor: '#181818',
         },
       }
     },
@@ -47,7 +47,7 @@ const HomeStack = createStackNavigator(
       screen: TableOfContentsScreen,
       navigationOptions: {
         headerStyle: {
-          backgroundColor: '#1f1f1f',
+          backgroundColor: '#181818',
         },
         headerTintColor: '#22BAD9'
       },
@@ -56,7 +56,7 @@ const HomeStack = createStackNavigator(
       screen: QuoteScreen,
       navigationOptions: {
         headerStyle: {
-          backgroundColor: '#1f1f1f',
+          backgroundColor: '#181818',
         },
         header: null,
       }
@@ -65,7 +65,7 @@ const HomeStack = createStackNavigator(
       screen: TranslationScreen,
       navigationOptions: {
         headerStyle: {
-          backgroundColor: '#1f1f1f',
+          backgroundColor: '#181818',
         },
         headerTintColor: '#22BAD9',
       },
@@ -75,7 +75,7 @@ const HomeStack = createStackNavigator(
       screen: IntroScreen,
       navigationOptions: {
         headerStyle: {
-          backgroundColor: '#1f1f1f',
+          backgroundColor: '#181818',
         },
         headerTintColor: '#22BAD9',
         header: null,
@@ -90,7 +90,7 @@ const HomeStack = createStackNavigator(
     },
     transitionConfig: () => ({
       transitionSpec: {
-        duration: 500,
+        duration: 300,
       },
       screenInterpolator: props => {
         const last = props.scenes[props.scenes.length - 1];

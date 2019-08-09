@@ -5,7 +5,8 @@ import {
   View,
   Share,
   AsyncStorage,
-  Alert
+  Alert,
+  Image
 } from 'react-native';
 import SettingsList from 'react-native-settings-list';
 import { StoreReview } from 'expo';
@@ -50,6 +51,17 @@ export default class SettingsScreen extends Component {
   render() {
     return (
       <View style={{backgroundColor:'#EFEFF4',flex:1}}>
+        <Image
+          source={require('../assets/images/splash.png')}
+          style={{
+            width: '100%',
+            height: '100%',
+            position: 'absolute',
+            top: '7%'
+            // opacity: 0.4,
+          }}
+          // resizeMode="stretch"
+        />
         <View style={{flex:1, marginTop:50}}>
           <SettingsList>
             <SettingsList.Header headerText='Settings' headerStyle={{color:'black', fontSize: 22, marginLeft: '3.5%'}}/>

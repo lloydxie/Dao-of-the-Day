@@ -30,7 +30,7 @@ const introLines = [
 ]
 
 const DAO_BLUE = "#22BAD9";
-const BG_COLOR_1 = '#1f1f1f';
+const BG_COLOR_1 = '#181818';
 WIDTH_IPHONE_X = 414;
 
 export default class IntroScreen extends Component {
@@ -55,9 +55,6 @@ export default class IntroScreen extends Component {
       <View
         style={styles.container}
       >
-        <ImageBackground
-          src={"../assets/images/night_phone_1.jpg"}
-        >
           <Text
             style={styles.title}
           >
@@ -93,7 +90,7 @@ export default class IntroScreen extends Component {
             </TypeWriter>
           </AnimatableTouchableOpacity>
           {
-            this.state.introLineIndex == 0 ? <Image style={{width: '15%', height: '15%', top: '26%', position: 'absolute'}} source={require('../assets/images/lao_tzu.jpg')} /> :
+            this.state.introLineIndex == 2 ? <Image style={{width: '15%', height: '15%', top: '26%', position: 'absolute'}} source={require('../assets/images/lao_tzu.jpg')} /> :
             this.state.introLineIndex == 1 ? 
               <Lottie
                 autoPlay={true}
@@ -116,7 +113,6 @@ export default class IntroScreen extends Component {
                 style={styles.lottieYinYang}
               /> : null
           }
-        </ImageBackground>
       </View>
     );
   }
@@ -158,9 +154,7 @@ export default class IntroScreen extends Component {
 }
 
 let delayMap = [
-  // { at: ' ', delay: 10 },
   { at: '–', delay: 500 },
-  // { at: '.', delay: 500 },
 ]
 
 // for ipads
@@ -171,7 +165,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'black'
+    backgroundColor: '#181818'
   },
   text: {
     fontSize: 26 * (Dimensions.get('window').width / WIDTH_IPHONE_X),
@@ -196,7 +190,7 @@ const styles = StyleSheet.create({
     width: '85%',
     justifyContent: 'center',
     alignItems: 'center',
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   lottieYinYang: {
     width: 50 * (windowWidth / WIDTH_IPHONE_X),

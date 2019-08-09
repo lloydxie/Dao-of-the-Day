@@ -3,7 +3,8 @@ import {
   StyleSheet,
   TouchableOpacity,
   View,
-  Dimensions
+  Dimensions,
+  Image
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import AudioServiceSingleton from '../services/AudioService'
@@ -11,7 +12,7 @@ import AudioServiceSingleton from '../services/AudioService'
 import GLOBAL_STATE from '../services/GlobalState';
 
 const DAO_BLUE = "#22BAD9";
-const BG_COLOR_1 = '#1f1f1f';
+const BG_COLOR_1 = '#181818';
 const BG_COLOR_2 = '#ffffff';
 const BG_COLOR_3 = 'black';
 const TEXT_COLOR_1 = DAO_BLUE;
@@ -108,6 +109,16 @@ export default class QuoteScreen extends React.Component {
             ...styles.helpContainer,
             backgroundColor: this.state.backgroundColor
           }}>
+            <Image
+          source={require('../assets/images/starry.jpg')}
+          style={{
+            width: '100%',
+            height: '100%',
+            position: 'absolute',
+            opacity: 0.6,
+          }}
+          resizeMode="stretch"
+        />
             <AnimatableTouchableOpacity
               style={{
                 position: 'absolute',
