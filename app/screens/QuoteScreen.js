@@ -257,7 +257,8 @@ const styles = StyleSheet.create({
   },
   actionsContainer: {
     fontSize: 18 * (windowWidth / WIDTH_IPHONE_X),
-    opacity: 0.4
+    opacity: 0.4,
+    color: 'white'
   },
   chapterTitle: {
     fontSize: 36 * (windowWidth / WIDTH_IPHONE_X),

@@ -83,7 +83,7 @@ const HomeStack = createStackNavigator(
     }
   },
   {
-    initialRouteName: 'Intro',
+    initialRouteName: 'Home',
     // headerMode: 'none',
     defaultNavigationOptions: {
       gesturesEnabled: false,

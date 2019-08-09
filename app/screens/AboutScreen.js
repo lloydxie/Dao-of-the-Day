@@ -5,7 +5,8 @@ import {
   View,
   Text,
   StyleSheet,
-  Dimensions
+  Dimensions,
+  Image
 } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
@@ -29,21 +30,21 @@ export default class AboutScreen extends Component {
     
     this.aboutAuthor2 = `online in high school.
     
-    His first romantic obsession filled with insecurity and shame came to a tulmutuous halt at the age of 15. He felt a broken longing for a sense of true companionship. He was undergoing severe unhappiness, loneliness, and alienation from his classmates. He dreamed of a day where life would flourish again.
+    His first romantic obsession filled with insecurity and shame came to a tulmutuous halt at the age of 15. He felt broken and longed for true companionship. He was undergoing severe unhappiness, loneliness, and alienation from his classmates. He dreamed of a day where life would flourish again.
     
     Two things kept him alive for the time being – music, and the ` 
     
     this.aboutAuthor3 = ` By reading it, he soon discovered the ultimate truth of the universe that our relationships determine the fruition of our life.`
     
     this.title2 = `
-    About the Dao De Ching`
+    About the Dao De Jing`
     
     this.content1 = `   Wiser Each Dao was inspired by the life-altering experience of reading the `
     
     this.content2 = 
     `
     
-    The way the Dao De Ching is written is meant to make you come up with your own conclusions. 
+    The way the Dao De Jing is written is meant to make you come up with your own conclusions. 
     
     It will help you look at your relationships and leadership ability from a 180 degree perspective – with dating, friends, coworkers, and the most important one of all – your relationship with yourself.
 
@@ -65,6 +66,16 @@ export default class AboutScreen extends Component {
   render() {
     return (
       <ScrollView style={styles.container}>
+        {/* <Image
+          source={require('../assets/images/starry_2.jpg')}
+          style={{
+            width: '100%',
+            height: '100%',
+            position: 'absolute',
+            // opacity: 0.4,
+          }}
+          resizeMode="contain"
+        /> */}
           <View
             style={styles.titleContainer}
           >
@@ -75,7 +86,7 @@ export default class AboutScreen extends Component {
           <Text
             style={styles.aboutText}
           >
-            {this.aboutAuthor1}<B>{"Dao De Ching "}</B>{this.aboutAuthor2}<B>{"Dao De Ching."}</B>{this.aboutAuthor3}
+            {this.aboutAuthor1}<B>{"Dao De Jing "}</B>{this.aboutAuthor2}<B>{"Dao De Jing."}</B>{this.aboutAuthor3}
           </Text>
 
           <View
@@ -92,7 +103,7 @@ export default class AboutScreen extends Component {
           </View>
           <Text
             style={styles.aboutText}
-          >{this.content1}<B>{"Dao De Ching."}</B>{this.content2}</Text>
+          >{this.content1}<B>{"Dao De Jing."}</B>{this.content2}</Text>
       </ScrollView>
     );
   }

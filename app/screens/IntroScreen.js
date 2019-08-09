@@ -10,20 +10,21 @@ import {
   Dimensions,
   TouchableOpacity,
   Text,
+  Image
 } from 'react-native';
 
 const AnimatableTouchableOpacity = Animatable.createAnimatableComponent(TouchableOpacity)
 
 const introLines = [
   'As we grow older we grow both more foolish and wiser at the same time.\n             - Anonymous',
-  "Welcome to Wiser Each Dao. Inspired by the life-altering reading of the Dao De Ching, this app is an interactive experience to help bring the most out of Lao Tzu's timeless wisdom.",
-  "Lao Tzu was a well-esteemed royal court advisor and philosopher in Ancient China. The Dao De Ching is like a bible for the Hero's Journey. ",
+  "Welcome to Wiser Each Dao.\nInspired by the life-altering reading of the Dao De Jing, this app is an interactive experience to help bring the most out of Lao Tzu's timeless wisdom.",
+  "Lao Tzu was a well-esteemed royal court advisor and philosopher in Ancient China. A little before Buddha was born supposedly. The Dao De Jing is the most translated work in the world second to the Bible. ",
   "The best teachers are the ones who don’t just tell you what to do, but make you seek the answers yourself. They give you the space to find your own way. And that is precisely the method of Lao Tzu.",
   "Online and social media gurus can give you all the greatest advice in the world – but it will do nothing for you until you start doing things your own way.",
-  "It is a waste of time to read the Dao De Ching when you have no patience for it. This app will help cultivate that patience whilst reading it because of a typing effect that acts as a reading pacer.",
-  "These are dense, mysterious words. This is not to be read the way you read a book. If anything, it is more akin to reading a poem. It is paradoxical wisdom that hopefully leaves you pondering each line.",
+  "It is a waste of time to read the Dao De Jing when you have no patience for it.\n This typing effect can help cultivate that patience by acting as a reading pacer.",
+  "It is paradoxical wisdom that hopefully leaves you pondering each line.\nNot to be read like a book, but if anything, it is more akin to reading poetry.",
   "There is an option to switch between translations – if vague paradoxes find you frustrating, there is a 'No Bullshit' modern interpretation by Hogan.",
-  "Our best advice is to use it in the nighttime with headphones or speakers.",
+  "Our advice is to use it in the nighttime with headphones or speakers.\nBest enjoyed with the lush soundscapes of Debussy that come from the Ether, is it not?",
   "Now fellow adventurer, embark on your own journey toward that which you seek...\n\nAnd don't forget to enjoy it every step of the way."
 ]
 
@@ -53,6 +54,16 @@ export default class IntroScreen extends Component {
       <View
         style={styles.container}
       >
+        <Image
+          source={require('../assets/images/starry.jpg')}
+          style={{
+            width: '100%',
+            height: '100%',
+            position: 'absolute',
+            opacity: 0.4,
+          }}
+          resizeMode="stretch"
+        />
           <Text
             style={styles.title}
           >
@@ -63,6 +74,30 @@ export default class IntroScreen extends Component {
           >
             {(this.state.introLineIndex + 1) + " / 10"}
           </Text>
+          {
+            this.state.introLineIndex == 2 ? <Image style={{width: '15%', height: '15%', top: '24%', position: 'absolute'}} source={require('../assets/images/lao_tzu.jpg')} /> :
+            this.state.introLineIndex == 9 ? 
+              <Lottie
+                autoPlay={true}
+                source={require('../assets/lottie/panda.json')}
+                speed={0.5}
+                style={styles.lottiePanda}
+              /> : 
+            this.state.introLineIndex == 1 ? 
+              <Lottie
+                autoPlay={true}
+                source={require('../assets/lottie/headphones.json')}
+                speed={0.5}
+                style={styles.lottieHeadphones}
+              /> : 
+              this.state.introLineIndex == 8 ?
+              <Lottie
+                autoPlay={true}
+                source={require('../assets/lottie/earphones.json')}
+                speed={0.5}
+                style={styles.lottieEarphones}
+              /> : null
+          }
           <AnimatableTouchableOpacity
             direction={this.finishedTyping ? 'alternate' : 'normal'}
             iterationCount={this.finishedTyping ? 'infinite' : 1}
@@ -87,30 +122,6 @@ export default class IntroScreen extends Component {
               {introLines[this.state.introLineIndex]}
             </TypeWriter>
           </AnimatableTouchableOpacity>
-          {
-            this.state.introLineIndex == 2 ? <Image style={{width: '15%', height: '15%', top: '26%', position: 'absolute'}} source={require('../assets/images/lao_tzu.jpg')} /> :
-            this.state.introLineIndex == 1 ? 
-              <Lottie
-                autoPlay={true}
-                source={require('../assets/lottie/panda.json')}
-                speed={0.8}
-                style={styles.lottieYinYang}
-              /> : 
-            this.state.introLineIndex == 4 ? 
-              <Lottie
-                autoPlay={true}
-                source={require('../assets/lottie/headphones.json')}
-                speed={0.8}
-                style={styles.lottieYinYang}
-              /> : 
-              this.state.introLineIndex == 8 ?
-              <Lottie
-                autoPlay={true}
-                source={require('../assets/lottie/earphones.json')}
-                speed={0.8}
-                style={styles.lottieYinYang}
-              /> : null
-          }
       </View>
     );
   }
@@ -190,9 +201,25 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
   },
-  lottieYinYang: {
-    width: 50 * (windowWidth / WIDTH_IPHONE_X),
-    height: 50 * (windowWidth / WIDTH_IPHONE_X),
-    aspectRatio: 2,
+  lottiePanda: {
+    width: '65%',
+    height: '65%',
+    position:'absolute',
+    bottom: '31%',
+    left: '12.5%'
+  },
+  lottieHeadphones: {
+    width: '70%',
+    height: '70%',
+    position:'absolute',
+    bottom: '8%',
+    left: '10.6%'
+  },
+  lottieEarphones: {
+    width: '60%',
+    height: '60%',
+    position:'absolute',
+    bottom: '16%',
+    left: '15%'
   },
 })

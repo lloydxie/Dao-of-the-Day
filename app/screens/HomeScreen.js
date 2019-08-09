@@ -47,7 +47,7 @@ export default class HomeScreen extends React.Component {
       if (!this.state.isExitingScreen) {
         AudioServiceSingleton.play(AudioServiceSingleton.initialLoadMap['typing.mp3'])
       }
-    }, 3500)
+    }, 2500)
     
     this.focusListener = this.props.navigation.addListener("willFocus", () => {
       this.setState(
